@@ -524,25 +524,25 @@ html, body, #root {
   width: min(520px, 92vw);
   max-height: 90vh;
   overflow: auto;
-  background: #171a21;
-  border: 1px solid #2a3140;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  box-shadow: var(--shadow-lg);
   animation: verdict-in 0.22s cubic-bezier(0.2,0.8,0.2,1);
 }
 
 .modal-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; }
-.fld { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: #9aa3af; }
+.fld { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--text-secondary); }
 .fld > span { font-weight: 600; letter-spacing: 0.2px; }
 .fld-row { display: flex; gap: 12px; }
 .fld-row .fld { flex: 1; }
 
 .fld input[type="text"],
 .fld input[type="text"]:not([disabled]) {
-  background: #0c0e12;
-  border: 1px solid #2a3140;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #e8eaed;
+  color: var(--text-primary);
   padding: 9px 11px;
   font-size: 14px;
   outline: none;
@@ -551,12 +551,13 @@ html, body, #root {
   transition: border-color var(--t-fast);
 }
 .fld input[type="text"]:focus { border-color: var(--accent); }
+.fld input::placeholder, .fld textarea::placeholder { color: var(--text-muted); }
 
 .fld textarea {
-  background: #0c0e12;
-  border: 1px solid #2a3140;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #e8eaed;
+  color: var(--text-primary);
   padding: 9px 11px;
   font-size: 13px;
   font-family: var(--font-sans);
@@ -569,10 +570,10 @@ html, body, #root {
 .fld textarea:focus { border-color: var(--accent); }
 
 .fld.upload input[type="file"] {
-  background: #0c0e12;
-  border: 1px dashed rgba(54,64,82,0.7);
+  background: var(--bg-input);
+  border: 1px dashed var(--border);
   border-radius: 8px;
-  color: #9aa3af;
+  color: var(--text-muted);
   padding: 9px 11px;
   font-size: 12.5px;
   cursor: pointer;
