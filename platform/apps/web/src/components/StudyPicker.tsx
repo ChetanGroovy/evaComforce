@@ -17,6 +17,7 @@ interface Props {
   onSelectStudy: (brief: StudyBrief) => void;
   onStudiesRefresh: () => void;
   onStudyUpdated: () => void;
+  onOpenStudy: () => void;
 }
 
 function StatusBadge({ status }: { status?: string }) {
@@ -47,9 +48,11 @@ function StatusBadge({ status }: { status?: string }) {
 function StudyDetailCard({
   study,
   onEdit,
+  onOpenStudy,
 }: {
   study: StudyDetail;
   onEdit: () => void;
+  onOpenStudy: () => void;
 }) {
   const cc = study.criteriaCount;
   return (
@@ -77,23 +80,41 @@ function StudyDetailCard({
         >
           {study.name}
         </div>
-        <button
-          onClick={onEdit}
-          style={{
-            background: 'var(--btn-soft-bg)',
-            border: '1px solid var(--btn-soft-bd)',
-            color: 'var(--btn-soft-fg)',
-            borderRadius: 7,
-            fontSize: 11,
-            fontWeight: 600,
-            padding: '4px 10px',
-            cursor: 'pointer',
-            flexShrink: 0,
-            fontFamily: 'var(--font-sans)',
-          }}
-        >
-          Edit
-        </button>
+        <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
+          <button
+            onClick={onOpenStudy}
+            title="Open the Agent Flow & question routing editor"
+            style={{
+              background: 'linear-gradient(135deg, var(--accent), var(--purple))',
+              border: 'none',
+              color: '#fff',
+              borderRadius: 7,
+              fontSize: 11,
+              fontWeight: 600,
+              padding: '4px 10px',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans)',
+            }}
+          >
+            Agent Flow →
+          </button>
+          <button
+            onClick={onEdit}
+            style={{
+              background: 'var(--btn-soft-bg)',
+              border: '1px solid var(--btn-soft-bd)',
+              color: 'var(--btn-soft-fg)',
+              borderRadius: 7,
+              fontSize: 11,
+              fontWeight: 600,
+              padding: '4px 10px',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans)',
+            }}
+          >
+            Edit
+          </button>
+        </div>
       </div>
 
       {/* Detail grid */}
@@ -175,6 +196,7 @@ export function StudyPicker({
   onSelectStudy,
   onStudiesRefresh,
   onStudyUpdated,
+  onOpenStudy,
 }: Props) {
   const [query, setQuery] = useState('');
   const [showNewModal, setShowNewModal] = useState(false);
@@ -361,7 +383,7 @@ export function StudyPicker({
         {loadingDetail && <LoadingSpinner text="Loading…" />}
         {errorDetail && !loadingDetail && <ErrorBanner message={errorDetail} />}
         {!loadingDetail && !errorDetail && selectedStudy && (
-          <StudyDetailCard study={selectedStudy} onEdit={() => setShowEditModal(true)} />
+          <StudyDetailCard study={selectedStudy} onEdit={() => setShowEditModal(true)} onOpenStudy={onOpenStudy} />
         )}
         {!loadingDetail && !errorDetail && !selectedStudy && (
           <EmptyState icon="📋" text="Select a study to see details" />

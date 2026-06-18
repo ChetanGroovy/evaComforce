@@ -126,6 +126,12 @@ export interface StudyDetail {
     drug: string;
   };
   knowledgeBank: Record<string, string>;
+  // Full editable config for the Agent Flow view + Question Routing editor
+  flow: {
+    nodes: Array<{ id: string; type: string; label: string }>;
+    edges: Array<{ source: string; target: string; label: string }>;
+  };
+  screeningQuestions: ScreeningQuestion[];
 }
 
 export function studyDetail(id: string, S: Study): StudyDetail {
@@ -160,6 +166,19 @@ export function studyDetail(id: string, S: Study): StudyDetail {
       drug: m.drug ?? '',
     },
     knowledgeBank: S.knowledgeBank ?? {},
+    flow: {
+      nodes: (S.flow?.nodes ?? []).map((n) => ({
+        id: String(n.id),
+        type: String((n as { type?: string }).type ?? 'question'),
+        label: String((n as { label?: string }).label ?? ''),
+      })),
+      edges: (S.flow?.edges ?? []).map((e) => ({
+        source: String(e.source),
+        target: String(e.target),
+        label: String((e as { label?: string }).label ?? ''),
+      })),
+    },
+    screeningQuestions: S.screeningQuestions ?? [],
   };
 }
 
@@ -279,6 +298,7 @@ export interface UpdateStudyPatch {
   knowledgeBank?: Record<string, string>;
   conversation?: Record<string, string>;
   screeningQuestions?: ScreeningQuestion[];
+  flow?: { nodes: unknown[]; edges: unknown[] };
   status?: string;
 }
 
@@ -307,6 +327,9 @@ export function updateStudy(id: string, patch: UpdateStudyPatch): UpdateStudyRes
   }
   if (Array.isArray(patch.screeningQuestions)) {
     S.screeningQuestions = patch.screeningQuestions;
+  }
+  if (patch.flow && Array.isArray(patch.flow.nodes) && Array.isArray(patch.flow.edges)) {
+    S.flow = patch.flow as Study['flow'];
   }
   if (patch.status) S.status = patch.status as 'draft' | 'ready';
   fs.writeFileSync(p, JSON.stringify(S, null, 2));

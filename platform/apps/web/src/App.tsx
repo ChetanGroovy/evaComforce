@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { StudyPicker } from './components/StudyPicker';
 import { ScreeningChat } from './components/ScreeningChat';
 import { FunnelDashboard } from './components/FunnelDashboard';
+import { StudyDetailPage } from './components/StudyDetailPage';
 import { fetchStudies, fetchStudy, fetchReport } from './api';
 import type { StudyBrief, StudyDetail, Report } from './types';
 
@@ -22,6 +23,9 @@ export function App() {
   const [report, setReport] = useState<Report | null>(null);
   const [loadingReport, setLoadingReport] = useState(false);
   const [errorReport, setErrorReport] = useState<string | null>(null);
+
+  /* ── View: dashboard (screening) ↔ study detail page (flow editor) ── */
+  const [view, setView] = useState<'dashboard' | 'study'>('dashboard');
 
   /* ── Load studies ─────────────────────────────────── */
   const loadStudies = useCallback(async () => {
@@ -100,6 +104,22 @@ export function App() {
     }
   }, [selectedId]);
 
+  if (view === 'study' && selectedStudy) {
+    return (
+      <div className="app-root">
+        <Header />
+        <StudyDetailPage
+          study={selectedStudy}
+          onBack={() => setView('dashboard')}
+          onStudyUpdated={(updated) => {
+            setSelectedStudy(updated);
+            void loadStudies();
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="app-root">
       <Header />
@@ -115,6 +135,7 @@ export function App() {
           onSelectStudy={(brief) => void handleSelectStudy(brief)}
           onStudiesRefresh={() => void loadStudies()}
           onStudyUpdated={() => void handleStudyUpdated()}
+          onOpenStudy={() => setView('study')}
         />
         <ScreeningChat
           selectedStudy={selectedStudy}

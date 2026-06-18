@@ -35,6 +35,39 @@ export interface KnowledgeBank {
   [key: string]: string | undefined;
 }
 
+/* ── Agent Flow / Question Routing ─────────────────────── */
+export interface FlowNode {
+  id: string;
+  type: string; // 'root' | 'question' | 'dnq' | 'qualified'
+  label: string;
+}
+export interface FlowEdge {
+  source: string;
+  target: string;
+  label: string;
+}
+export interface StudyFlow {
+  nodes: FlowNode[];
+  edges: FlowEdge[];
+}
+export interface ScreeningQuestionFull {
+  rank: number;
+  variable_name: string;
+  sms_question: string;
+  answer_type: string; // 'yes_no' | 'number' | 'choice' | ...
+  choices?: string[] | null;
+  category?: string;
+  disqualify_condition?: string;
+  qualify_condition?: string;
+  show_if?: string;
+  routing?: boolean;
+  criteria_ids?: string[];
+  knockout_power?: string;
+  is_qualifying_question?: boolean;
+  included_in_flow?: boolean;
+  [k: string]: unknown;
+}
+
 export interface StudyDetail {
   id: string;
   name: string;
@@ -47,6 +80,8 @@ export interface StudyDetail {
   status?: 'draft' | 'ready';
   overview?: StudyOverview;
   knowledgeBank?: KnowledgeBank;
+  flow?: StudyFlow;
+  screeningQuestions?: ScreeningQuestionFull[];
 }
 
 export interface TraceRow {

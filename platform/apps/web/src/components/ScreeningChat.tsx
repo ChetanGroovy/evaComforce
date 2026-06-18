@@ -288,16 +288,24 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
     setEntries((prev) => [...prev, entry]);
   }, []);
 
-  // Reset when study changes while not active
+  // Reset the chat whenever the selected study actually changes — even if a
+  // screening session is in progress (switching studies must never leave one
+  // study's session bleeding into another study's chat slot).
+  const prevStudyId = useRef<string | null>(null);
   useEffect(() => {
-    if (!screeningActive && !screeningDone) {
+    const id = selectedStudy?.id ?? null;
+    if (prevStudyId.current !== null && prevStudyId.current !== id) {
       setEntries([]);
       setSessionId(null);
-      setInputText('');
+      setScreeningActive(false);
+      setScreeningDone(false);
       setInputEnabled(false);
+      setInputText('');
       setErrorMsg(null);
+      setTyping(false);
     }
-  }, [selectedStudy?.id, screeningActive, screeningDone]);
+    prevStudyId.current = id;
+  }, [selectedStudy?.id]);
 
   const resetChat = useCallback(() => {
     setEntries([]);

@@ -63,6 +63,7 @@ export interface UpdateStudyPayload {
   knowledgeBank?: Record<string, string>;
   conversation?: Record<string, string>;
   screeningQuestions?: unknown[];
+  flow?: { nodes: unknown[]; edges: unknown[] };
   status?: string;
 }
 
