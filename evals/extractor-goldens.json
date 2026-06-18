@@ -1,0 +1,22 @@
+[
+  { "question_type": "yes_no", "reply": "yes", "expect": { "value": "yes", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "yeah definitely", "expect": { "value": "yes", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "I have type 2 diabetes", "expect": { "value": "yes", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "no", "expect": { "value": "no", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "nope", "expect": { "value": "no", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "not really", "expect": { "value": "no", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "nah, never have", "expect": { "value": "no", "needs_clarification": false } },
+  { "question_type": "yes_no", "reply": "maybe, I'm not sure", "expect": { "needs_clarification": true } },
+  { "question_type": "yes_no", "reply": "yes and no, it's complicated", "expect": { "needs_clarification": true } },
+  { "question_type": "number", "reply": "52", "expect": { "value": 52, "needs_clarification": false } },
+  { "question_type": "number", "reply": "I'm 52", "expect": { "value": 52, "needs_clarification": false } },
+  { "question_type": "number", "reply": "fifty-two", "expect": { "value": 52, "needs_clarification": false } },
+  { "question_type": "number", "reply": "I'm not sure how old", "expect": { "needs_clarification": true } },
+  { "question_type": "choice", "choices": ["Female", "Male"], "reply": "Female", "expect": { "value": "Female", "needs_clarification": false } },
+  { "question_type": "choice", "choices": ["Female", "Male"], "reply": "I'm a woman", "expect": { "value": "Female", "needs_clarification": false } },
+  { "question_type": "choice", "choices": ["Female", "Male"], "reply": "male", "expect": { "value": "Male", "needs_clarification": false } },
+  { "question_type": "choice", "choices": ["Female", "Male"], "reply": "I'd rather not say", "expect": { "needs_clarification": true } },
+  { "question_type": "bmi", "reply": "", "ctx": { "height": "5'10\"", "weight": "278 lbs" }, "expect": { "value": "yes", "needs_clarification": false } },
+  { "question_type": "bmi", "reply": "", "ctx": { "height": "5 ft 10", "weight": "140 lbs" }, "expect": { "value": "no", "needs_clarification": false } },
+  { "question_type": "bmi", "reply": "", "ctx": { "height": "178 cm", "weight": "126 kg" }, "expect": { "value": "yes", "needs_clarification": false } }
+]

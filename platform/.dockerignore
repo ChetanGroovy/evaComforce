@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+**/dist
+.git
+.env
+.env.*
+*.tgz
+*.log
+e2e
+**/__tests__
+**/*.test.ts
+# never bake PHI into the image
+../studies
+studies

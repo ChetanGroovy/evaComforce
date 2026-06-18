@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prescreening Engine — Build-to-Production Plan</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --ink:#e8eaed; --muted:#9aa3af; --line:#262b34;
+    --accent:#4f8cff; --good:#34c759; --warn:#ff9f0a; --bad:#ff453a; --chip:#1f2530;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+  header.hero{padding:56px 24px 40px;background:linear-gradient(135deg,#12233f,#0f1115);border-bottom:1px solid var(--line)}
+  header.hero .wrap{padding-bottom:0}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:-.5px}
+  .sub{color:var(--muted);font-size:17px;max-width:760px}
+  .tagrow{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:var(--chip);border:1px solid var(--line);color:var(--ink);padding:4px 10px;border-radius:999px;font-size:12.5px}
+  .tag.good{border-color:#1f6b34;color:#7ee29a}
+  .tag.warn{border-color:#7a5410;color:#ffce82}
+  nav.toc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:28px 0}
+  nav.toc h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+  nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px}
+  nav.toc a{color:var(--ink);text-decoration:none}
+  nav.toc a:hover{color:var(--accent)}
+  section{margin:38px 0;scroll-margin-top:20px}
+  h2{font-size:23px;margin:0 0 14px;padding-top:8px;border-top:1px solid var(--line);padding-top:24px}
+  h2 .n{color:var(--accent);font-variant-numeric:tabular-nums;margin-right:10px}
+  h3{font-size:17px;margin:22px 0 8px}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0;padding-left:22px}
+  li{margin:5px 0}
+  code{background:#0c0e12;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font:13px/1.5 "SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  pre{background:#0c0e12;border:1px solid var(--line);border-radius:10px;padding:16px;overflow:auto;font:12.5px/1.55 "SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:#11151c;color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.5px}
+  tr:nth-child(even) td{background:#13161d}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card .k{font-size:30px;font-weight:700;letter-spacing:-1px}
+  .card .l{color:var(--muted);font-size:13px;margin-top:2px}
+  .pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px;border:1px solid var(--line)}
+  .done{background:#0e2a16;color:#7ee29a;border-color:#1f6b34}
+  .next{background:#2a2410;color:#ffce82;border-color:#7a5410}
+  .later{background:#1a1d24;color:#9aa3af}
+  .flow{font:12.5px/1.5 "SF Mono",ui-monospace,Menlo,monospace;white-space:pre;background:#0c0e12;border:1px solid var(--line);border-radius:10px;padding:18px;overflow:auto}
+  .note{border-left:3px solid var(--accent);padding:8px 14px;background:#10151f;border-radius:0 8px 8px 0;margin:14px 0}
+  .note.warn{border-color:var(--warn);background:#1c1709}
+  .note.good{border-color:var(--good);background:#0e1c12}
+  footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px;margin-top:40px}
+  a{color:var(--accent)}
+  .small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Patient Prescreening Engine — Build-to-Production Plan</h1>
+    <div class="sub">A deterministic, auditable, conversational prescreening engine that replicates DM
+    Clinical's live Alleviate phone-screen behavior — without giving up reproducible verdicts, full audit
+    traces, or protocol traceability. This document covers everything from the current state through
+    production rollout.</div>
+    <div class="tagrow">
+      <span class="tag">comforceEva · studygen.mjs</span>
+      <span class="tag good">batch + conversational engines built</span>
+      <span class="tag good">0 false-qualifies / 294 real patients</span>
+      <span class="tag good">5/5 clinical rejections reproduced (sample)</span>
+      <span class="tag warn">full-294 LLM validation pending</span>
+    </div>
+    <div class="small" style="margin-top:14px">Study reference: WC45726 (CT-388 / obesity + T2D). Version 1.0 · owner: Engineering.</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#summary">Executive summary</a></li>
+    <li><a href="#goals">Goals &amp; non-goals</a></li>
+    <li><a href="#state">Current state &amp; evidence</a></li>
+    <li><a href="#arch">Architecture</a></li>
+    <li><a href="#vs">How it compares to Alleviate</a></li>
+    <li><a href="#data">Data model &amp; schemas</a></li>
+    <li><a href="#engine">Engine internals</a></li>
+    <li><a href="#extract">Extraction layer (LLM)</a></li>
+    <li><a href="#channels">Channels (CLI → SMS → voice)</a></li>
+    <li><a href="#qa">Testing &amp; QA strategy</a></li>
+    <li><a href="#sec">Security, privacy &amp; compliance</a></li>
+    <li><a href="#infra">Deployment &amp; infrastructure</a></li>
+    <li><a href="#obs">Observability &amp; monitoring</a></li>
+    <li><a href="#roadmap">Production roadmap (phases)</a></li>
+    <li><a href="#risks">Risks &amp; mitigations</a></li>
+    <li><a href="#timeline">Milestones &amp; timeline</a></li>
+    <li><a href="#decisions">Open decisions</a></li>
+    <li><a href="#appendix">Appendix: commands &amp; file map</a></li>
+  </ol>
+</nav>
+
+<section id="summary">
+  <h2><span class="n">1</span>Executive summary</h2>
+  <p>The live Alleviate platform prescreens patients with an <strong>LLM walking a flow graph</strong>:
+  it asks a question, reads the free-text reply, and the LLM both <em>understands</em> the answer and
+  <em>chooses</em> the branch. That is simple to author but non-deterministic and unauditable.</p>
+  <p>Our engine takes the <strong>hybrid</strong> path: the LLM only <em>extracts</em> the answer into a
+  structured value; a <strong>deterministic code path</strong> decides every branch and the final verdict.
+  Same conversational experience for the patient; reproducible, explainable, regulator-grade decisions for us.</p>
+  <div class="grid">
+    <div class="card"><div class="k" style="color:var(--good)">0</div><div class="l">false-qualifies across 294 real transcripts</div></div>
+    <div class="card"><div class="k" style="color:var(--good)">5/5</div><div class="l">clinical rejections reproduced (20-pt LLM sample)</div></div>
+    <div class="card"><div class="k" style="color:var(--good)">9/12</div><div class="l">booked → QUALIFIED after defer fix (sample)</div></div>
+    <div class="card"><div class="k">10/10</div><div class="l">golden regression · equivalence green</div></div>
+  </div>
+  <p>The decision logic is built and validated; the remaining work is productionization — LLM extraction
+  at scale, real channels (SMS/voice), persistence, compliance, and observability.</p>
+</section>
+
+<section id="goals">
+  <h2><span class="n">2</span>Goals &amp; non-goals</h2>
+  <h3>Goals</h3>
+  <ul>
+    <li>Prescreen a patient against a study's questionnaire <strong>deterministically</strong> — same answers always yield the same verdict.</li>
+    <li>Match the live agent's <strong>conversational feel</strong> (warm intro, name, acknowledgments, height/weight→BMI, scheduling close).</li>
+    <li>Emit a full <strong>audit trace</strong> and <strong>protocol traceability</strong> (each question → criterion → protocol page) for every decision.</li>
+    <li>Three honest terminals: <strong>QUALIFIED</strong> (pre-qualified), <strong>DNQ</strong> (specific reason), <strong>INCOMPLETE</strong> (not fully screened).</li>
+    <li>Run the same decision core across channels: CLI now, SMS/voice later, behind one adapter interface.</li>
+    <li>Be <strong>safe</strong>: never qualify a patient who should be excluded.</li>
+  </ul>
+  <h3>Non-goals</h3>
+  <ul>
+    <li>Deciding patient <em>intent</em> ("not interested") — that is conversation management, not eligibility.</li>
+    <li>Replacing the on-site screening visit — labs, imaging, exams, med reconciliation stay at the visit.</li>
+    <li>Authoring criteria automatically — extraction from Protocol/ICF is a separate, existing pipeline.</li>
+  </ul>
+</section>
+
+<section id="state">
+  <h2><span class="n">3</span>Current state &amp; validation evidence</h2>
+  <table>
+    <tr><th>Capability</th><th>Status</th><th>Where</th></tr>
+    <tr><td>Batch deterministic engine (<code>screenPatient</code>)</td><td><span class="pill done">DONE</span></td><td>studygen.mjs · <code>screen</code>, <code>screen-report</code></td></tr>
+    <tr><td>Conversational engine (turn-by-turn)</td><td><span class="pill done">DONE</span></td><td><code>runConversation</code> · <code>converse</code>, <code>converse-replay</code></td></tr>
+    <tr><td>Channel abstraction (CLI + Replay)</td><td><span class="pill done">DONE</span></td><td><code>cliChannel</code>, <code>replayChannel</code></td></tr>
+    <tr><td>Conversational polish (name, acks, BMI height/weight, scheduling)</td><td><span class="pill done">DONE</span></td><td>study flag <code>capture:"bmi"</code></td></tr>
+    <tr><td>Deferred-question handling (pre-qualify; confirm at visit)</td><td><span class="pill done">DONE</span></td><td>study flag <code>defer_if_unanswered</code></td></tr>
+    <tr><td>Equivalence gate (conversational ≡ batch)</td><td><span class="pill done">DONE</span></td><td><code>test-converse</code> · 11/11</td></tr>
+    <tr><td>Golden regression</td><td><span class="pill done">DONE</span></td><td><code>golden</code> · 10/10</td></tr>
+    <tr><td>Transcript replay vs live outcome</td><td><span class="pill done">DONE</span></td><td><code>eval-transcripts</code> · contradiction metric</td></tr>
+    <tr><td>Rule-based free-text extractor</td><td><span class="pill done">DONE</span></td><td><code>extractAnswer</code> (yes_no/number/choice)</td></tr>
+    <tr><td>LLM extractor (per-turn / per-transcript)</td><td><span class="pill next">PARTIAL</span></td><td><code>screening</code> agent (batch); not in live loop</td></tr>
+    <tr><td>Real channels (SMS / voice)</td><td><span class="pill later">NOT STARTED</span></td><td>roadmap Phase 5</td></tr>
+    <tr><td>Persistence, compliance, observability</td><td><span class="pill later">NOT STARTED</span></td><td>roadmap Phase 4–6</td></tr>
+  </table>
+  <div class="note good"><strong>Validation evidence (WC45726, 20-patient LLM-extracted sample + 294 rule-parsed):</strong>
+  0 false-qualifies across all 294; on the LLM sample — clinical rejections reproduced 5/5 (100%),
+  booked→QUALIFIED 9/12 (the other 3 = 1 genuinely unscreened + 2 defensible: a self-reported pregnancy we
+  correctly stop, and one double-barreled question to reword). Zero logic errors. Full report:
+  <code>studies/WC45726/READINESS-ASSESSMENT.md</code>.</div>
+</section>
+
+<section id="arch">
+  <h2><span class="n">4</span>Architecture</h2>
+  <p>One decision core, many channels. The LLM is confined to the extraction step; the verdict is pure code.</p>
+  <div class="flow">                        ┌──────────────  one conversation turn  ──────────────┐
+  study.json ──compile──► flow │  ask node.prompt  →  patient free-text reply       │
+  (screeningQuestions)         │                          │                         │
+                               │              LLM / rule EXTRACTOR  (fuzzy)          │
+                               │              "I'm 52" ─► { q1_age: 52 }             │
+                               │                          │                         │
+                               │       DETERMINISTIC SELECTOR  (pure code, no LLM)   │
+                               │       evaluate disqualify_condition / show_if       │
+                               │                          │                         │
+                               │       next question  ·  or  ·  terminate            │
+                               └─────────────────────────────────────────────────────┘
+        terminal:  QUALIFIED (pre-qualified)  |  DNQ — &lt;reason&gt;  |  INCOMPLETE
+        always emits:  decision trace  +  transcript  +  deferred[]  +  criteria_ids
+</div>
+  <h3>Components</h3>
+  <table>
+    <tr><th>Component</th><th>Responsibility</th><th>Deterministic?</th></tr>
+    <tr><td>Compiler</td><td>study.json → ordered, conditioned question model</td><td>yes</td></tr>
+    <tr><td>Extractor (adapter)</td><td>free text → structured value; confidence / re-ask signal</td><td>no (LLM/rule) — isolated</td></tr>
+    <tr><td>Selector / verdict</td><td>apply show_if, disqualify_condition, routing, defer → terminal</td><td><strong>yes</strong></td></tr>
+    <tr><td>Channel adapter</td><td>move text in/out (CLI, Replay, SMS, Voice)</td><td>n/a</td></tr>
+    <tr><td>Trace + record</td><td>per-question decisions, transcript, deferred, terminal</td><td>yes</td></tr>
+  </table>
+  <div class="note"><strong>Why hybrid.</strong> Confining the LLM to extraction means an LLM mistake is
+  localized to one variable and shows up in the trace; the eligibility decision stays reproducible and
+  reviewable. Alleviate's all-LLM design cannot offer this.</div>
+</section>
+
+<section id="vs">
+  <h2><span class="n">5</span>How it compares to Alleviate</h2>
+  <table>
+    <tr><th>Dimension</th><th>Alleviate (live)</th><th>Ours</th></tr>
+    <tr><td>Core model</td><td>LLM walks a flow graph</td><td>structured questionnaire + deterministic verdict</td></tr>
+    <tr><td>Who decides eligibility</td><td>the LLM (picks the edge)</td><td><strong>code</strong>; LLM only extracts</td></tr>
+    <tr><td>Branch condition</td><td>natural-language edge label</td><td>machine expression (<code>age &lt; 18</code>, <code>answer == no</code>)</td></tr>
+    <tr><td>Determinism</td><td>no</td><td>yes</td></tr>
+    <tr><td>Audit trace</td><td>DNQ-reason node only</td><td>full per-question trace</td></tr>
+    <tr><td>Protocol traceability</td><td>none (criteria empty)</td><td>question → <code>criteria_ids</code> → page</td></tr>
+    <tr><td>Verdict states</td><td>Qualified / DNQ</td><td>Qualified / DNQ / <strong>INCOMPLETE</strong></td></tr>
+    <tr><td>Deferred items (pregnancy, GLP-1)</td><td>confirmed on the call</td><td>explicit <code>defer_if_unanswered</code> + surfaced</td></tr>
+    <tr><td>Authoring</td><td>visual, non-technical</td><td>doc extraction → classify → linted study.json</td></tr>
+  </table>
+  <p class="small">Background: <code>reference/ALLEVIATE-ENGINE-REVERSE-ENGINEERED.md</code>.</p>
+</section>
+
+<section id="data">
+  <h2><span class="n">6</span>Data model &amp; schemas</h2>
+  <h3>Screening question (the executable unit)</h3>
+  <pre>{
+  "rank": 11,                               // ask order
+  "variable_name": "q10_pregnancy",         // key the extractor fills
+  "sms_question": "Are you currently pregnant, breastfeeding, …?",
+  "answer_type": "yes_no",                  // yes_no | number | choice
+  "choices": ["Female","Male"],             // for choice
+  "routing": true,                          // collects a value, never disqualifies (e.g. sex)
+  "show_if": "sex_at_birth == \"Female\"",  // conditional gate
+  "disqualify_condition": "answer == yes",  // the knockout rule
+  "capture": "bmi", "bmi_cutoff": 27,       // ask height+weight, compute BMI (conversational)
+  "defer_if_unanswered": true,              // unasked → pre-qualify, confirm at visit
+  "criteria_ids": ["EXC-37"]                // traceability to protocol criterion
+}</pre>
+  <h3>Criterion classification (the accuracy keystone)</h3>
+  <p>Every criterion carries <code>verification_method</code> ∈ {self_report, exam, lab, imaging, records,
+  derived}, <code>knockout_strength</code> ∈ {hard, soft, none}, and
+  <code>phone_screenable = self_report &amp;&amp; hard</code>. <strong>Only phone-screenable criteria may
+  source a phone question</strong>; the <code>eval</code> gate fails the build otherwise. Example: GLP-1
+  (EXC-30) was reclassified to <code>records</code> / not-phone-screenable to match the live agent, which
+  confirms it at the visit.</p>
+  <h3>Conversation record (persisted output)</h3>
+  <pre>{
+  "patient": "Albert_Warren", "study": "WC45726",
+  "terminal": "QUALIFIED",                  // QUALIFIED | DNQ | INCOMPLETE
+  "reason": "Pre-qualified; confirm at visit: q10_pregnancy",
+  "deferred": ["q10_pregnancy"],
+  "criteria_ids": [],                       // for a DNQ, the failed criterion
+  "answers": { "q1_age": 52, "sex_at_birth": "Male", … },
+  "trace": [ { "rank":1, "variable":"q1_age", "answer":52, "shown":true, "disqualified":false }, … ],
+  "transcript": [ { "agent":"…" }, { "patient":"…" }, … ]
+}</pre>
+</section>
+
+<section id="engine">
+  <h2><span class="n">7</span>Engine internals (verdict logic)</h2>
+  <ol>
+    <li>Questions run in <code>rank</code> order.</li>
+    <li><strong>show_if</strong> false → question skipped entirely (not asked, not counted).</li>
+    <li><strong>routing</strong> question → collects a value, never disqualifies (e.g. <code>sex_at_birth</code> gates pregnancy).</li>
+    <li>Answered + <strong>disqualify_condition</strong> true → <strong>DNQ</strong> (first knockout in rank order wins; conversational engine exits early with a polite close).</li>
+    <li>Unanswered + <code>defer_if_unanswered</code> → <strong>deferred</strong> (does not block; confirm at visit).</li>
+    <li>Unanswered + not deferred → <strong>missing</strong>.</li>
+    <li>Terminal: any DNQ → DNQ · else any missing → INCOMPLETE · else → QUALIFIED (deferred items noted).</li>
+  </ol>
+  <div class="note"><strong>Conversational extras (presentation only — never change the verdict):</strong>
+  warm personalized intro, rotating acknowledgments ("Got it."), height+weight→BMI capture, off-topic
+  redirect, scheduling close on QUALIFIED, "stop" to pause. Because these don't touch the decision,
+  conversational ≡ batch is provable (<code>test-converse</code>).</div>
+</section>
+
+<section id="extract">
+  <h2><span class="n">8</span>Extraction layer (LLM)</h2>
+  <p>Today: a rule-based extractor handles yes_no (negation-aware), number, and choice — sufficient for the
+  current question types, with re-ask on ambiguous input.</p>
+  <p>Production: a per-turn <strong>LLM extractor adapter</strong> (the <code>screening</code> agent logic)
+  for genuinely free-form replies. Validated in batch on the 20-patient sample: it handled off-topic
+  chatter, computed BMI from height/weight, and caught a "type 1 not type 2" self-correction.</p>
+  <ul>
+    <li>Input: question (variable, type, choices) + the patient's raw reply (+ short context).</li>
+    <li>Output: <code>{ value, confidence, needs_clarification }</code>.</li>
+    <li>Low confidence → engine re-asks with a clarifying prompt; the branch logic never sees ambiguity.</li>
+    <li>Golden fixtures: free-text → expected value, including adversarial/ambiguous replies.</li>
+  </ul>
+  <div class="note warn"><strong>Determinism is preserved:</strong> the extractor feeds values; the verdict
+  is still pure code. An extractor error is visible in the trace and localized to one variable.</div>
+</section>
+
+<section id="channels">
+  <h2><span class="n">9</span>Channels (CLI → SMS → voice)</h2>
+  <p>All channels implement one interface: <code>say(text)</code>, <code>ask(text, question) → reply</code>,
+  <code>close()</code>, plus <code>interactive</code> and <code>maxReask</code>. The decision core is identical across them.</p>
+  <table>
+    <tr><th>Channel</th><th>Use</th><th>Status</th></tr>
+    <tr><td><code>cliChannel</code></td><td>terminal conversation (TTY + piped stdin via line queue)</td><td><span class="pill done">DONE</span></td></tr>
+    <tr><td><code>replayChannel</code></td><td>scripted answers — tests, bulk scoring, equivalence</td><td><span class="pill done">DONE</span></td></tr>
+    <tr><td><code>smsChannel</code> (Twilio)</td><td>inbound webhook → engine turn → outbound SMS; session store</td><td><span class="pill later">Phase 5</span></td></tr>
+    <tr><td><code>voiceChannel</code></td><td>telephony + speech-to-text/TTS</td><td><span class="pill later">later</span></td></tr>
+  </table>
+</section>
+
+<section id="qa">
+  <h2><span class="n">10</span>Testing &amp; QA strategy</h2>
+  <table>
+    <tr><th>Layer</th><th>What it proves</th><th>Command</th></tr>
+    <tr><td>Unit</td><td>extractor truth tables; selector branch logic; BMI/height parse</td><td>(to add) <code>evals/</code></td></tr>
+    <tr><td>Equivalence</td><td>conversational terminal == batch terminal for every answer set</td><td><code>test-converse</code></td></tr>
+    <tr><td>Golden</td><td>the 3 historical extraction mistakes stay caught; all studies eval-clean</td><td><code>golden</code> (10/10)</td></tr>
+    <tr><td>Eval gate</td><td>precision (no question from a non-phone criterion) + recall (no missed knockout)</td><td><code>eval</code></td></tr>
+    <tr><td>Transcript replay</td><td>our verdict vs live outcome on real SMS; <strong>contradiction</strong> count</td><td><code>eval-transcripts [llm-only]</code></td></tr>
+    <tr><td>Extractor goldens</td><td>free-text → expected value (incl. ambiguous)</td><td>(Phase 3)</td></tr>
+  </table>
+  <h3>The contradiction metric (key safety measure)</h3>
+  <p>Because the platform books after the core questions and defers pregnancy/GLP-1 to the call, raw
+  "agreement" is misleading. We measure <strong>contradictions</strong> instead: (a) we DNQ a patient the
+  platform booked, or (b) we QUALIFY a patient the platform clinically rejected. Target: <strong>0
+  type-(b) contradictions</strong> (never pass someone who should fail). Type-(a) cases are reviewed —
+  often the engine is correctly stricter (e.g. a disclosed pregnancy).</p>
+</section>
+
+<section id="sec">
+  <h2><span class="n">11</span>Security, privacy &amp; compliance</h2>
+  <p>Patient data is PHI. Nothing below is optional before live patient contact.</p>
+  <table>
+    <tr><th>Area</th><th>Requirement</th></tr>
+    <tr><td>PHI handling (HIPAA)</td><td>Encrypt at rest + in transit; access controls + audit logging; BAAs with any LLM/SMS/cloud vendor; minimum-necessary data to the extractor.</td></tr>
+    <tr><td>LLM vendor</td><td>Use a HIPAA-eligible API with a signed BAA; no PHI to non-covered endpoints; redact identifiers where possible.</td></tr>
+    <tr><td>SMS / outreach (TCPA)</td><td>Prior express consent before texting; honor STOP/opt-out immediately; quiet-hours; per-message opt-out language.</td></tr>
+    <tr><td>Consent</td><td>This is a <em>pre-screen</em>, not informed consent for the study; ICF consent happens on-site. State that clearly.</td></tr>
+    <tr><td>Audit</td><td>Every conversation persisted with timestamps, full trace, and verdict — tamper-evident, retained per policy.</td></tr>
+    <tr><td>Secrets</td><td><code>.env</code> gitignored; rotate credentials after use; secrets manager in production (never in repo).</td></tr>
+    <tr><td>Data residency / retention</td><td>Defined retention windows; deletion on opt-out/removal request (e.g. "remove my info").</td></tr>
+  </table>
+  <div class="note warn"><strong>Hard gate:</strong> a security + compliance review (PHI flow, consent,
+  opt-out, audit, BAAs) must pass before any real patient is contacted on SMS/voice. This is a go/no-go,
+  not a checkbox.</div>
+</section>
+
+<section id="infra">
+  <h2><span class="n">12</span>Deployment &amp; infrastructure</h2>
+  <ul>
+    <li><strong>Engine core</strong> — packaged as a service/module; pure functions, no external state in the decision path.</li>
+    <li><strong>SMS path</strong> — Twilio webhook → API endpoint → engine turn → reply; per-patient session store (Redis/DB) keyed by phone + study.</li>
+    <li><strong>Study config</strong> — <code>study.json</code> as source of truth; versioned + published (mirrors Alleviate's "Published v11").</li>
+    <li><strong>Extractor</strong> — LLM API behind a BAA, with timeout + fallback to re-ask.</li>
+    <li><strong>Persistence</strong> — conversation records + verdicts in an encrypted store; export to CRM funnel.</li>
+    <li><strong>Environments</strong> — dev / staging (synthetic data) / prod (PHI); no PHI outside prod.</li>
+    <li><strong>CI</strong> — run <code>eval</code>, <code>golden</code>, <code>test-converse</code>, and extractor goldens on every change; block deploy on failure.</li>
+  </ul>
+</section>
+
+<section id="obs">
+  <h2><span class="n">13</span>Observability &amp; monitoring</h2>
+  <ul>
+    <li><strong>Funnel by terminal</strong> — QUALIFIED / DNQ / INCOMPLETE counts + DNQ-reason breakdown per study (Alleviate parity).</li>
+    <li><strong>Extractor health</strong> — re-ask rate, low-confidence rate, clarification loops per question (flags ambiguous wording, e.g. the double-barreled weight-loss item).</li>
+    <li><strong>Drift</strong> — periodic transcript replay vs live outcomes; alert if contradiction rate rises.</li>
+    <li><strong>Latency / errors</strong> — per-turn LLM latency, webhook failures, session timeouts.</li>
+    <li><strong>Deferred items</strong> — track how many pre-qualifications carry deferred questions (pregnancy) for visit follow-up.</li>
+  </ul>
+</section>
+
+<section id="roadmap">
+  <h2><span class="n">14</span>Production roadmap (phases)</h2>
+  <table>
+    <tr><th>Phase</th><th>Scope</th><th>Exit gate</th><th>Status</th></tr>
+    <tr><td>0 · POC &amp; sign-off</td><td>reverse-eng, hybrid POC, plan</td><td>review approved</td><td><span class="pill done">DONE</span></td></tr>
+    <tr><td>1 · Executable model + equivalence</td><td>compile from screeningQuestions; deterministic core</td><td><code>test-converse</code> green all studies</td><td><span class="pill done">DONE</span></td></tr>
+    <tr><td>2 · Conversation core + CLI + replay</td><td>turn-by-turn loop, channels, polish, deferral</td><td>CLI demo + replay; golden 10/10</td><td><span class="pill done">DONE</span></td></tr>
+    <tr><td>3 · LLM extractor in the loop</td><td>per-turn extractor adapter + confidence + re-ask</td><td>extractor goldens pass; full-294 replay confirms rate</td><td><span class="pill next">NEXT</span></td></tr>
+    <tr><td>4 · Reporting + persistence</td><td>conversation records, funnel-by-reason, CRM export</td><td>records persisted + report parity</td><td><span class="pill later">PLANNED</span></td></tr>
+    <tr><td>5 · SMS channel (Twilio)</td><td>webhook, sessions, opt-out</td><td><strong>security/compliance gate</strong></td><td><span class="pill later">PLANNED</span></td></tr>
+    <tr><td>6 · Hardening</td><td>resume, timeouts, multi-study routing, load, observability</td><td>SLOs met in staging</td><td><span class="pill later">PLANNED</span></td></tr>
+  </table>
+  <h3>Immediate next actions</h3>
+  <ol>
+    <li>Run LLM extraction on the remaining ~274 transcripts; re-run <code>eval-transcripts llm-only</code>; confirm 0 type-(b) contradictions hold at scale.</li>
+    <li>Reword the double-barreled weight-loss question into two clean asks.</li>
+    <li>Decide pregnancy policy (hard-stop vs book-then-confirm) — currently hard-stop on disclosed "yes", deferred when unasked.</li>
+    <li>Stand up the per-turn LLM extractor adapter + goldens (Phase 3).</li>
+  </ol>
+</section>
+
+<section id="risks">
+  <h2><span class="n">15</span>Risks &amp; mitigations</h2>
+  <table>
+    <tr><th>Risk</th><th>Mitigation</th></tr>
+    <tr><td>LLM mis-extracts an answer</td><td>confidence threshold + clarifying re-ask; goldens; branch stays deterministic so errors are localized + visible in trace</td></tr>
+    <tr><td>Our phone set broader/narrower than live</td><td>criterion classification + <code>eval</code> gate; transcript replay catches drift; GLP-1 already realigned</td></tr>
+    <tr><td>Ambiguous question wording (double-barreled)</td><td>re-ask-rate monitoring flags it; reword into single asks</td></tr>
+    <tr><td>Over-strict vs platform (e.g. pregnancy)</td><td>explicit defer policy; surface deferred items; conscious go/no-go on hard-stop</td></tr>
+    <tr><td>PHI exposure on a live channel</td><td>Phase-5 compliance gate (BAA, consent, opt-out, audit) before any real contact</td></tr>
+    <tr><td>Scope creep into SMS/voice early</td><td>channel adapter isolates them; they are last; behind the compliance gate</td></tr>
+    <tr><td>Silent funnel-stage mismatch</td><td>measure contradictions, not naive agreement; document deferral semantics</td></tr>
+  </table>
+</section>
+
+<section id="timeline">
+  <h2><span class="n">16</span>Milestones &amp; timeline (indicative)</h2>
+  <table>
+    <tr><th>Milestone</th><th>Deliverable</th><th>Rough effort</th></tr>
+    <tr><td>M1 — full-294 validation</td><td>LLM extraction over all transcripts + report</td><td>days</td></tr>
+    <tr><td>M2 — LLM extractor in loop</td><td>Phase 3 adapter + goldens + CLI using it live</td><td>~1 week</td></tr>
+    <tr><td>M3 — persistence + reporting</td><td>Phase 4; CRM-ready funnel output</td><td>~1 week</td></tr>
+    <tr><td>M4 — SMS pilot (gated)</td><td>Phase 5 after compliance sign-off; limited cohort</td><td>2–3 weeks + review</td></tr>
+    <tr><td>M5 — hardening + GA</td><td>Phase 6; observability, SLOs, multi-study</td><td>2–3 weeks</td></tr>
+  </table>
+  <p class="small">Effort is engineering-time indicative, not a commitment; the compliance gate (M4) is the long pole.</p>
+</section>
+
+<section id="decisions">
+  <h2><span class="n">17</span>Open decisions</h2>
+  <ul>
+    <li><strong>Pregnancy policy:</strong> hard-stop on disclosed "yes" (current) — confirm this is desired vs book-then-confirm.</li>
+    <li><strong>First real channel:</strong> SMS (recommended) vs voice.</li>
+    <li><strong>Engine relationship:</strong> conversational runs <em>alongside</em> batch (recommended) — batch for bulk file scoring, conversational for live.</li>
+    <li><strong>LLM vendor + BAA</strong> for the extractor.</li>
+    <li><strong>Full-294 validation</strong> greenlight (token cost) before declaring study-level production readiness.</li>
+  </ul>
+</section>
+
+<section id="appendix">
+  <h2><span class="n">18</span>Appendix — commands &amp; file map</h2>
+  <h3>Commands (<code>node studygen.mjs &lt;cmd&gt;</code>)</h3>
+  <pre>build &lt;study.json&gt;                         build the study report (runs eval)
+eval  &lt;study.json&gt; [docsDir]               precision/recall gate (FAIL → exit 1)
+golden                                     frozen regression (10/10)
+screen &lt;study.json&gt; &lt;answers&gt;               batch: score one patient
+screen-report &lt;studyDir&gt;                    batch: score everyone in screening/
+converse &lt;study.json&gt; [name]                interactive CLI conversation
+converse-replay &lt;study.json&gt; &lt;answers&gt; [name]   deterministic replay (transcript + outcome)
+test-converse &lt;study.json&gt;                  equivalence gate (conversational == batch)
+eval-transcripts &lt;studyDir&gt; [llm-only]      replay real transcripts vs live outcome</pre>
+  <h3>Key files</h3>
+  <table>
+    <tr><th>Path</th><th>Purpose</th></tr>
+    <tr><td><code>studygen.mjs</code></td><td>engines (batch + conversational), eval, extraction, reports</td></tr>
+    <tr><td><code>studies/&lt;NAME&gt;/study.json</code></td><td>study config — criteria, questions, flow (source of truth)</td></tr>
+    <tr><td><code>studies/&lt;NAME&gt;/screening/</code></td><td>patient transcripts + extracted answers + results</td></tr>
+    <tr><td><code>EXTRACTION-PLAYBOOK.md</code></td><td>hard rules for phone-screen question selection</td></tr>
+    <tr><td><code>SCREENING-RUNBOOK.md</code></td><td>how to run batch + conversational screening</td></tr>
+    <tr><td><code>reference/ALLEVIATE-ENGINE-REVERSE-ENGINEERED.md</code></td><td>how the live platform works</td></tr>
+    <tr><td><code>reference/CONVERSATIONAL-ENGINE-POC-AND-PLAN.md</code></td><td>POC + phased plan</td></tr>
+    <tr><td><code>studies/WC45726/READINESS-ASSESSMENT.md</code></td><td>validation evidence vs live</td></tr>
+  </table>
+</section>
+
+<footer>
+  Patient Prescreening Engine — Build-to-Production Plan · comforceEva · v1.0.<br>
+  Deterministic verdict · LLM-assisted extraction · audit-traceable · channel-agnostic.
+  Companion markdown specs live under <code>reference/</code> and each <code>studies/&lt;NAME&gt;/</code>.
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────────────────────
+# SECRETS — never commit
+# ─────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ─────────────────────────────────────────────────────────────
+# PHI / PII — patient data, study configs, reports — NEVER commit
+# ─────────────────────────────────────────────────────────────
+studies/
+study-WC45276/
+.studies-backup/
+scrape-out/
+raw-payloads/
+*-FULL.md
+*-FULL.html
+*-REDACTED.md
+*-REDACTED.html
+STUDY-WC45276-*
+**/screening/
+
+# ─────────────────────────────────────────────────────────────
+# Build / deps / tooling
+# ─────────────────────────────────────────────────────────────
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+coverage/
+*.tgz
+*.log
+
+# Verification artifacts
+/tmp/verify-*
+e2e/screenshots/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

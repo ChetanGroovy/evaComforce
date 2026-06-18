@@ -1,0 +1,19 @@
+{
+  "name": "comforceeva",
+  "private": true,
+  "version": "0.1.0",
+  "description": "comforceEva — deterministic clinical-trial prescreening platform (TS monorepo)",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "dev:api": "pnpm --filter @comforceeva/api dev",
+    "dev:web": "pnpm --filter @comforceeva/web dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

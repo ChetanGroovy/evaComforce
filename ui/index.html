@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>comforceEva — AI Patient Prescreening</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- No external network requests. All CSS/JS self-contained. -->
+</head>
+<body>
+
+  <!-- ── Header ───────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-logo">
+      <div class="logo-mark">cE</div>
+      <div class="logo-text">
+        <div class="header-title">comforce<span>Eva</span></div>
+        <div class="header-subtitle">AI Patient Prescreening Engine</div>
+      </div>
+    </div>
+
+    <div class="header-divider"></div>
+
+    <div class="header-meta">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      Real-time screening
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="demo-badge">
+      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <polygon points="3,1 13,8 3,15" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Live Demo
+    </div>
+
+    <div class="live-badge">
+      <div class="status-dot"></div>
+      Online
+    </div>
+  </header>
+
+  <!-- ── Three-column layout ──────────────────────────── -->
+  <div class="layout">
+
+    <!-- ── Left Sidebar: Study Picker ─────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-label-row">
+          <div class="sidebar-label">Clinical Studies</div>
+          <button id="add-study-btn" class="add-study-btn" title="Add a new study">+ New Study</button>
+        </div>
+        <div class="search-box">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input
+            id="study-search"
+            type="text"
+            placeholder="Search studies…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </div>
+
+      <div id="studies-list" class="studies-list" role="list">
+        <!-- Populated by app.js -->
+      </div>
+
+      <div class="sidebar-footer">
+        <div id="study-detail">
+          <div class="empty-state">
+            <div class="empty-state-icon">📋</div>
+            <div class="empty-state-text">Select a study to see details</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Center: Live Screening Chat ────────────────── -->
+    <main class="main">
+      <div class="chat-topbar">
+        <div>
+          <div id="chat-top-title" class="chat-topbar-title">Prescreening Chat</div>
+          <div id="chat-top-sub" class="chat-topbar-sub">Select a study to begin</div>
+        </div>
+        <div class="chat-topbar-spacer"></div>
+        <div id="screening-status" class="screening-status hidden">
+          <div class="screening-status-dot"></div>
+          Screening in progress
+        </div>
+        <button id="new-patient-btn" class="btn btn-ghost btn-sm hidden" type="button">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          New Patient
+        </button>
+        <button id="start-btn" class="btn btn-primary btn-sm" type="button" disabled>
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <polygon points="4,2 14,8 4,14" fill="currentColor"/>
+          </svg>
+          Start Screening
+        </button>
+      </div>
+
+      <!-- Messages -->
+      <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="Screening conversation">
+        <!-- Populated by app.js -->
+      </div>
+
+      <!-- Input bar -->
+      <div class="chat-input-area">
+        <div class="chat-input-row">
+          <textarea
+            id="chat-input"
+            class="chat-input"
+            rows="1"
+            placeholder="Type the patient's response…"
+            disabled
+            aria-label="Patient response input"
+          ></textarea>
+          <button id="send-btn" class="send-btn" type="button" disabled aria-label="Send response">
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 10L17 3L10 17L9 11L3 10Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        <div class="chat-hint">Press <kbd style="font-family:inherit;background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:0 4px;font-size:10px;">Enter</kbd> to send &nbsp;·&nbsp; <kbd style="font-family:inherit;background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:0 4px;font-size:10px;">Shift+Enter</kbd> for newline</div>
+      </div>
+    </main>
+
+    <!-- ── Right Panel: Funnel Dashboard ──────────────── -->
+    <aside class="report-panel">
+      <div class="report-header">
+        <div class="report-title">Funnel Dashboard</div>
+        <button id="report-refresh" class="btn btn-ghost btn-sm" type="button" aria-label="Refresh report">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.65 2.35A8 8 0 1 0 14 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2v4h-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Refresh
+        </button>
+      </div>
+      <div id="report-body" class="report-body">
+        <div class="empty-state">
+          <div class="empty-state-icon">📊</div>
+          <div class="empty-state-text">Select a study to view the screening funnel</div>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /.layout -->
+
+  <!-- Add Study modal -->
+  <div id="add-study-overlay" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="add-study-title">
+      <div class="modal-head">
+        <div id="add-study-title" class="modal-title">Add New Study</div>
+        <button id="add-study-close" class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="fld"><span>Study name <i>*</i></span>
+          <input id="ns-name" type="text" placeholder="e.g. WC45920 (CT-401)_Asthma" /></label>
+        <div class="fld-row">
+          <label class="fld"><span>Internal #</span><input id="ns-internal" type="text" placeholder="WC45920" /></label>
+          <label class="fld"><span>Sponsor</span><input id="ns-sponsor" type="text" placeholder="Sponsor name" /></label>
+        </div>
+        <label class="fld"><span>Indication</span><input id="ns-indication" type="text" placeholder="Condition / population" /></label>
+        <label class="fld upload"><span>Protocol PDF</span>
+          <input id="ns-protocol" type="file" accept="application/pdf" /></label>
+        <label class="fld upload"><span>ICF PDF (optional)</span>
+          <input id="ns-icf" type="file" accept="application/pdf" /></label>
+        <div id="ns-msg" class="modal-msg"></div>
+      </div>
+      <div class="modal-foot">
+        <button id="add-study-cancel" class="btn-ghost">Cancel</button>
+        <button id="add-study-submit" class="btn-primary">Upload &amp; Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Study modal -->
+  <div id="edit-study-overlay" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="edit-study-title">
+      <div class="modal-head">
+        <div id="edit-study-title" class="modal-title">Edit Study Details</div>
+        <button id="edit-study-close" class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="fld"><span>Study name</span><input id="es-name" type="text" /></label>
+        <div class="fld-row">
+          <label class="fld"><span>Internal #</span><input id="es-internal" type="text" /></label>
+          <label class="fld"><span>Sponsor</span><input id="es-sponsor" type="text" /></label>
+        </div>
+        <div class="fld-row">
+          <label class="fld"><span>Principal Investigator</span><input id="es-pi" type="text" placeholder="e.g. Jane Smith, MD" /></label>
+          <label class="fld"><span>Priority</span><input id="es-priority" type="text" placeholder="e.g. Very High" /></label>
+        </div>
+        <label class="fld"><span>Site (address · phone)</span><input id="es-site" type="text" placeholder="e.g. Houston Metro, 123 Main St · (555) 123-4567" /></label>
+        <div class="fld-row">
+          <label class="fld"><span>Indication</span><input id="es-indication" type="text" /></label>
+          <label class="fld"><span>Drug</span><input id="es-drug" type="text" /></label>
+        </div>
+        <div class="modal-subhead">Knowledge Bank</div>
+        <label class="fld"><span>General Study Information</span><textarea id="es-kb-general" rows="3"></textarea></label>
+        <label class="fld"><span>Trial Design</span><textarea id="es-kb-design" rows="2"></textarea></label>
+        <label class="fld"><span>Compensation / Reimbursement</span><textarea id="es-kb-comp" rows="2"></textarea></label>
+        <label class="fld"><span>Blinding</span><textarea id="es-kb-blind" rows="2"></textarea></label>
+        <div id="es-msg" class="modal-msg"></div>
+      </div>
+      <div class="modal-foot">
+        <button id="edit-study-cancel" class="btn-ghost">Cancel</button>
+        <button id="edit-study-submit" class="btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

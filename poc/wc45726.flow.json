@@ -1,0 +1,53 @@
+{
+  "study": "WC45726",
+  "_note": "POC: proposed COMPILED conversational-flow schema. Production compiles this from studies/<NAME>/study.json (flow graph + screeningQuestions). Each question node carries `variable` (links to a screeningQuestion) and `answer_type`; each edge carries a machine `when` expression. Edges are evaluated in order; the first whose `when` is true is followed. `answer` is bound to the current node's variable value; `age` is an alias for the numeric question. This keeps branching DETERMINISTIC (code decides) while the LLM only extracts free-text -> variable values.",
+  "start": "root",
+  "nodes": {
+    "root": { "type": "root", "prompt": "Are you interested in this study?", "edges": [ { "when": "true", "to": "q1_age" } ] },
+
+    "q1_age": { "type": "question", "variable": "q1_age", "answer_type": "number", "prompt": "How old are you?",
+      "edges": [ { "when": "age < 18", "to": "dnq_age", "label": "Under 18" }, { "when": "true", "to": "q_sex", "label": "18 or older" } ] },
+
+    "q_sex": { "type": "question", "variable": "sex_at_birth", "answer_type": "choice", "routing": true, "prompt": "What was your sex assigned at birth?",
+      "edges": [ { "when": "true", "to": "q2_bmi", "label": "Recorded" } ] },
+
+    "q2_bmi": { "type": "question", "variable": "q2_bmi", "answer_type": "yes_no", "prompt": "Are you overweight (a body mass index of 27 or higher)?",
+      "edges": [ { "when": "answer == \"no\"", "to": "dnq_bmi", "label": "Below 27" }, { "when": "true", "to": "q3_t2d", "label": "BMI 27+" } ] },
+
+    "q3_t2d": { "type": "question", "variable": "q3_t2d", "answer_type": "yes_no", "prompt": "Have you been diagnosed with type 2 diabetes?",
+      "edges": [ { "when": "answer == \"no\"", "to": "dnq_no_t2d", "label": "No T2D" }, { "when": "true", "to": "q4_wl", "label": "Has T2D" } ] },
+
+    "q4_wl": { "type": "question", "variable": "q4_weightloss", "answer_type": "yes_no", "prompt": "Have you tried to lose weight with diet or exercise at least once, but weren’t successful?",
+      "edges": [ { "when": "answer == \"no\"", "to": "dnq_no_wl", "label": "Has not tried" }, { "when": "true", "to": "q5_glp1", "label": "Tried weight loss" } ] },
+
+    "q5_glp1": { "type": "question", "variable": "q5_glp1", "answer_type": "yes_no", "prompt": "In the last 6 months, have you taken a GLP-1 weight or diabetes medicine (like Ozempic, Wegovy, or Mounjaro)?",
+      "edges": [ { "when": "answer == \"yes\"", "to": "dnq_glp1", "label": "Recent GLP-1" }, { "when": "true", "to": "q6_t1dm", "label": "No recent GLP-1" } ] },
+
+    "q6_t1dm": { "type": "question", "variable": "q6_t1dm", "answer_type": "yes_no", "prompt": "Have you ever been diagnosed with type 1 diabetes or ketoacidosis?",
+      "edges": [ { "when": "answer == \"yes\"", "to": "dnq_t1dm", "label": "T1DM/ketoacidosis" }, { "when": "true", "to": "q7_transplant", "label": "None" } ] },
+
+    "q7_transplant": { "type": "question", "variable": "q7_transplant", "answer_type": "yes_no", "prompt": "Have you ever had an organ transplant or are you on a waiting list for one? (A cornea transplant only — answer no.)",
+      "edges": [ { "when": "answer == \"yes\"", "to": "dnq_transplant", "label": "Transplant" }, { "when": "true", "to": "q8_gastric", "label": "None" } ] },
+
+    "q8_gastric": { "type": "question", "variable": "q8_gastric", "answer_type": "yes_no", "prompt": "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?",
+      "edges": [ { "when": "answer == \"yes\"", "to": "dnq_gastric", "label": "Gastric abnormality" }, { "when": "true", "to": "q9_mtc", "label": "None" } ] },
+
+    "q9_mtc": { "type": "question", "variable": "q9_mtc", "answer_type": "yes_no", "prompt": "Do you, or any parent, sibling, or child, have a history of medullary thyroid cancer or Multiple Endocrine Neoplasia (MEN) Type 2?",
+      "edges": [ { "when": "answer == \"yes\"", "to": "dnq_mtc", "label": "MTC/MEN2 history" }, { "when": "sex_at_birth == \"Female\"", "to": "q10_preg", "label": "Female" }, { "when": "true", "to": "qualified", "label": "Male (skip pregnancy)" } ] },
+
+    "q10_preg": { "type": "question", "variable": "q10_pregnancy", "answer_type": "yes_no", "prompt": "Are you currently pregnant, breastfeeding, or planning to become pregnant during the study?",
+      "edges": [ { "when": "answer == \"yes\"", "to": "dnq_pregnancy", "label": "Pregnant/planning" }, { "when": "true", "to": "qualified", "label": "Not pregnant/planning" } ] },
+
+    "qualified": { "type": "qualified", "label": "Qualified" },
+    "dnq_age": { "type": "dnq", "reason": "Under 18" },
+    "dnq_bmi": { "type": "dnq", "reason": "BMI below 27" },
+    "dnq_no_t2d": { "type": "dnq", "reason": "No type 2 diabetes diagnosis" },
+    "dnq_no_wl": { "type": "dnq", "reason": "No unsuccessful diet/exercise weight-loss attempt" },
+    "dnq_glp1": { "type": "dnq", "reason": "Recent GLP-1 therapy" },
+    "dnq_t1dm": { "type": "dnq", "reason": "Type 1 diabetes / ketoacidosis" },
+    "dnq_transplant": { "type": "dnq", "reason": "Organ transplant" },
+    "dnq_gastric": { "type": "dnq", "reason": "Gastric emptying abnormality" },
+    "dnq_mtc": { "type": "dnq", "reason": "Personal/family history of MTC or MEN2" },
+    "dnq_pregnancy": { "type": "dnq", "reason": "Pregnant/breastfeeding/planning pregnancy" }
+  }
+}
