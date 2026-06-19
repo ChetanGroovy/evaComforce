@@ -1,0 +1,309 @@
+{
+  "source": "Golden onboarding fixture — derived from studies/WC45276 with criteria_ids repaired so `node studygen.mjs check` returns 0 FAIL. Frozen pin for onboard/gate/humanise/audit tests. DO NOT mutate WC45276 (intentional negative fixture).",
+  "status": "ready",
+  "study": {
+    "name": "ONBOARD-GOLDEN (CT-388-106) — Obesity / Type 2 Diabetes",
+    "internalNumber": "ONBOARD-GOLDEN",
+    "sponsor": "F. Hoffmann-La Roche Ltd",
+    "principalInvestigator": "Dr. Jane Doe",
+    "site": "Comforce Research Site 001",
+    "priority": "high",
+    "indication": "Type 2 Diabetes with overweight or obesity",
+    "drug": "GLP-1/GIP receptor agonist (CT-388), weekly subcutaneous injection"
+  },
+  "documents": [],
+  "knowledgeBank": {
+    "General Study Information": "We're enrolling adults who have type 2 diabetes and are also living with overweight or obesity, for a clinical research study of an investigational once-weekly treatment. The study is aimed at people whose diabetes is not fully controlled by diet alone or by oral diabetes medications. Researchers want to see whether this treatment helps with weight loss, blood sugar control, and cardiovascular risk factors. Taking part is voluntary, and the study team will walk you through everything before you decide.",
+    "Trial Design": "The study runs about 79 weeks (roughly a year and a half), including a follow-up visit about 4 weeks after the final dose. The investigational drug is a once-weekly injection under the skin that you (or a trained helper) give yourself. All participants — not just some — also receive diet, physical-activity, and lifestyle counseling throughout the study. Your recruiter will walk you through the full visit schedule during screening.",
+    "Compensation / Reimbursement": "You may be compensated up to approximately $2,500 for fully taking part in the study. Reimbursement for travel, parking, and meals may also be available. Your recruiter will go over the exact compensation details during your phone screening.",
+    "Blinding": ""
+  },
+  "inclusionCriteria": [
+    {
+      "criterion_number": 2,
+      "source_pages": [46],
+      "criterion_text": "Adult aged 18 years or older at the time of signing informed consent.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [46],
+      "criterion_text": "Body mass index (BMI) of at least 27 kg/m2 (self-reported height and weight).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [46],
+      "criterion_text": "Self-reported clinical diagnosis of type 2 diabetes mellitus.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [47],
+      "criterion_text": "History of at least one self-reported unsuccessful attempt at weight loss through diet or exercise.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    }
+  ],
+  "exclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [48],
+      "criterion_text": "Self-reported history of type 1 diabetes, diabetic coma, or diabetic ketoacidosis.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [48],
+      "criterion_text": "Use of any injectable medication for diabetes or weight loss within the last 6 months (self-reported).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 14,
+      "source_pages": [49],
+      "criterion_text": "Self-reported history of, or waiting for, a major organ transplant (a cornea transplant does not exclude).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 23,
+      "source_pages": [49],
+      "criterion_text": "Self-reported severe gastric-emptying disorder such as gastroparesis or gastric outlet obstruction.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 28,
+      "source_pages": [50],
+      "criterion_text": "Personal or family history of medullary thyroid carcinoma or Multiple Endocrine Neoplasia type 2 (MEN2), self-reported.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 41,
+      "source_pages": [51],
+      "criterion_text": "Self-reported myocardial infarction within the last 3 months.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 42,
+      "source_pages": [51],
+      "criterion_text": "Self-reported stroke within the last 3 months.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 43,
+      "source_pages": [51],
+      "criterion_text": "Self-reported transient ischemic attack (TIA / mini-stroke) within the last 3 months.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 44,
+      "source_pages": [51],
+      "criterion_text": "Self-reported unstable angina within the last 3 months.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 45,
+      "source_pages": [51],
+      "criterion_text": "Self-reported hospitalization for heart failure within the last 3 months.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 46,
+      "source_pages": [52],
+      "criterion_text": "Self-reported severe heart failure (NYHA class IV).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 48,
+      "source_pages": [52],
+      "criterion_text": "Use of a GLP-1 receptor agonist medication within the last 6 months (self-reported).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    }
+  ],
+  "screeningQuestions": [
+    {
+      "rank": 1,
+      "variable_name": "q1",
+      "sms_question": "What is your age?",
+      "answer_type": "number",
+      "disqualify_condition": "age < 18",
+      "criteria_ids": [
+        "INC-2"
+      ],
+      "knockout_power": "high",
+      "included_in_flow": true
+    },
+    {
+      "rank": 2,
+      "variable_name": "q_bmi",
+      "sms_question": "What is your height and current weight? (for example: 5 ft 6, 190 lbs)",
+      "answer_type": "bmi",
+      "bmi_cutoff": 27.0,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-5"
+      ],
+      "knockout_power": "high",
+      "included_in_flow": true
+    },
+    {
+      "rank": 3,
+      "variable_name": "q4",
+      "sms_question": "Have you been diagnosed with type 2 diabetes?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-6"
+      ],
+      "knockout_power": "high",
+      "included_in_flow": true
+    },
+    {
+      "rank": 4,
+      "variable_name": "q5",
+      "sms_question": "Have you ever tried to lose weight with diet or exercise but were not successful?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-8"
+      ],
+      "knockout_power": "medium",
+      "included_in_flow": true
+    },
+    {
+      "rank": 5,
+      "variable_name": "q6",
+      "sms_question": "Have you ever been diagnosed with type 1 diabetes, a diabetic coma, or diabetic ketoacidosis?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-1"
+      ],
+      "knockout_power": "high",
+      "included_in_flow": true
+    },
+    {
+      "rank": 6,
+      "variable_name": "q7",
+      "sms_question": "In the last 6 months, have you used a GLP-1 medication (such as Ozempic, Wegovy, Mounjaro, or Zepbound) or any other injectable medication for diabetes or weight loss?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-48",
+        "EXC-8"
+      ],
+      "knockout_power": "high",
+      "included_in_flow": true
+    },
+    {
+      "rank": 7,
+      "variable_name": "q8",
+      "sms_question": "Have you ever had an organ transplant, or are you waiting for one? (A cornea transplant is OK — answer no for that.)",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-14"
+      ],
+      "knockout_power": "medium",
+      "included_in_flow": true
+    },
+    {
+      "rank": 8,
+      "variable_name": "q9",
+      "sms_question": "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-23"
+      ],
+      "knockout_power": "medium",
+      "included_in_flow": true
+    },
+    {
+      "rank": 9,
+      "variable_name": "q10",
+      "sms_question": "Do you or any close blood relative (parent, sibling, or child) have a history of medullary thyroid cancer or Multiple Endocrine Neoplasia type 2 (MEN2)?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-28"
+      ],
+      "knockout_power": "medium",
+      "included_in_flow": true
+    },
+    {
+      "rank": 10,
+      "variable_name": "q11",
+      "sms_question": "Have you been diagnosed with severe heart failure (NYHA class IV)?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-46"
+      ],
+      "knockout_power": "medium",
+      "included_in_flow": true
+    },
+    {
+      "rank": 11,
+      "variable_name": "q12",
+      "sms_question": "In the last 3 months, have you had a heart attack, a stroke or mini-stroke (TIA), unstable angina, or been hospitalized for heart failure?",
+      "answer_type": "yes_no",
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-41",
+        "EXC-42",
+        "EXC-43",
+        "EXC-44",
+        "EXC-45"
+      ],
+      "knockout_power": "medium",
+      "included_in_flow": true
+    }
+  ],
+  "flow": {
+    "nodes": [
+      {
+        "id": "root",
+        "type": "root",
+        "label": "Are you interested in this study?"
+      }
+    ],
+    "edges": []
+  },
+  "conversation": {
+    "greeting": "We're enrolling for a paid weight-management and type 2 diabetes study. Would you like to answer a few quick questions to see if you may qualify?"
+  },
+  "funnel": [],
+  "patients": [],
+  "recruiters": []
+}

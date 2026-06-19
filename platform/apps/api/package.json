@@ -11,7 +11,11 @@
     }
   },
   "scripts": {
+    "_comment_dist": "start='node dist/index.js' serves the COMPILED dist, so a stale dist 404s new routes (e.g. /studies/:id/onboard) and silently runs OLD createStudy. Rebuild dist (build) before start, and rebuild the @comforceeva/schema dist too when the status enum changes — apps/api typechecks against the BUILT schema type.",
     "build": "tsc -p tsconfig.json",
+    "prestart": "tsc -p tsconfig.json",
+    "predev": "tsc -p tsconfig.json",
+    "onboard:rebuild": "tsc -p ../../packages/schema/tsconfig.json && tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",

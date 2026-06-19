@@ -36,6 +36,19 @@ export function fetchStudy(id: string): Promise<StudyDetail> {
   return apiFetch<StudyDetail>(`/api/studies/${id}`);
 }
 
+/** Alias of fetchStudy — fetch a single study's full detail by id. */
+export function getStudy(id: string): Promise<StudyDetail> {
+  return apiFetch<StudyDetail>(`/api/studies/${id}`);
+}
+
+/** Run (or re-run with force) the StudyOnboard extraction pipeline. */
+export function onboardStudy(id: string, force = false): Promise<{ id: string; status: string }> {
+  return apiFetch<{ id: string; status: string }>(
+    `/api/studies/${id}/onboard${force ? '?force=1' : ''}`,
+    { method: 'POST' },
+  );
+}
+
 export interface NewStudyPayload {
   name: string;
   internalNumber?: string;

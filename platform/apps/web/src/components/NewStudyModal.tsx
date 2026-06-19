@@ -4,7 +4,7 @@ import { createStudy } from '../api';
 
 interface Props {
   onClose: () => void;
-  onCreated: () => void;
+  onCreated: (id: string) => void;
 }
 
 function fileToBase64(file: File): Promise<string> {
@@ -74,7 +74,7 @@ export function NewStudyModal({ onClose, onCreated }: Props) {
         text: `Created "${res.id}" (${res.documents} doc${res.documents === 1 ? '' : 's'}). ${res.note ?? ''}`,
         kind: 'ok',
       });
-      onCreated();
+      onCreated(res.id);
       setTimeout(() => onClose(), 1600);
     } catch (e) {
       setMsg({ text: `Error: ${e instanceof Error ? e.message : String(e)}`, kind: 'err' });

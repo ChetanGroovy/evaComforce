@@ -4,10 +4,40 @@
 // (Claude Code, NO api key); else the rule extractor. So with no keys it "just works" via the
 // developer's Claude Code login, identical to running locally.
 
-import { execFile, spawnSync } from 'node:child_process';
+import { execFile, spawnSync, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
+
+/**
+ * Run the local `claude` CLI with the prompt piped via STDIN rather than argv.
+ * A protocol can be ~350KB; passing it as a single `-p <prompt>` argv element
+ * blows the Linux MAX_ARG_STRLEN (128KB) ceiling → `spawn E2BIG`. STDIN has no
+ * such limit. `claude -p` with no prompt argument reads the prompt from stdin.
+ */
+function claudeStdin(prompt: string, model: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const child = spawn('claude', ['-p', '--model', model, '--allowedTools', 'none'], {
+      timeout: 180000,
+    });
+    let out = '';
+    let err = '';
+    const cap = 4 * 1024 * 1024;
+    child.stdout.on('data', (d) => {
+      out += d;
+      if (out.length > cap) child.kill();
+    });
+    child.stderr.on('data', (d) => {
+      err += d;
+    });
+    child.on('error', reject);
+    child.on('close', (code) =>
+      code === 0 ? resolve(out) : reject(new Error(`claude exited ${code}: ${err.slice(0, 300)}`))
+    );
+    child.stdin.write(prompt);
+    child.stdin.end();
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Local type definitions (mirrors @comforceeva/schema ScreeningQuestion)
@@ -16,6 +46,12 @@ export interface ScreeningQuestion {
   rank?: number;
   variable_name: string;
   sms_question: string;
+  // Presentation-vs-interpretation split: humanised display copy lives in
+  // sms_question, but interpretation MUST read the frozen machine string so
+  // humanisation can never flip a verdict. interpretation_text is the canonical
+  // machine wording; sms_question_machine is the pre-humanise fallback.
+  interpretation_text?: string;
+  sms_question_machine?: string;
   answer_type: 'yes_no' | 'number' | 'choice' | 'bmi' | 'text';
   choices?: string[];
   routing?: boolean;
@@ -269,7 +305,8 @@ async function llmExtract(
 
     const systemPrompt = 'You are extracting a single screening answer from a patient\'s free-text reply.';
 
-    const questionPrefix = `Question type: ${q.answer_type}. Question: "${q.sms_question}".${q.choices ? ` Choices: ${q.choices.join(', ')}.` : ''}`;
+    const interpretationText = q.interpretation_text ?? q.sms_question_machine ?? q.sms_question;
+    const questionPrefix = `Question type: ${q.answer_type}. Question: "${interpretationText}".${q.choices ? ` Choices: ${q.choices.join(', ')}.` : ''}`;
 
     const apiCall = client.messages.create({
       model: 'claude-haiku-4-5',
@@ -375,9 +412,10 @@ async function claudeCodeExtract(
   try {
     const model = process.env['CLAUDE_CODE_MODEL'] ?? 'haiku';
     const choices = q.choices ? ` Choices: ${q.choices.join(', ')}.` : '';
+    const interpretationText = q.interpretation_text ?? q.sms_question_machine ?? q.sms_question;
     const prompt =
       `Interpret a patient's text reply to ONE clinical screening question.\n` +
-      `Question: "${q.sms_question}" (expected answer type: ${q.answer_type}).${choices}\n` +
+      `Question: "${interpretationText}" (expected answer type: ${q.answer_type}).${choices}\n` +
       `Patient reply: "${replyText}"\n\n` +
       `Return ONLY a JSON object (no markdown, no prose) with keys: ` +
       `"value" ("yes" or "no" for yes_no; the number for number; one of the choices for choice; ` +
@@ -463,12 +501,8 @@ export async function llmText(prompt: string): Promise<string | null> {
   if ((provider === 'claude_code' || provider === 'auto') && claudeCliAvailable()) {
     try {
       const model = process.env['CLAUDE_CODE_MODEL'] ?? 'haiku';
-      const { stdout } = await execFileAsync(
-        'claude',
-        ['-p', prompt, '--model', model, '--allowedTools', 'none'],
-        { timeout: 120000, maxBuffer: 1024 * 1024 }
-      );
-      return String(stdout).trim() || null;
+      const stdout = await claudeStdin(prompt, model);
+      return stdout.trim() || null;
     } catch {
       return null;
     }
