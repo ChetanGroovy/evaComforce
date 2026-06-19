@@ -132,7 +132,7 @@ export function EditStudyModal({ study, onClose, onSaved }: Props) {
 
       <div
         style={{
-          fontSize: 11,
+          fontSize: 'var(--fs-xs)',
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '0.6px',

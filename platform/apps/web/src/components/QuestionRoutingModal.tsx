@@ -152,7 +152,7 @@ function ChoicesEditor({ choices, onChange, onClose }: ChoicesEditorProps) {
     >
       <div
         style={{
-          fontSize: 11,
+          fontSize: 'var(--fs-xs)',
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '0.5px',
@@ -182,7 +182,7 @@ function ChoicesEditor({ choices, onChange, onClose }: ChoicesEditorProps) {
           />
           <button
             onClick={() => removeChoice(i)}
-            style={{ ...btnReset, color: 'var(--red)', fontSize: 15 }}
+            style={{ ...btnReset, color: 'var(--red)', fontSize: 'var(--fs-lg)' }}
             aria-label="Remove choice"
           >
             ✕
@@ -218,7 +218,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: 'var(--radius-xs)',
   color: 'var(--text-primary)',
   padding: '6px 9px',
-  fontSize: 13,
+  fontSize: 'var(--fs-md)',
   outline: 'none',
   fontFamily: 'var(--font-sans)',
   width: '100%',
@@ -231,7 +231,7 @@ const selectStyle: React.CSSProperties = {
   borderRadius: 'var(--radius-xs)',
   color: 'var(--text-primary)',
   padding: '5px 8px',
-  fontSize: 13,
+  fontSize: 'var(--fs-md)',
   outline: 'none',
   fontFamily: 'var(--font-sans)',
   cursor: 'pointer',
@@ -242,7 +242,7 @@ const addLink: React.CSSProperties = {
   border: 'none',
   cursor: 'pointer',
   color: 'var(--accent)',
-  fontSize: 12.5,
+  fontSize: 'var(--fs-sm)',
   fontFamily: 'var(--font-sans)',
   padding: '2px 0',
   textAlign: 'left',
@@ -253,7 +253,7 @@ const trashBtn: React.CSSProperties = {
   border: 'none',
   cursor: 'pointer',
   color: 'var(--text-muted)',
-  fontSize: 15,
+  fontSize: 'var(--fs-lg)',
   lineHeight: 1,
   padding: '3px 5px',
   borderRadius: 'var(--radius-xs)',
@@ -579,7 +579,7 @@ export function QuestionRoutingModal({
                 textAlign: 'center',
                 color: 'var(--text-muted)',
                 padding: '32px 0',
-                fontSize: 13,
+                fontSize: 'var(--fs-md)',
               }}
             >
               No questions configured. Add one below.
@@ -784,7 +784,7 @@ export function QuestionRoutingModal({
           {msg.text && (
             <span
               style={{
-                fontSize: 12.5,
+                fontSize: 'var(--fs-sm)',
                 color:
                   msg.kind === 'ok'
                     ? 'var(--msg-ok)'

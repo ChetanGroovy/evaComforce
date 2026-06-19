@@ -27,7 +27,7 @@ function StatusBadge({ status }: { status?: string }) {
     <span
       style={{
         display: 'inline-block',
-        fontSize: 9.5,
+        fontSize: 'var(--fs-2xs)',
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 0.4,
@@ -69,7 +69,7 @@ function StudyDetailCard({
         <div
           style={{
             fontWeight: 700,
-            fontSize: 13,
+            fontSize: 'var(--fs-md)',
             color: 'var(--text-primary)',
             lineHeight: 1.3,
             overflow: 'hidden',
@@ -89,7 +89,7 @@ function StudyDetailCard({
               border: 'none',
               color: '#fff',
               borderRadius: 7,
-              fontSize: 11,
+              fontSize: 'var(--fs-xs)',
               fontWeight: 600,
               padding: '4px 10px',
               cursor: 'pointer',
@@ -105,7 +105,7 @@ function StudyDetailCard({
               border: '1px solid var(--btn-soft-bd)',
               color: 'var(--btn-soft-fg)',
               borderRadius: 7,
-              fontSize: 11,
+              fontSize: 'var(--fs-xs)',
               fontWeight: 600,
               padding: '4px 10px',
               cursor: 'pointer',
@@ -128,7 +128,7 @@ function StudyDetailCard({
           <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <span
               style={{
-                fontSize: 9.5,
+                fontSize: 'var(--fs-2xs)',
                 color: 'var(--text-muted)',
                 fontWeight: 700,
                 textTransform: 'uppercase',
@@ -137,7 +137,7 @@ function StudyDetailCard({
             >
               {label}
             </span>
-            <span style={{ color: 'var(--text-secondary)', fontSize: 12, fontWeight: 500 }}>
+            <span style={{ color: 'var(--text-secondary)', fontSize: 'var(--fs-sm)', fontWeight: 500 }}>
               {value ?? '—'}
             </span>
           </div>
@@ -153,7 +153,7 @@ function StudyDetailCard({
               textAlign: 'center',
               padding: '5px 6px',
               borderRadius: 'var(--radius-sm)',
-              fontSize: 10.5,
+              fontSize: 'var(--fs-xs)',
               fontWeight: 600,
               letterSpacing: 0.1,
               background: 'var(--green-soft)',
@@ -169,7 +169,7 @@ function StudyDetailCard({
               textAlign: 'center',
               padding: '5px 6px',
               borderRadius: 'var(--radius-sm)',
-              fontSize: 10.5,
+              fontSize: 'var(--fs-xs)',
               fontWeight: 600,
               letterSpacing: 0.1,
               background: 'var(--red-soft)',
@@ -220,7 +220,7 @@ export function StudyPicker({
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
           <div
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-2xs)',
               fontWeight: 700,
               letterSpacing: 1,
               textTransform: 'uppercase',
@@ -236,7 +236,7 @@ export function StudyPicker({
               color: '#fff',
               border: 'none',
               borderRadius: 8,
-              fontSize: 11.5,
+              fontSize: 'var(--fs-sm)',
               fontWeight: 600,
               padding: '5px 10px',
               cursor: 'pointer',
@@ -304,7 +304,7 @@ export function StudyPicker({
             >
               <div
                 style={{
-                  fontSize: 13,
+                  fontSize: 'var(--fs-md)',
                   fontWeight: 600,
                   color: selectedId === s.id ? 'var(--accent-bright)' : 'var(--text-primary)',
                   marginBottom: 3,
@@ -319,7 +319,7 @@ export function StudyPicker({
               </div>
               <div
                 style={{
-                  fontSize: 11.5,
+                  fontSize: 'var(--fs-sm)',
                   color: 'var(--text-secondary)',
                   marginBottom: 8,
                   whiteSpace: 'nowrap',
@@ -333,13 +333,13 @@ export function StudyPicker({
                 {s.indication && (
                   <span
                     style={{
-                      fontSize: 10,
+                      fontSize: 'var(--fs-2xs)',
                       fontWeight: 600,
                       padding: '2px 8px',
                       borderRadius: 4,
-                      background: 'rgba(91,142,240,0.10)',
+                      background: 'var(--accent-soft)',
                       color: 'var(--accent-bright)',
-                      border: '1px solid rgba(91,142,240,0.18)',
+                      border: '1px solid var(--accent-border)',
                     }}
                   >
                     {s.indication}
@@ -348,13 +348,13 @@ export function StudyPicker({
                 {s.phase && (
                   <span
                     style={{
-                      fontSize: 10,
+                      fontSize: 'var(--fs-2xs)',
                       fontWeight: 600,
                       padding: '2px 8px',
                       borderRadius: 4,
-                      background: 'rgba(191,90,242,0.10)',
+                      background: 'var(--purple-soft)',
                       color: 'var(--purple)',
-                      border: '1px solid rgba(191,90,242,0.18)',
+                      border: '1px solid var(--purple-border)',
                     }}
                   >
                     {s.phase}
@@ -362,7 +362,7 @@ export function StudyPicker({
                 )}
                 <span
                   style={{
-                    fontSize: 10,
+                    fontSize: 'var(--fs-2xs)',
                     fontWeight: 600,
                     padding: '2px 8px',
                     borderRadius: 4,

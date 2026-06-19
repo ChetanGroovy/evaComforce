@@ -66,7 +66,7 @@ function MetricCard({ cls, label, value, total, showBar }: MetricCardProps) {
       <div
         ref={valueRef}
         style={{
-          fontSize: 28,
+          fontSize: 'var(--fs-2xl)',
           fontWeight: 800,
           lineHeight: 1,
           letterSpacing: '-1.5px',
@@ -78,7 +78,7 @@ function MetricCard({ cls, label, value, total, showBar }: MetricCardProps) {
       </div>
       <div
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-2xs)',
           fontWeight: 600,
           textTransform: 'uppercase',
           letterSpacing: 0.5,
@@ -92,7 +92,7 @@ function MetricCard({ cls, label, value, total, showBar }: MetricCardProps) {
         <div style={{ marginTop: 2 }}>
           <div
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-2xs)',
               fontWeight: 600,
               marginTop: 2,
               color: valueColor,
@@ -139,7 +139,7 @@ function ResultChip({ terminal }: { terminal: string }) {
         display: 'inline-flex',
         alignItems: 'center',
         gap: 4,
-        fontSize: 10,
+        fontSize: 'var(--fs-2xs)',
         fontWeight: 700,
         padding: '3px 8px',
         borderRadius: 4,
@@ -199,7 +199,7 @@ function ReportContent({ report }: { report: Report }) {
       <div>
         <div
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-2xs)',
             fontWeight: 700,
             letterSpacing: 0.7,
             textTransform: 'uppercase',
@@ -213,7 +213,7 @@ function ReportContent({ report }: { report: Report }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {report.dnqReasons.map((r) => (
               <div key={r.reason} style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontSize: 11.5 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontSize: 'var(--fs-sm)' }}>
                   <span
                     style={{
                       color: 'var(--text-secondary)',
@@ -233,7 +233,7 @@ function ReportContent({ report }: { report: Report }) {
                       color: 'var(--red)',
                       fontVariantNumeric: 'tabular-nums',
                       fontWeight: 700,
-                      fontSize: 11,
+                      fontSize: 'var(--fs-xs)',
                       flexShrink: 0,
                     }}
                   >
@@ -260,7 +260,7 @@ function ReportContent({ report }: { report: Report }) {
         ) : (
           <div
             style={{
-              fontSize: 11.5,
+              fontSize: 'var(--fs-sm)',
               color: 'var(--text-muted)',
               textAlign: 'center',
               padding: '14px 0',
@@ -276,7 +276,7 @@ function ReportContent({ report }: { report: Report }) {
       <div>
         <div
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-2xs)',
             fontWeight: 700,
             letterSpacing: 0.7,
             textTransform: 'uppercase',
@@ -304,7 +304,7 @@ function ReportContent({ report }: { report: Report }) {
                       <ResultChip terminal={p.terminal ?? 'INCOMPLETE'} />
                     </td>
                     <td>
-                      <span style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.4 }}>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: 'var(--text-muted)', lineHeight: 1.4 }}>
                         {p.reason ?? p.failed ?? '—'}
                       </span>
                     </td>
@@ -316,7 +316,7 @@ function ReportContent({ report }: { report: Report }) {
         ) : (
           <div
             style={{
-              fontSize: 11.5,
+              fontSize: 'var(--fs-sm)',
               color: 'var(--text-muted)',
               textAlign: 'center',
               padding: '14px 0',
@@ -347,7 +347,7 @@ export function FunnelDashboard({ report, loading, error, studyId, onRefresh }: 
       >
         <div
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-2xs)',
             fontWeight: 700,
             letterSpacing: 0.8,
             textTransform: 'uppercase',
@@ -366,7 +366,7 @@ export function FunnelDashboard({ report, loading, error, studyId, onRefresh }: 
             gap: 6,
             padding: '5px 11px',
             borderRadius: 'var(--radius-sm)',
-            fontSize: 12,
+            fontSize: 'var(--fs-sm)',
             fontWeight: 600,
             cursor: studyId ? 'pointer' : 'not-allowed',
             border: '1px solid var(--border)',

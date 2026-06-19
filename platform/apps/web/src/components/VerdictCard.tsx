@@ -34,20 +34,20 @@ export function VerdictCard({ terminal, reason, trace, deferred }: Props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 20,
+            fontSize: 'var(--fs-xl)',
             flexShrink: 0,
             background:
-              terminal === 'QUALIFIED' ? 'rgba(48,209,88,0.14)' :
-              terminal === 'DNQ'       ? 'rgba(255,69,58,0.14)' :
-              'rgba(255,169,64,0.14)',
+              terminal === 'QUALIFIED' ? 'var(--green-soft)' :
+              terminal === 'DNQ'       ? 'var(--red-soft)' :
+              'var(--amber-soft)',
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 18 }}>{m.icon}</span>
+          <span style={{ fontWeight: 800, fontSize: 'var(--fs-xl)' }}>{m.icon}</span>
         </div>
         <div style={{ flex: 1 }}>
           <div
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-2xs)',
               fontWeight: 700,
               letterSpacing: 1,
               textTransform: 'uppercase',
@@ -63,7 +63,7 @@ export function VerdictCard({ terminal, reason, trace, deferred }: Props) {
           </div>
           <div
             style={{
-              fontSize: 20,
+              fontSize: 'var(--fs-xl)',
               fontWeight: 800,
               lineHeight: 1.1,
               letterSpacing: '-0.5px',
@@ -81,7 +81,7 @@ export function VerdictCard({ terminal, reason, trace, deferred }: Props) {
       {/* Reason */}
       {reason && (
         <div
-          style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: 14, lineHeight: 1.55 }}
+          style={{ fontSize: 'var(--fs-md)', color: 'var(--text-secondary)', marginBottom: 14, lineHeight: 1.55 }}
         >
           {reason}
         </div>
@@ -94,7 +94,7 @@ export function VerdictCard({ terminal, reason, trace, deferred }: Props) {
             display: 'flex',
             alignItems: 'flex-start',
             gap: 8,
-            fontSize: 12,
+            fontSize: 'var(--fs-sm)',
             color: 'var(--amber)',
             background: 'var(--amber-soft)',
             border: '1px solid var(--amber-border)',
@@ -121,7 +121,7 @@ export function VerdictCard({ terminal, reason, trace, deferred }: Props) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: 7,
-              fontSize: 12,
+              fontSize: 'var(--fs-sm)',
               fontWeight: 600,
               color: 'var(--text-secondary)',
               cursor: 'pointer',

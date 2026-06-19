@@ -39,7 +39,7 @@ function AgentAvatar() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 11,
+        fontSize: 'var(--fs-xs)',
         fontWeight: 800,
         flexShrink: 0,
         letterSpacing: '-0.5px',
@@ -65,7 +65,7 @@ function PatientAvatar() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 11,
+        fontSize: 'var(--fs-xs)',
         fontWeight: 800,
         flexShrink: 0,
         letterSpacing: '-0.5px',
@@ -120,7 +120,7 @@ function ChatBubble({ kind, text, time }: BubbleProps) {
         <div className={bubbleClass}>{text}</div>
         <div
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-2xs)',
             color: 'var(--text-muted)',
             marginTop: 4,
             padding: '0 4px',
@@ -163,17 +163,17 @@ function ChatEmpty() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 30,
+          fontSize: 'var(--fs-2xl)',
           marginBottom: 4,
           boxShadow: 'var(--shadow-sm)',
         }}
       >
         💬
       </div>
-      <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-secondary)', letterSpacing: '-0.2px' }}>
+      <div style={{ fontSize: 'var(--fs-lg)', fontWeight: 700, color: 'var(--text-secondary)', letterSpacing: '-0.2px' }}>
         Select a study to begin
       </div>
-      <div style={{ fontSize: 13, maxWidth: 300, lineHeight: 1.65 }}>
+      <div style={{ fontSize: 'var(--fs-md)', maxWidth: 300, lineHeight: 1.65 }}>
         Choose a clinical trial from the left sidebar, then start a new patient screening conversation.
       </div>
     </div>
@@ -206,17 +206,17 @@ function ChatReady({ studyName }: { studyName: string }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 30,
+          fontSize: 'var(--fs-2xl)',
           marginBottom: 4,
           boxShadow: 'var(--shadow-sm)',
         }}
       >
         🩺
       </div>
-      <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-secondary)', letterSpacing: '-0.2px' }}>
+      <div style={{ fontSize: 'var(--fs-lg)', fontWeight: 700, color: 'var(--text-secondary)', letterSpacing: '-0.2px' }}>
         Ready to screen
       </div>
-      <div style={{ fontSize: 13, maxWidth: 300, lineHeight: 1.65 }}>
+      <div style={{ fontSize: 'var(--fs-md)', maxWidth: 300, lineHeight: 1.65 }}>
         Click <strong style={{ color: 'var(--text-secondary)' }}>Start Screening</strong> to begin a patient
         conversation for <em style={{ color: 'var(--accent-bright)' }}>{studyName}</em>.
       </div>
@@ -231,7 +231,7 @@ function SessionDivider({ label }: { label: string }) {
       <div style={{ flex: 1, height: 1, background: 'var(--border-subtle)' }} />
       <div
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-2xs)',
           fontWeight: 600,
           color: 'var(--text-muted)',
           letterSpacing: 0.5,
@@ -501,10 +501,10 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
       {/* Top bar */}
       <div className="chat-topbar">
         <div>
-          <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
+          <div style={{ fontSize: 'var(--fs-md)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
             {chatTopTitle}
           </div>
-          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', lineHeight: 1.2, marginTop: 1 }}>
+          <div style={{ fontSize: 'var(--fs-sm)', color: 'var(--text-muted)', lineHeight: 1.2, marginTop: 1 }}>
             {chatTopSub}
           </div>
         </div>
@@ -517,11 +517,11 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
               display: 'flex',
               alignItems: 'center',
               gap: 6,
-              fontSize: 11,
+              fontSize: 'var(--fs-xs)',
               fontWeight: 600,
               color: 'var(--accent-bright)',
               background: 'var(--accent-soft)',
-              border: '1px solid rgba(91,142,240,0.22)',
+              border: '1px solid var(--accent-border)',
               borderRadius: 'var(--radius-pill)',
               padding: '3px 10px',
               animation: 'fade-in var(--t-mid) var(--ease-out)',
@@ -542,7 +542,7 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
               gap: 6,
               padding: '5px 11px',
               borderRadius: 'var(--radius-sm)',
-              fontSize: 12,
+              fontSize: 'var(--fs-sm)',
               fontWeight: 600,
               cursor: 'pointer',
               border: '1px solid var(--border)',
@@ -571,7 +571,7 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
               gap: 6,
               padding: '5px 11px',
               borderRadius: 'var(--radius-sm)',
-              fontSize: 12,
+              fontSize: 'var(--fs-sm)',
               fontWeight: 600,
               cursor: hasStudy ? 'pointer' : 'not-allowed',
               border: 'none',
@@ -686,7 +686,7 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
         </div>
         <div
           style={{
-            fontSize: 11,
+            fontSize: 'var(--fs-xs)',
             color: 'var(--text-muted)',
             marginTop: 7,
             textAlign: 'center',
@@ -701,7 +701,7 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
               border: '1px solid var(--border)',
               borderRadius: 3,
               padding: '0 4px',
-              fontSize: 10,
+              fontSize: 'var(--fs-2xs)',
             }}
           >
             Enter
@@ -714,7 +714,7 @@ export function ScreeningChat({ selectedStudy, onScreeningComplete }: Props) {
               border: '1px solid var(--border)',
               borderRadius: 3,
               padding: '0 4px',
-              fontSize: 10,
+              fontSize: 'var(--fs-2xs)',
             }}
           >
             Shift+Enter

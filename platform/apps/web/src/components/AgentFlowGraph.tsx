@@ -190,7 +190,7 @@ function nodeStyle(type: string): React.CSSProperties {
     justifyContent: 'center',
     textAlign: 'center',
     padding: '10px 14px',
-    fontSize: 12,
+    fontSize: 'var(--fs-sm)',
     fontWeight: 500,
     lineHeight: 1.4,
     fontFamily: 'var(--font-sans)',
@@ -214,8 +214,8 @@ function nodeStyle(type: string): React.CSSProperties {
     case 'question':
       return {
         ...base,
-        background: 'rgba(91,142,240,0.12)',
-        border: '1.5px solid rgba(91,142,240,0.45)',
+        background: 'var(--accent-soft)',
+        border: '1.5px solid var(--accent-border)',
         color: 'var(--text-primary)',
       };
     case 'dnq':
@@ -226,7 +226,7 @@ function nodeStyle(type: string): React.CSSProperties {
         color: 'var(--text-secondary)',
         fontWeight: 600,
         borderRadius: 999,
-        fontSize: 11,
+        fontSize: 'var(--fs-xs)',
         padding: '7px 16px',
         minHeight: 36,
         height: 36,
@@ -348,7 +348,7 @@ export function AgentFlowGraph({ flow }: { flow: StudyFlow }): JSX.Element {
       <div style={{
         display: 'flex', flexDirection: 'column', alignItems: 'center',
         justifyContent: 'center', height: '100%', minHeight: 240,
-        gap: 10, color: 'var(--text-muted)', fontSize: 14,
+        gap: 10, color: 'var(--text-muted)', fontSize: 'var(--fs-base)',
       }}>
         <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
           <circle cx="19" cy="19" r="17" stroke="var(--border)" strokeWidth="2" />
@@ -487,7 +487,7 @@ export function AgentFlowGraph({ flow }: { flow: StudyFlow }): JSX.Element {
                   top: -9,
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  fontSize: 8.5,
+                  fontSize: 'var(--fs-2xs)',
                   fontWeight: 700,
                   textTransform: 'uppercase' as const,
                   letterSpacing: 0.5,
@@ -496,14 +496,14 @@ export function AgentFlowGraph({ flow }: { flow: StudyFlow }): JSX.Element {
                   whiteSpace: 'nowrap',
                   background: n.type === 'root'
                     ? 'var(--bg-surface)'
-                    : 'rgba(91,142,240,0.18)',
+                    : 'var(--accent-soft)',
                   color: n.type === 'root'
                     ? 'var(--text-muted)'
                     : 'var(--accent)',
                   border: '1px solid',
                   borderColor: n.type === 'root'
                     ? 'var(--border)'
-                    : 'rgba(91,142,240,0.28)',
+                    : 'var(--accent-border)',
                 }}
               >
                 {n.type === 'root' ? 'START' : 'Q'}
@@ -571,7 +571,7 @@ export function AgentFlowGraph({ flow }: { flow: StudyFlow }): JSX.Element {
       <div
         style={{
           position: 'absolute', bottom: 18, right: 16, zIndex: 20,
-          fontSize: 10, fontWeight: 600,
+          fontSize: 'var(--fs-2xs)', fontWeight: 600,
           color: 'var(--text-faint)',
           fontFamily: 'var(--font-mono)',
           userSelect: 'none',

@@ -37,14 +37,14 @@ export function Modal({ title, onClose, children, footer, ariaLabel }: Props) {
             borderBottom: '1px solid var(--border)',
           }}
         >
-          <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>{title}</div>
+          <div style={{ fontSize: 'var(--fs-xl)', fontWeight: 700, color: 'var(--text-primary)' }}>{title}</div>
           <button
             onClick={onClose}
             style={{
               background: 'none',
               border: 'none',
               color: 'var(--text-secondary)',
-              fontSize: 24,
+              fontSize: 'var(--fs-2xl)',
               lineHeight: 1,
               cursor: 'pointer',
               padding: '0 4px',
@@ -92,7 +92,7 @@ export function BtnGhost({ onClick, children, disabled }: BtnGhostProps) {
         color: 'var(--btn-soft-fg)',
         borderRadius: 8,
         padding: '8px 16px',
-        fontSize: 13,
+        fontSize: 'var(--fs-md)',
         cursor: 'pointer',
         fontFamily: 'var(--font-sans)',
       }}
@@ -119,7 +119,7 @@ export function BtnPrimary({ onClick, children, disabled }: BtnPrimaryProps) {
         border: 'none',
         borderRadius: 8,
         padding: '8px 18px',
-        fontSize: 13,
+        fontSize: 'var(--fs-md)',
         fontWeight: 600,
         cursor: disabled ? 'default' : 'pointer',
         opacity: disabled ? 0.6 : 1,
@@ -142,6 +142,6 @@ export function ModalMsg({ text, kind }: ModalMsgProps) {
     kind === 'err' ? 'var(--msg-err)' :
     'var(--text-muted)';
   return (
-    <div style={{ fontSize: 12.5, minHeight: 16, color }}>{text}</div>
+    <div style={{ fontSize: 'var(--fs-sm)', minHeight: 16, color }}>{text}</div>
   );
 }
