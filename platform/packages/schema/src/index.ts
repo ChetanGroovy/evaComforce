@@ -144,7 +144,7 @@ export type Conversation = z.infer<typeof ConversationSchema>;
 export const StudySchema = z.object({
   source: z.string().optional(),
   capturedAt: z.string().optional(),
-  status: z.enum(['draft', 'ready']).optional(),
+  status: z.enum(['draft', 'onboarding', 'needs_review', 'ready']).optional(),
   study: StudyMetaSchema,
   documents: z.array(DocumentSchema),
   knowledgeBank: z.record(z.string()),

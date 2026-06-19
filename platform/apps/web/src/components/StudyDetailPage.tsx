@@ -3,6 +3,7 @@ import type { StudyDetail } from '../types';
 import { AgentFlowGraph } from './AgentFlowGraph';
 import { QuestionRoutingModal } from './QuestionRoutingModal';
 import { EditStudyModal } from './EditStudyModal';
+import { onboardStudy, getStudy } from '../api';
 
 /**
  * Full-page study view mirroring DM Alleviate: "Back to Studies", a header with
@@ -22,6 +23,31 @@ export function StudyDetailPage({
   const [tab, setTab] = useState<'info' | 'flow'>('flow');
   const [routingOpen, setRoutingOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [onboarding, setOnboarding] = useState(false);
+
+  const extracting = onboarding || study.status === 'onboarding';
+
+  const handleReonboard = async () => {
+    if (onboarding) return;
+    setOnboarding(true);
+    try {
+      await onboardStudy(study.id, true);
+      // Poll until the pipeline settles (or times out ~90s).
+      const TERMINAL = new Set(['needs_review', 'ready', 'draft']);
+      const deadline = Date.now() + 90_000;
+      while (Date.now() < deadline) {
+        await new Promise((r) => setTimeout(r, 2000));
+        try {
+          const d = await getStudy(study.id);
+          onStudyUpdated(d);
+          if (!d.status || TERMINAL.has(d.status)) break;
+        } catch (_) { /* transient — keep polling */ }
+      }
+    } catch (_) { /* ignore — button re-enables in finally */ }
+    finally {
+      setOnboarding(false);
+    }
+  };
 
   const ov = study.overview ?? {
     name: study.name,
@@ -39,11 +65,38 @@ export function StudyDetailPage({
   return (
     <div className="study-page">
       {/* Top bar */}
-      <div className="study-page-topbar">
+      <div className="study-page-topbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <button className="study-back-btn" onClick={onBack}>
           ← Back to Studies
         </button>
+        <button
+          className="study-back-btn"
+          onClick={() => void handleReonboard()}
+          disabled={extracting}
+          title="Re-run the document extraction / onboarding pipeline"
+          style={{ opacity: extracting ? 0.6 : 1, cursor: extracting ? 'default' : 'pointer' }}
+        >
+          {extracting ? 'Extracting…' : '↻ Re-run onboarding'}
+        </button>
       </div>
+
+      {extracting ? (
+        <div
+          role="status"
+          style={{
+            margin: '0 0 10px',
+            padding: '8px 12px',
+            borderRadius: 6,
+            fontSize: 'var(--fs-sm)',
+            fontWeight: 600,
+            background: 'var(--badge-draft-bg)',
+            color: 'var(--badge-draft-fg)',
+            border: '1px solid var(--badge-draft-bd)',
+          }}
+        >
+          Extracting criteria & questions…
+        </div>
+      ) : null}
 
       {/* Header */}
       <div className="study-page-header">

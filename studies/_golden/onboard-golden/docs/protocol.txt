@@ -1,0 +1,36 @@
+PROTOCOL CT-388-106 (golden onboarding fixture — minimal excerpt)
+
+STUDY TITLE
+A Phase 2, randomized study of CT-388, a once-weekly GLP-1/GIP receptor
+agonist, in adults with type 2 diabetes who are overweight or obese.
+
+INVESTIGATIONAL PRODUCT / DRUG FORM
+CT-388 is administered as a once-weekly subcutaneous injection under the skin,
+self-administered by the participant or a trained helper. There is no oral form.
+
+ELIGIBILITY (PHONE-SCREENABLE, SELF-REPORTED)
+
+Inclusion:
+  INC-2  Adult aged 18 years or older.
+  INC-5  Body mass index (BMI) of at least 27 kg/m2 by self-reported height and weight.
+  INC-6  Self-reported clinical diagnosis of type 2 diabetes mellitus.
+  INC-8  At least one self-reported unsuccessful attempt at weight loss via diet or exercise.
+
+Exclusion:
+  EXC-1   History of type 1 diabetes, diabetic coma, or diabetic ketoacidosis.
+  EXC-8   Use of any injectable medication for diabetes or weight loss within the last 6 months.
+  EXC-14  History of, or waiting for, a major organ transplant (cornea transplant does NOT exclude).
+  EXC-23  Severe gastric-emptying disorder such as gastroparesis or gastric outlet obstruction.
+  EXC-28  Personal or family history of medullary thyroid carcinoma or MEN2.
+  EXC-41  Myocardial infarction within the last 3 months.
+  EXC-42  Stroke within the last 3 months.
+  EXC-43  Transient ischemic attack (TIA) within the last 3 months.
+  EXC-44  Unstable angina within the last 3 months.
+  EXC-45  Hospitalization for heart failure within the last 3 months.
+  EXC-46  Severe heart failure (NYHA class IV).
+  EXC-48  Use of a GLP-1 receptor agonist medication within the last 6 months.
+
+COMPENSATION
+Participants may be compensated up to approximately $2,500 for full participation.
+Reimbursement for travel, parking, and meals may also be available; the exact
+stipend schedule is described in the Informed Consent Form (ICF).

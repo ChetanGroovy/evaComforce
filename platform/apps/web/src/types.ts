@@ -6,7 +6,7 @@ export interface StudyBrief {
   sponsor: string;
   indication: string;
   questionCount: number;
-  status?: 'draft' | 'ready';
+  status?: 'draft' | 'onboarding' | 'needs_review' | 'ready';
   phase?: string;
 }
 
@@ -77,7 +77,7 @@ export interface StudyDetail {
   phase?: string;
   questions?: unknown[];
   criteriaCount?: CriteriaCount;
-  status?: 'draft' | 'ready';
+  status?: 'draft' | 'onboarding' | 'needs_review' | 'ready';
   overview?: StudyOverview;
   knowledgeBank?: KnowledgeBank;
   flow?: StudyFlow;

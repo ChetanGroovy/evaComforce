@@ -17,13 +17,56 @@ interface Props {
   onSelectStudy: (brief: StudyBrief) => void;
   onStudiesRefresh: () => void;
   onStudyUpdated: () => void;
+  onStudyCreated: (id: string) => void;
   onOpenStudy: () => void;
+}
+
+type BadgeTone = 'draft' | 'amber' | 'ready';
+
+function badgeStyle(tone: BadgeTone) {
+  if (tone === 'ready') {
+    return { background: 'var(--badge-ready-bg)', color: 'var(--badge-ready-fg)', border: '1px solid var(--badge-ready-bd)' };
+  }
+  // 'draft' and 'amber' both use the (amber) draft palette — never green.
+  return { background: 'var(--badge-draft-bg)', color: 'var(--badge-draft-fg)', border: '1px solid var(--badge-draft-bd)' };
 }
 
 function StatusBadge({ status }: { status?: string }) {
   if (!status) return null;
-  const isDraft = status === 'draft';
-  const label = isDraft ? 'Draft · add questions' : 'Ready to prescreen';
+
+  // Map status → label + tone. Anything not explicitly recognized as a
+  // finished/"ready" state falls through to a NON-green neutral label so an
+  // unknown status can never masquerade as "Ready to prescreen".
+  let label: string;
+  let tone: BadgeTone;
+  let spinning = false;
+
+  switch (status) {
+    case 'draft':
+      label = 'Draft · add questions';
+      tone = 'draft';
+      break;
+    case 'onboarding':
+    case 'extracting':
+      label = 'Extracting…';
+      tone = 'amber';
+      spinning = true;
+      break;
+    case 'needs_review':
+      label = 'Needs review';
+      tone = 'amber';
+      break;
+    case 'ready':
+      label = 'Ready to prescreen';
+      tone = 'ready';
+      break;
+    default:
+      // Unknown / unexpected status — neutral, never green.
+      label = status;
+      tone = 'draft';
+      break;
+  }
+
   return (
     <span
       style={{
@@ -36,12 +79,21 @@ function StatusBadge({ status }: { status?: string }) {
         padding: '2px 8px',
         borderRadius: 4,
         whiteSpace: 'nowrap',
-        ...(isDraft
-          ? { background: 'var(--badge-draft-bg)', color: 'var(--badge-draft-fg)', border: '1px solid var(--badge-draft-bd)' }
-          : { background: 'var(--badge-ready-bg)', color: 'var(--badge-ready-fg)', border: '1px solid var(--badge-ready-bd)' }),
+        ...badgeStyle(tone),
       }}
     >
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor', flexShrink: 0 }} />
+      <span
+        style={{
+          width: 6,
+          height: 6,
+          borderRadius: '50%',
+          background: 'currentColor',
+          flexShrink: 0,
+          ...(spinning
+            ? { boxShadow: '0 0 0 2px currentColor', opacity: 0.85, animation: 'pulse-dot 1s ease-in-out infinite' }
+            : {}),
+        }}
+      />
       {label}
     </span>
   );
@@ -198,6 +250,7 @@ export function StudyPicker({
   onSelectStudy,
   onStudiesRefresh,
   onStudyUpdated,
+  onStudyCreated,
   onOpenStudy,
 }: Props) {
   const [query, setQuery] = useState('');
@@ -396,7 +449,7 @@ export function StudyPicker({
       {showNewModal && (
         <NewStudyModal
           onClose={() => setShowNewModal(false)}
-          onCreated={onStudiesRefresh}
+          onCreated={onStudyCreated}
         />
       )}
       {showEditModal && selectedStudy && (

@@ -20,6 +20,7 @@ import {
   screenPatient,
   parseAnswerTxt,
 } from './engine-shim.js';
+import { llmBackend } from '@comforceeva/extractor';
 
 // Resolve STUDIES_DIR. Default is the project's own studies/ folder (self-contained —
 // no env var needed, works like the local engine). Runtime file is
@@ -74,7 +75,10 @@ export function scanStudies(): StudySummary[] {
     }
     const m = S.study ?? {};
     const qn = (S.screeningQuestions ?? []).length;
-    const status = S.status ?? (qn > 0 ? 'ready' : 'draft');
+    // PF6: never MANUFACTURE 'ready'. An explicit S.status passes through; when
+    // absent, a study with questions projects 'needs_review' (must be reviewed +
+    // pass the publish gate before it can go patient-facing), 0 questions -> 'draft'.
+    const status = S.status ?? (qn > 0 ? 'needs_review' : 'draft');
     out.push({
       id,
       name: m.name ?? id,
@@ -155,7 +159,9 @@ export function studyDetail(id: string, S: Study): StudyDetail {
       inclusion: (S.inclusionCriteria ?? []).length,
       exclusion: (S.exclusionCriteria ?? []).length,
     },
-    status: S.status ?? ((S.screeningQuestions ?? []).length ? 'ready' : 'draft'),
+    // PF6: same non-'ready' default as the list scan — explicit status passes
+    // through; absent + questions>0 -> 'needs_review', 0 -> 'draft'.
+    status: S.status ?? ((S.screeningQuestions ?? []).length ? 'needs_review' : 'draft'),
     overview: {
       name: m.name ?? '',
       internalNumber: m.internalNumber ?? '',
@@ -196,6 +202,19 @@ export interface CreateStudyBody {
 export type CreateStudyResult =
   | { id: string; status: string; documents: number; note: string }
   | { error: string; code: number };
+
+// Imported lazily inside createStudy to break the studies.ts <-> onboard.ts
+// import cycle (onboard.ts imports getStudiesDir/loadStudy from here).
+async function fireOnboard(id: string): Promise<void> {
+  const { onboardStudy, markDraft } = await import('./onboard.js');
+  void onboardStudy(id).catch((e: unknown) => {
+    // Onboard failed (LLM/parse/validation). Park the study back at draft so it
+    // never sits stuck at 'onboarding'.
+    // eslint-disable-next-line no-console
+    console.error(`[onboard] ${id} failed:`, e);
+    markDraft(id);
+  });
+}
 
 export function createStudy(body: CreateStudyBody): CreateStudyResult {
   const STUDIES_DIR = getStudiesDir();
@@ -284,12 +303,35 @@ export function createStudy(body: CreateStudyBody): CreateStudyResult {
     recruiters: [],
   };
 
+  // P1-T3: trigger the StudyOnboard extraction pipeline on create when there is a
+  // real LLM backend and onboarding isn't disabled. We flip the skeleton to
+  // 'onboarding' (a NON-green, non-patient-facing status — PF6 projection never
+  // collapses it to ready), persist, then fire-and-forget the pipeline with an
+  // EXPLICIT call-site catch that parks the study back at 'draft' on failure.
+  // createStudy stays synchronous; it returns immediately with status:'onboarding'.
+  const willOnboard =
+    llmBackend() !== 'rule' && process.env['ONBOARD_ON_CREATE'] !== 'off';
+
+  if (willOnboard) {
+    S.status = 'onboarding';
+  }
   fs.writeFileSync(path.join(dir, 'study.json'), JSON.stringify(S, null, 2));
+
+  if (willOnboard) {
+    void fireOnboard(id);
+    return {
+      id,
+      status: 'onboarding',
+      documents: documents.length,
+      note: 'Documents uploaded and text-extracted. Extraction pipeline started — the study will move to needs_review when ready.',
+    };
+  }
+
   return {
     id,
     status: 'draft',
     documents: documents.length,
-    note: 'Documents uploaded and text-extracted. Run the StudyOnboard pipeline (classify → questions → build) to make it screenable.',
+    note: 'Documents uploaded and text-extracted. No LLM backend configured — add questions manually or run /onboard to extract.',
   };
 }
 
@@ -332,7 +374,7 @@ export function updateStudy(id: string, patch: UpdateStudyPatch): UpdateStudyRes
   if (patch.flow && Array.isArray(patch.flow.nodes) && Array.isArray(patch.flow.edges)) {
     S.flow = patch.flow as Study['flow'];
   }
-  if (patch.status) S.status = patch.status as 'draft' | 'ready';
+  if (patch.status) S.status = patch.status as 'draft' | 'onboarding' | 'needs_review' | 'ready';
   fs.writeFileSync(p, JSON.stringify(S, null, 2));
   return studyDetail(id, S); // studyDetail already includes `id`
 }
