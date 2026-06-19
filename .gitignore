@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────
 # PHI / PII — patient data, study configs, reports — NEVER commit
 # ─────────────────────────────────────────────────────────────
-studies/
+# studies/
 study-WC45276/
 .studies-backup/
 scrape-out/

@@ -1,0 +1,935 @@
+{
+  "source": "Extracted by Claude from Protocol WC45726 V1 (RO7795068/CT-388, IRB-approved 15-JAN-2026) + Main ICF (IRB-approved 30-JAN-2026). Re-built from UI upload 2026-06-19.",
+  "capturedAt": "2026-06-19",
+  "study": {
+    "name": "WC45726 (RO7795068 / CT-388)_Obesity or Overweight with Type 2 Diabetes",
+    "internalNumber": "WC45726",
+    "sponsor": "F. Hoffmann-La Roche Ltd",
+    "principalInvestigator": "",
+    "site": "",
+    "priority": "",
+    "indication": "Obesity (BMI ≥30) or overweight (BMI ≥27 and <30) with Type 2 Diabetes; adults ≥18",
+    "drug": "RO7795068 (CT-388), GLP-1/GIP receptor agonist, subcutaneous injection once weekly (8/16/24 mg, up-titrated) vs placebo",
+    "flowStatus": "draft (generated from protocol)",
+    "flowVersion": 1,
+    "isPublished": false,
+    "flowUpdated": "2026-06-19",
+    "studyId": "",
+    "selectedProtocolDocumentId": "",
+    "_REQUIRED_FROM_SITE": "principalInvestigator, site (address+phone), priority — not in documents; supply from site/CRM"
+  },
+  "documents": [
+    {
+      "name": "Protocol_-_WC45726_-_GLP-1GIP_receptor_agonist_(CT-388)_-_V1_-_IRB_Approved_15-JAN-2026_(1)_protocol.pdf",
+      "type": "Protocol",
+      "uploaded": "2026-06-19",
+      "documentId": "",
+      "extractionStatus": "complete (by Claude)"
+    },
+    {
+      "name": "Main_ICF_-_WC45276_(CT-388-106)_IRB_Approved_30-JAN-2026_(Received_02-FEB-2026)_(1).pdf",
+      "type": "ICF",
+      "uploaded": "2026-06-19",
+      "documentId": "",
+      "extractionStatus": "complete (by Claude)"
+    }
+  ],
+  "knowledgeBank": {
+    "General Study Information": "We are enrolling in a Phase 3 clinical research study for adults (18 and older) who have type 2 diabetes and are living with obesity or overweight. The study tests an investigational medicine, RO7795068 (CT-388), given as a once-weekly injection under the skin, compared with placebo, to see how well it helps with weight and blood sugar and how safe it is. Participants must have type 2 diabetes (on diet/exercise or oral diabetes medicine) and a BMI of 27 or higher, and have tried at least once to lose weight with diet/exercise. The study is sponsored by Roche. NOTE: the study drug is a once-weekly injection under the skin — not a pill. [Specific site location and phone are not in the documents — supply from the site.]",
+    "Trial Design": "Phase III, randomized, double-blind, placebo-controlled, parallel-group study with 4 arms (RO7795068 8 mg, 16 mg, or 24 mg, or volume-matched placebo), ~400 participants per arm (~1600 total), multi-site/multi-region. The study drug is a once-weekly subcutaneous injection (Ypsomate autoinjector), starting at 4 mg and up-titrated by 4 mg every 4 weeks to the target dose. Total participation is about 79 weeks (treatment ~72 weeks), with both in-clinic and remote visits. An optional MRI substudy assesses body composition. Independent Data Monitoring and Clinical Endpoint Committees oversee the study.",
+    "Compensation / Reimbursement": "Participants are paid after each completed visit: $188 per in-clinic visit and $94 per remote visit, per the study schedule. The total depends on how many visits you complete over the ~79-week study. Payment is made following each completed visit. Your recruiter/site will confirm details.",
+    "Blinding": "Double-blind — site personnel and participants are blinded to treatment assignment; the Sponsor and its agents are also blinded, except individuals who require treatment-assignment access for their job roles per Sponsor SOPs."
+  },
+  "inclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Signed Informed Consent Form.",
+      "verification_method": "records",
+      "knockout_strength": "none",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Age ≥18 years at the time of signing the Informed Consent Form.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Ability and willingness to comply with all aspects of the protocol (procedures, visits, questionnaires, assessments) for the study duration.",
+      "verification_method": "records",
+      "knockout_strength": "none",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Ability and willingness to self-administer the study drug (or receive an injection from a trained individual if visually impaired or with physical limitations).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "BMI ≥27.0 kg/m².",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Diagnosis of T2DM (WHO or local standards) with HbA1c ≥6.5% to ≤10% at screening, on stable oral therapy ≥3 months if applicable. May be diet/exercise alone or any oral AHM EXCEPT DPP-4 inhibitors or GLP-1 RA-based therapy.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Ability and willingness to perform finger-stick blood glucose monitoring, including weekly fasting glucose measurements.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "History of ≥1 self-reported unsuccessful diet/exercise effort to lose body weight.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "Agreement to adhere to the contraception requirements (Section 5.4).",
+      "verification_method": "self_report",
+      "knockout_strength": "none",
+      "phone_screenable": false
+    }
+  ],
+  "exclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "History of Type 1 Diabetes Mellitus, any lifetime history of ketoacidosis, or hyperosmolar state/coma within 12 months prior to screening.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        46
+      ],
+      "criterion_text": "One or more episodes of severe hypoglycemia and/or hypoglycemia unawareness within the 6 months prior to screening.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "At least 2 confirmed fasting blood glucose values >270 mg/dL on 2 non-consecutive days during screening.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "History/presence of proliferative diabetic retinopathy, diabetic macular edema, or non-proliferative retinopathy needing recent/planned retinal treatment (dilated fundoscopic exam required at screening).",
+      "verification_method": "exam",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Current or prior treatment within 6 months with any injectable therapy for T2DM (short-term insulin <14 days for certain situations allowed).",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Self-reported change in body weight >5 kg within 3 months prior to screening.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Obesity induced by other endocrine disorders (e.g., Cushing's) or diagnosed monogenetic/syndromic obesity (e.g., MC4R deficiency, Prader-Willi).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Prior or planned surgical treatment for obesity (liposuction/abdominoplasty >1 year prior allowed).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Prior or planned endoscopic/device-based obesity therapy, or device removal within 6 months (e.g., LAP-BAND, intragastric balloon).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 10,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Any planned major medical procedure or surgery during the study.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 11,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "Have had a transplanted organ or are awaiting an organ transplant (corneal transplants allowed).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 12,
+      "source_pages": [
+        47
+      ],
+      "criterion_text": "History of significant active/unstable major depressive disorder or other severe psychiatric disorder (stable MDD/GAD ≥1 year may be allowed per investigator).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 13,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "Any lifetime history of suicide attempt.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 14,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "PHQ-9 score ≥15 at screening or Day 1 prior to randomization.",
+      "verification_method": "exam",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 15,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "C-SSRS positive for active suicidal ideation (Q4/Q5) or recent suicidal behavior within the past month at screening or Day 1.",
+      "verification_method": "exam",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 16,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "Known clinically significant gastric emptying abnormality (e.g., severe gastroparesis or gastric outlet obstruction).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 17,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "Active or untreated malignancy, or remission from a clinically significant malignancy for <5 years (except basal/squamous skin cancer, in-situ cervical or prostate cancer).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 18,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "Active systemic or localized infection requiring medical treatment at/prior to randomization that could interfere with study conduct.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 19,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "History of acute or chronic pancreatitis or clinically significant gallbladder disease (cholecystectomy ≥3 months prior may be allowed).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 20,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "History of hematologic conditions that may interfere with HbA1c measurement (e.g., hemolytic anemias, sickle cell disease, hemoglobinopathies).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 21,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "Known personal or family history (first-degree relative) of MEN type 2, thyroid C-cell hyperplasia, or medullary thyroid carcinoma (MTC).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 22,
+      "source_pages": [
+        48
+      ],
+      "criterion_text": "Clinically significant liver disease (except MASLD), or ALT/AST/GGT >5×ULN, ALP >3×ULN, or total bilirubin >2×ULN (except Gilbert's) at screening.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 23,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Significant uncontrolled endocrine abnormality (e.g., hypothyroidism, thyrotoxicosis, adrenal crisis) per investigator (stable treated hypothyroidism allowed).",
+      "verification_method": "exam",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 24,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Screening labs: amylase/lipase >2×ULN with symptoms, calcitonin ≥50 ng/L, GFR <30 mL/min/1.73m², or fasting triglycerides ≥500 mg/dL.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 25,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "History of ventricular dysrhythmias or risk factors (structural heart disease, significant electrolyte abnormalities, family history of sudden death or long QT).",
+      "verification_method": "exam",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 26,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Poorly controlled hypertension (mean systolic ≥160 mmHg or diastolic ≥100 mmHg) at screening.",
+      "verification_method": "exam",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 27,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Cardiovascular conditions within 3 months: acute MI, stroke/TIA, unstable angina, or hospitalization for heart failure.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 28,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "NYHA Functional Classification IV heart failure.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 29,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "History or current diagnosis of drug or alcohol use disorder that may preclude protocol compliance or affect appetite/weight, per investigator.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 30,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Treatment with any approved or investigational GLP-1 RA-based therapy (GLP-1 mono, GLP-1/GIP dual, or GLP-1/GIP/Gluc triple agonist) within 6 months prior to randomization.",
+      "verification_method": "records",
+      "knockout_strength": "hard",
+      "phone_screenable": false,
+      "rationale": "Deferred to the screening visit (med reconciliation), matching the live Alleviate phone screen which does not ask GLP-1 use on the call. Confirmed from the medication list at the visit, not a phone knockout."
+    },
+    {
+      "criterion_number": 31,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Treatment with other investigational therapy within 3 months or <5 elimination half-lives prior to randomization (whichever is longer).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 32,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Within 3 months: any medication/supplement/OTC that promotes weight loss or glucose metabolism (other than permitted AHM); any medication that may cause significant weight gain; or chronic (>14 days) GI-motility-reducing medications.",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 33,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Started implantable or injectable contraceptives (e.g., Depo-Provera, Nexplanon) within 12 months prior to screening (hormonal IUDs allowed if in place ≥6 weeks).",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 34,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Current, prior (within 3 months), or anticipated chronic (≥14 days) systemic glucocorticoid therapy.",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 35,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Known allergy to any component of the study drug formulation, or any condition that is a contraindication to GLP-1 RAs or GLP-1/GIP RAs.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 36,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Currently enrolled in another clinical study not scientifically/medically compatible with this study.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 37,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Pregnant or breastfeeding, or intending to become pregnant during the study or the contraception window (negative pregnancy tests required).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 38,
+      "source_pages": [
+        49
+      ],
+      "criterion_text": "Any disorder, medical condition, or abnormal lab not covered above that, per investigator, might jeopardize safety, compliance, or data interpretability.",
+      "verification_method": "derived",
+      "knockout_strength": "none",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 39,
+      "source_pages": [
+        50
+      ],
+      "criterion_text": "MRI substudy only: any contraindication to MRI (non-removable ferromagnetic implants, pacemakers, aneurysm clips, body size exceeding scanner, significant claustrophobia).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 40,
+      "source_pages": [
+        50
+      ],
+      "criterion_text": "MRI substudy only: history of excessive alcohol intake (>21 units/week males; >14 units/week females).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    }
+  ],
+  "screeningQuestions": [
+    {
+      "rank": 1,
+      "variable_name": "q1_age",
+      "sms_question": "How old are you?",
+      "answer_type": "number",
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "age < 18",
+      "criteria_ids": [
+        "INC-2"
+      ]
+    },
+    {
+      "rank": 2,
+      "variable_name": "sex_at_birth",
+      "sms_question": "What is your sex assigned at birth?",
+      "answer_type": "choice",
+      "choices": [
+        "Female",
+        "Male"
+      ],
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "none",
+      "included_in_flow": true,
+      "routing": true,
+      "criteria_ids": []
+    },
+    {
+      "rank": 3,
+      "variable_name": "q2_bmi",
+      "sms_question": "Has a doctor told you that your BMI is 27 or higher, or that you are overweight or have obesity?",
+      "answer_type": "yes_no",
+      "capture": "bmi",
+      "bmi_cutoff": 27,
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-5"
+      ]
+    },
+    {
+      "rank": 4,
+      "variable_name": "q3_t2d",
+      "sms_question": "Have you been diagnosed with type 2 diabetes?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-6"
+      ]
+    },
+    {
+      "rank": 5,
+      "variable_name": "q4_weightloss",
+      "sms_question": "Have you previously made at least one unsuccessful attempt to lose weight through lifestyle changes (such as diet or exercise)?",
+      "answer_type": "yes_no",
+      "category": "lifestyle",
+      "is_qualifying_question": false,
+      "knockout_power": "medium",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-8"
+      ]
+    },
+    {
+      "rank": 7,
+      "variable_name": "q6_t1dm",
+      "sms_question": "Have you ever been diagnosed with type 1 diabetes, or had diabetic ketoacidosis?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-1"
+      ]
+    },
+    {
+      "rank": 8,
+      "variable_name": "q7_transplant",
+      "sms_question": "Have you had an organ transplant, or are you waiting for one? (A cornea/eye transplant is OK — say no.)",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-11"
+      ]
+    },
+    {
+      "rank": 9,
+      "variable_name": "q8_gastric",
+      "sms_question": "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "medium",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-16"
+      ]
+    },
+    {
+      "rank": 10,
+      "variable_name": "q9_mtc",
+      "sms_question": "Do you, or any close blood relative (parent, sibling, or child), have a history of medullary thyroid cancer or Multiple Endocrine Neoplasia (MEN) type 2?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-21"
+      ]
+    },
+    {
+      "rank": 11,
+      "variable_name": "q10_pregnancy",
+      "sms_question": "Are you currently pregnant, breastfeeding, or planning to become pregnant during the study?",
+      "answer_type": "yes_no",
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-37"
+      ],
+      "depends_on": [
+        "sex_at_birth"
+      ],
+      "show_if": "sex_at_birth == \"Female\"",
+      "defer_if_unanswered": true,
+      "defer_note": "Pregnancy is confirmed at the screening visit (urine/serum test). If unanswered on the phone it does NOT block pre-qualification — matching the live platform, which books the call and confirms pregnancy on-site. A disclosed 'yes' still disqualifies."
+    }
+  ],
+  "flow": {
+    "nodes": [
+      {
+        "id": "root",
+        "type": "root",
+        "label": "Are you interested in this study?"
+      },
+      {
+        "id": "q1_age",
+        "type": "question",
+        "label": "How old are you?"
+      },
+      {
+        "id": "q2_bmi",
+        "type": "question",
+        "label": "BMI 27+ / overweight or obese?"
+      },
+      {
+        "id": "q3_t2d",
+        "type": "question",
+        "label": "Diagnosed with type 2 diabetes?"
+      },
+      {
+        "id": "q4_wl",
+        "type": "question",
+        "label": "Tried diet/exercise to lose weight without success?"
+      },
+      {
+        "id": "q5_glp1",
+        "type": "question",
+        "label": "GLP-1 med (Ozempic/Wegovy/Mounjaro…) in last 6 months?"
+      },
+      {
+        "id": "q6_t1dm",
+        "type": "question",
+        "label": "Type 1 diabetes / ketoacidosis history?"
+      },
+      {
+        "id": "q7_transplant",
+        "type": "question",
+        "label": "Organ transplant (except corneal)?"
+      },
+      {
+        "id": "q8_gastric",
+        "type": "question",
+        "label": "Severe stomach-emptying problems?"
+      },
+      {
+        "id": "q9_mtc",
+        "type": "question",
+        "label": "Personal/family MTC or MEN2 history?"
+      },
+      {
+        "id": "q10_preg",
+        "type": "question",
+        "label": "Pregnant/breastfeeding/planning pregnancy?"
+      },
+      {
+        "id": "qualified",
+        "type": "qualified",
+        "label": "Qualified"
+      },
+      {
+        "id": "dnq_age",
+        "type": "dnq",
+        "label": "DNQ - Under 18"
+      },
+      {
+        "id": "dnq_bmi",
+        "type": "dnq",
+        "label": "DNQ - BMI below 27"
+      },
+      {
+        "id": "dnq_no_t2d",
+        "type": "dnq",
+        "label": "DNQ - No type 2 diabetes diagnosis"
+      },
+      {
+        "id": "dnq_no_wl",
+        "type": "dnq",
+        "label": "DNQ - No unsuccessful diet/exercise weight-loss attempt"
+      },
+      {
+        "id": "dnq_glp1",
+        "type": "dnq",
+        "label": "DNQ - Recent GLP-1 therapy"
+      },
+      {
+        "id": "dnq_t1dm",
+        "type": "dnq",
+        "label": "DNQ - Type 1 diabetes / ketoacidosis"
+      },
+      {
+        "id": "dnq_transplant",
+        "type": "dnq",
+        "label": "DNQ - Organ transplant"
+      },
+      {
+        "id": "dnq_gastric",
+        "type": "dnq",
+        "label": "DNQ - Gastric emptying abnormality"
+      },
+      {
+        "id": "dnq_mtc",
+        "type": "dnq",
+        "label": "DNQ - Personal/family history of MTC or MEN2"
+      },
+      {
+        "id": "dnq_pregnancy",
+        "type": "dnq",
+        "label": "DNQ - Pregnant/breastfeeding/planning pregnancy"
+      },
+      {
+        "id": "q_sex",
+        "type": "question",
+        "label": "Sex assigned at birth?"
+      }
+    ],
+    "edges": [
+      {
+        "source": "root",
+        "target": "q1_age",
+        "label": "Interested"
+      },
+      {
+        "source": "q1_age",
+        "target": "q_sex",
+        "label": "18 or older"
+      },
+      {
+        "source": "q1_age",
+        "target": "dnq_age",
+        "label": "Under 18"
+      },
+      {
+        "source": "q2_bmi",
+        "target": "q3_t2d",
+        "label": "BMI 27+"
+      },
+      {
+        "source": "q2_bmi",
+        "target": "dnq_bmi",
+        "label": "Below 27"
+      },
+      {
+        "source": "q3_t2d",
+        "target": "q4_wl",
+        "label": "Has T2D"
+      },
+      {
+        "source": "q3_t2d",
+        "target": "dnq_no_t2d",
+        "label": "No T2D"
+      },
+      {
+        "source": "q4_wl",
+        "target": "q5_glp1",
+        "label": "Tried weight loss"
+      },
+      {
+        "source": "q4_wl",
+        "target": "dnq_no_wl",
+        "label": "Has not tried"
+      },
+      {
+        "source": "q5_glp1",
+        "target": "dnq_glp1",
+        "label": "Recent GLP-1"
+      },
+      {
+        "source": "q5_glp1",
+        "target": "q6_t1dm",
+        "label": "No recent GLP-1"
+      },
+      {
+        "source": "q6_t1dm",
+        "target": "dnq_t1dm",
+        "label": "T1DM/ketoacidosis"
+      },
+      {
+        "source": "q6_t1dm",
+        "target": "q7_transplant",
+        "label": "None"
+      },
+      {
+        "source": "q7_transplant",
+        "target": "dnq_transplant",
+        "label": "Transplant"
+      },
+      {
+        "source": "q7_transplant",
+        "target": "q8_gastric",
+        "label": "None"
+      },
+      {
+        "source": "q8_gastric",
+        "target": "dnq_gastric",
+        "label": "Gastric abnormality"
+      },
+      {
+        "source": "q8_gastric",
+        "target": "q9_mtc",
+        "label": "None"
+      },
+      {
+        "source": "q9_mtc",
+        "target": "dnq_mtc",
+        "label": "MTC/MEN2 history"
+      },
+      {
+        "source": "q9_mtc",
+        "target": "q10_preg",
+        "label": "Female"
+      },
+      {
+        "source": "q10_preg",
+        "target": "dnq_pregnancy",
+        "label": "Pregnant/planning"
+      },
+      {
+        "source": "q10_preg",
+        "target": "qualified",
+        "label": "Not pregnant/planning"
+      },
+      {
+        "source": "q_sex",
+        "target": "q2_bmi",
+        "label": "Recorded"
+      },
+      {
+        "source": "q9_mtc",
+        "target": "qualified",
+        "label": "Male (skip)"
+      }
+    ]
+  },
+  "funnel": [],
+  "patients": [],
+  "recruiters": [],
+  "conversation": {
+    "greeting": "Hi{name}! I'm reaching out from DM Clinical Houston. We wanted to reach out about our paid weight management, heart health, and metabolic (liver) condition treatment studies. Would you like to see if you may qualify?",
+    "closingQualified": "Great news — you pre-qualify! Let's schedule a quick follow-up call. We're open today 11:30 AM–2 PM, 4:30–5:30 PM, or 6–8 PM CT, and tomorrow or Friday 11 AM–8 PM CT — what time works best for you?",
+    "closingDnq": "I'm sorry, but it looks like none of our current studies are a match for you right now. We'll keep your information on file and reach out if a future study seems like a good fit.",
+    "closingIncomplete": "Thanks for your time. A study coordinator will follow up to finish a few remaining questions."
+  }
+}
