@@ -32,12 +32,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = Number(process.env['PORT'] ?? 7765);
 const HOST = process.env['HOST'] ?? '0.0.0.0';
+// Study uploads send protocol/ICF PDFs as base64 in the JSON body (base64 inflates ~33%).
+// Fastify defaults to a 1 MiB bodyLimit, which 413s on any real protocol PDF. Lift to 64 MB.
+const BODY_LIMIT = Number(process.env['BODY_LIMIT'] ?? 64 * 1024 * 1024);
 
 // Path to the built web app (../web/dist relative to this file's dist/ location)
 const WEB_DIST = path.resolve(__dirname, '..', '..', 'web', 'dist');
 
 export async function buildApp(): Promise<ReturnType<typeof Fastify>> {
-  const app = Fastify({ logger: true });
+  const app = Fastify({ logger: true, bodyLimit: BODY_LIMIT });
 
   // CORS *
   await app.register(cors, {
