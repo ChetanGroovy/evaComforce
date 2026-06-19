@@ -20,7 +20,7 @@ export const ScreeningQuestionSchema = z.object({
   rank: z.number(),
   variable_name: z.string(),
   sms_question: z.string(),
-  answer_type: z.enum(['yes_no', 'number', 'choice', 'text']),
+  answer_type: z.enum(['yes_no', 'number', 'choice', 'bmi', 'text']),
   choices: z.array(z.string()).optional(),
   routing: z.boolean().optional(),
   show_if: z.string().optional(),

@@ -12,6 +12,55 @@
  */
 
 import type { Study } from './engine-shim.js';
+import { llmText } from '@comforceeva/extractor';
+
+const SITE = process.env['SITE_NAME'] ?? 'DM Clinical Houston';
+const PERSONA =
+  `You are a warm, friendly clinical-trial recruiter texting on behalf of ${SITE}. ` +
+  `You text like a kind human on WhatsApp: short messages, plain English, no medical jargon, ` +
+  `one question at a time. Never sound robotic.`;
+
+/** Dynamic greeting (LLM) — falls back to the static greeting when no LLM backend. */
+export async function dynamicGreeting(S: Study, name?: string): Promise<string> {
+  const nm = name ?? 'there';
+  const info = (S.knowledgeBank ?? {})['General Study Information'] ?? (S.study?.indication ?? '');
+  const out = await llmText(
+    `${PERSONA}\n\nWrite the FIRST outreach text to a potential participant named ${nm}.\n` +
+    `What the study is about (paraphrase warmly, do NOT copy): "${info}"\n` +
+    `Rules: start with "Hi ${nm}!"; say you're reaching out from ${SITE}; one friendly sentence ` +
+    `about the paid study; end by asking if they'd like to see if they may qualify. ` +
+    `Max ~2 short sentences + the question. Plain text only.`
+  );
+  return out ?? convoGreeting(S, name);
+}
+
+/** Rephrase the next question warmly (LLM) — keeps the medical meaning; falls back to the raw text. */
+export async function phraseQuestion(questionText: string, lastReply?: string): Promise<string> {
+  if (!questionText) return questionText;
+  const out = await llmText(
+    `${PERSONA}\n\nAsk the NEXT question below, rephrased warmly and conversationally for a text chat.\n` +
+    `- Keep the MEDICAL MEANING EXACTLY THE SAME. Do not change what is being asked.\n` +
+    `- You may add a tiny friendly acknowledgement of their last reply ("${lastReply ?? ''}").\n` +
+    `- Max 1-2 short sentences. Plain text only.\n\nNext question: "${questionText}"`
+  );
+  return out ?? questionText;
+}
+
+/** Answer a patient's question from the Knowledge Bank (LLM) — falls back to the deflection line. */
+export async function kbAnswer(patientText: string, S: Study): Promise<string> {
+  const kb = S.knowledgeBank ?? {};
+  const info = Object.entries(kb)
+    .filter(([, v]) => typeof v === 'string' && v)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join('\n')
+    .slice(0, 2500);
+  const out = await llmText(
+    `${PERSONA}\n\nThe patient asked: "${patientText}"\n` +
+    `Answer briefly and warmly using ONLY the study info below. If it isn't covered, say our ` +
+    `coordinator can go over that on a quick call. 1-2 short sentences, plain text.\n\nStudy info:\n${info}`
+  );
+  return out ?? DEFLECTION;
+}
 
 /** greeting (= consent question) shown at the start of a session */
 export function convoGreeting(S: Study, name?: string): string {

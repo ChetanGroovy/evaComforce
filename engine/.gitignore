@@ -1,0 +1,8 @@
+# Python virtual env — never commit; rebuild from requirements.txt
+.venv/
+# Bytecode / caches
+__pycache__/
+*.pyc
+*.pyo
+# Local secrets — commit .env.example only, never the real .env
+.env

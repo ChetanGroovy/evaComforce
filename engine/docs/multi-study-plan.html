@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comforce.Engine — Multi-Study Portfolio Screening · Plan</title>
+<style>
+  :root{--pp:#6d28d9;--pp2:#8b5cf6;--ppl:#ede9fe;--ink:#1e1b2e;--muted:#6b7280;
+    --teal:#0d9488;--teall:#ccfbf1;--amber:#b45309;--amberl:#fef3c7;--red:#dc2626;--redl:#fee2e2;
+    --green:#16a34a;--greenl:#dcfce7;--blue:#4f46e5;--bluel:#e0e7ff;--line:#e5e7eb;}
+  *{box-sizing:border-box}
+  body{font:15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:1060px;
+    margin:0 auto;padding:2rem 1.1rem 4rem;color:var(--ink);background:#fff}
+  h1{font-size:1.9rem;margin:.2rem 0 .3rem;letter-spacing:-.02em}
+  h2{font-size:1.25rem;margin:2.4rem 0 .8rem;padding-bottom:.35rem;border-bottom:2px solid var(--ppl)}
+  h3{font-size:1.02rem;margin:1.1rem 0 .4rem}
+  .sub{color:var(--muted);margin:.1rem 0 1.4rem}
+  .thesis{background:linear-gradient(100deg,var(--pp),var(--pp2));color:#fff;border-radius:14px;
+    padding:1.1rem 1.3rem;margin:1.2rem 0;box-shadow:0 6px 20px rgba(109,40,217,.18)}
+  .thesis b{color:#fff}
+  code{background:#f3f0fb;color:#5b21b6;padding:.05rem .35rem;border-radius:4px;font-size:.86em}
+  .box{border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.1rem;background:#fcfcfd;margin:.6rem 0}
+  .node{border-radius:10px;padding:.55rem .7rem;font-size:.84rem;text-align:center;border:1.5px solid;display:inline-block}
+  .node .t{font-weight:700;display:block;margin-bottom:.1rem}
+  .det{background:var(--teall);border-color:var(--teal);color:#0b5}.det .t{color:var(--teal)}
+  .llm{background:var(--ppl);border-color:var(--pp2);color:#4c1d95}.llm .t{color:var(--pp)}
+  .ext{background:#f3f4f6;border-color:#d1d5db;color:#374151}
+  .data{background:#fff7ed;border-color:var(--amber);color:#92400e}.data .t{color:var(--amber)}
+  .row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center}
+  .arrow{color:var(--muted);font-size:1.25rem;font-weight:700}
+  .legend{display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin:.8rem 0 0;justify-content:center}
+  .dot{display:inline-block;width:.7rem;height:.7rem;border-radius:3px;vertical-align:middle;margin-right:.3rem}
+  table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.86rem}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f5f3ff;color:var(--pp)}
+  .ok{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}.dim{color:var(--muted)}
+  .pill{font-size:.7rem;font-weight:700;padding:.1rem .45rem;border-radius:999px}
+  .pill.v{background:var(--greenl);color:var(--green)}.pill.d{background:var(--redl);color:var(--red)}
+  ul.req{list-style:none;padding:0;margin:.4rem 0}
+  ul.req li{padding:.45rem 0 .45rem 1.7rem;position:relative;border-bottom:1px dashed var(--line);font-size:.93rem}
+  ul.req li:before{content:"▸";position:absolute;left:.3rem;color:var(--pp);font-weight:700}
+  ul.req li b{color:#111}
+  .have{color:var(--teal);font-weight:700;font-size:.76rem}.build{color:var(--pp);font-weight:700;font-size:.76rem}.change{color:var(--amber);font-weight:700;font-size:.76rem}
+  .phases{counter-reset:p;margin:.4rem 0}
+  .phase{position:relative;padding:.55rem 0 .55rem 2.4rem;border-bottom:1px solid var(--line)}
+  .phase:before{counter-increment:p;content:counter(p);position:absolute;left:0;top:.5rem;width:1.6rem;height:1.6rem;
+    border-radius:50%;background:var(--pp);color:#fff;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .phase b{color:#111}.phase .why{color:var(--muted);font-size:.86rem}
+  pre{background:#1e1b2e;color:#e9e5ff;border-radius:10px;padding:.9rem 1rem;overflow:auto;font-size:.82rem;line-height:1.5}
+  .callout{border-left:4px solid var(--amber);background:var(--amberl);border-radius:0 10px 10px 0;padding:.8rem 1rem;margin:1rem 0;font-size:.92rem}
+  .callout b{color:var(--amber)}
+  .lanes{display:grid;grid-template-columns:130px 1fr;gap:.5rem;align-items:center}
+  .foot{color:var(--muted);font-size:.82rem;margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem}
+</style></head>
+<body>
+
+<h1>Multi-Study Portfolio Screening</h1>
+<p class="sub">Comforce.Engine · next stage · 18 Jun 2026</p>
+
+<div class="thesis">
+  <b>Today:</b> the engine screens one patient against <b>one study</b> (WC45276), happy path only.<br>
+  <b>Next:</b> drop in any number of studies as <b>data</b>; a patient is screened against <b>all the
+  studies they're a candidate for at once</b>; if they don't fit the main one but fit another,
+  we say <b>"you may qualify for X and Y"</b> instead of rejecting them — and we handle the two other
+  outcomes (didn't-qualify, not-interested).
+</div>
+
+<h2>The 3 things we add</h2>
+<table>
+<tr><th>#</th><th>Piece</th><th>What it does</th></tr>
+<tr><td>1</td><td><b>Study Registry</b></td><td>Studies live as data (a folder of <code>questions.json</code> + <code>knowledge_bank.json</code>). Drop a new one in → it's registered. No code change.</td></tr>
+<tr><td>2</td><td><b>Shared facts (the glue)</b></td><td>Every question is tagged with a canonical <code>fact</code> (age, bmi, type_2_diabetes…). One answer counts for <b>every</b> study at once — so studies link together and we never re-ask the same thing.</td></tr>
+<tr><td>3</td><td><b>Portfolio kernel</b></td><td>One answer fans out across all candidate studies' rules. Studies drop out as they fail; survivors are the matches. Reroute = never committing to one study.</td></tr>
+</table>
+<p>…plus the <b>2 remaining scenarios</b> (Didn't Qualify, Not Interested) on top of the happy path.</p>
+
+<!-- ───────────── DIAGRAM 1 ───────────── -->
+<h2>① Registering a study (data-driven, no code change)</h2>
+<div class="box">
+  <div class="row">
+    <div class="node ext"><span class="t">New study</span>protocol + ICF PDF</div>
+    <div class="arrow">→</div>
+    <div class="node llm"><span class="t">Question Agent</span>extract criteria → questions + KB<br>(Chetanbhai · build-time)</div>
+    <div class="arrow">→</div>
+    <div class="node data"><span class="t">studies/&lt;ID&gt;/</span>questions.json<br>knowledge_bank.json</div>
+    <div class="arrow">→</div>
+    <div class="node det"><span class="t">Study Registry</span>auto-loads on start</div>
+    <div class="arrow">→</div>
+    <div class="node det"><span class="t">LIVE</span>engine can screen it</div>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:#f3f4f6;border:1.5px solid #d1d5db"></span>external</span>
+    <span><span class="dot" style="background:var(--ppl);border:1.5px solid var(--pp2)"></span>LLM (build-time)</span>
+    <span><span class="dot" style="background:#fff7ed;border:1.5px solid var(--amber)"></span>data on disk</span>
+    <span><span class="dot" style="background:var(--teall);border:1.5px solid var(--teal)"></span>deterministic engine</span>
+  </div>
+</div>
+
+<!-- ───────────── THE GLUE ───────────── -->
+<h2>② The glue: shared <code>fact</code> tags</h2>
+<p>Right now each study's questions are named per-study (<code>q1, q2…</code>) and don't know that another
+study's "age" question is the <i>same thing</i>. To link studies, every question gets a <b>canonical fact id</b>.
+That's the one change to the question-bank format:</p>
+<pre>{ "id": "q1",
+  "fact": "age",                <span style="color:#a78bfa">// ◀ NEW — shared across ALL studies</span>
+  "text": "What is your age?",
+  "type": "number",
+  "polarity": "requirement",
+  "disqualify_if": "age &lt; 18" }</pre>
+<div class="callout">
+  <b>Why this is the whole trick:</b> the patient answers <code>age = 52</code> <b>once</b>. That single fact is
+  applied to every candidate study's age rule at the same time. Demographics (age, sex, BMI) are asked
+  once for the whole portfolio; only study-specific questions (e.g. "do you have type 2 diabetes?") get
+  asked when their study is still in the running. This is exactly how Eva's kernel already works — we reuse it.
+</div>
+
+<!-- ───────────── DIAGRAM 2 ───────────── -->
+<h2>③ Screening fan-out — one answer, all studies</h2>
+<p>The patient (e.g. Albert) is a candidate for several studies. Each answer updates <b>every</b> study's
+status at once. Studies fall away as they fail; whoever survives is a match. <i>(Illustrative.)</i></p>
+<div class="box">
+  <table>
+    <tr><th>Question asked</th><th>Answer</th><th>fact</th>
+        <th>Obesity (WC45276)</th><th>Heart-health</th><th>axSpA (MK7240)</th></tr>
+    <tr><td>What's your age?</td><td>52</td><td><code>age</code></td>
+        <td><span class="pill v">viable</span></td><td><span class="pill v">viable</span></td><td><span class="pill v">viable</span></td></tr>
+    <tr><td>Height + weight → BMI</td><td>39.9</td><td><code>bmi</code></td>
+        <td><span class="pill v">viable</span></td><td><span class="pill v">viable</span></td><td><span class="pill d">DNQ · BMI too high for this one</span></td></tr>
+    <tr><td>Have you been diagnosed with type 2 diabetes?</td><td>yes</td><td><code>type_2_diabetes</code></td>
+        <td><span class="pill v">viable · needs it ✓</span></td><td><span class="pill v">viable</span></td><td class="dim">— (not asked; study already out)</td></tr>
+    <tr><td>Recent heart attack / stroke (3 mo)?</td><td>yes</td><td><code>recent_cv_event</code></td>
+        <td><span class="pill v">viable</span></td><td><span class="pill d">DNQ · safety exclusion</span></td><td class="dim">—</td></tr>
+    <tr><td colspan="3" style="text-align:right"><b>Result →</b></td>
+        <td><span class="ok">MATCH ✓</span></td><td><span class="no">out</span></td><td><span class="no">out</span></td></tr>
+  </table>
+  <p style="font-size:.86rem;color:var(--muted);margin:.3rem 0 0">Notice: <code>age</code> and <code>bmi</code> were asked
+  <b>once</b> and judged for all three. Study-specific questions were only asked while that study was alive.
+  The engine asks the question that can still decide the most still-viable studies next (info-gain).</p>
+</div>
+
+<!-- ───────────── DIAGRAM 3 ───────────── -->
+<h2>④ Verdict &amp; routing — the 3 scenarios</h2>
+<div class="box">
+  <div class="row" style="margin-bottom:.6rem">
+    <div class="node det"><span class="t">After screening</span>surviving studies, ranked by priority</div>
+    <div class="arrow">→</div>
+    <div class="node llm"><span class="t">Phrase the outcome 🧠</span>warm closing message</div>
+  </div>
+  <table>
+    <tr><th>Scenario</th><th>When</th><th>Message to patient</th><th>Funnel bucket</th></tr>
+    <tr><td><b class="ok">Qualified</b> (happy)</td><td>≥1 study still viable; primary survives</td>
+        <td>"Good news — you may qualify for the <b>weight-management study</b>! Let's set up a quick call."</td><td>Booked for Call</td></tr>
+    <tr><td><b style="color:var(--blue)">Reroute</b></td><td>primary failed, but another study survives</td>
+        <td>"You're not a fit for X, but you <b>do</b> look like a great fit for the <b>heart-health study</b> — want to continue with that?"</td><td>Booked / Prequalified (other study)</td></tr>
+    <tr><td><b class="no">Didn't qualify</b></td><td>fails <b>all</b> candidate studies</td>
+        <td>"This round of studies isn't a match, but we'll keep you in mind for future ones."</td><td>DNQ – Criteria Not Met</td></tr>
+    <tr><td><b class="no">Not interested</b></td><td>opts out at any point</td>
+        <td>"No problem at all — reply anytime if you change your mind."</td><td>DNQ – Not Interested</td></tr>
+  </table>
+  <p style="font-size:.86rem;color:var(--muted);margin:.3rem 0 0"><b>Never-lose:</b> "Didn't qualify" means
+  <i>failed every candidate study</i> — not just the first one. That's the difference from today's single-study DNQ.</p>
+</div>
+
+<!-- ───────────── DATA MODEL ───────────── -->
+<h2>How it all links together</h2>
+<pre>StudyRegistry (loads every studies/&lt;ID&gt;/ on startup)
+ ├─ Study "WC45276"  · category: metabolic   · facts→rules · questions · KB · priority 8
+ ├─ Study "Heart-health" · category: cardio  · facts→rules · questions · KB · priority 6
+ └─ Study "MK7240"   · category: rheumatology · facts→rules · questions · KB · priority 5
+
+Patient "Albert"
+ └─ candidate_studies = [WC45276, Heart-health]      <span style="color:#a78bfa">// the studies he was contacted for</span>
+
+Session (one conversation)
+ ├─ facts   = { age:52, bmi:39.9, type_2_diabetes:"yes", recent_cv_event:"yes" }
+ ├─ status  = { WC45276: viable, Heart-health: dnq(recent_cv_event) }
+ └─ history = [...]
+
+Portfolio Kernel  (deterministic — the only place eligibility is decided)
+ each answer → write fact → re-check EVERY candidate study's rules → drop the failed ones
+ next question → the unanswered fact that can still decide the most still-viable studies
+
+Verdict → rank survivors → qualified / reroute / didn't-qualify / not-interested</pre>
+
+<!-- ───────────── WHAT TO BUILD ───────────── -->
+<h2>What we build / change</h2>
+<ul class="req">
+  <li><span class="change">CHANGE</span> &nbsp;<b>Question banks: add a <code>fact</code> tag</b> per question (the shared key). Small format add; the Question Agent can fill it.</li>
+  <li><span class="build">BUILD</span> &nbsp;<b>StudyRegistry</b> — load all <code>studies/&lt;ID&gt;/</code> on startup into memory.</li>
+  <li><span class="build">BUILD</span> &nbsp;<b>Patient targeting</b> — a patient carries <code>candidate_studies</code> (from the category/outreach they belong to).</li>
+  <li><span class="change">EVOLVE</span> &nbsp;<b>Kernel: single-study Flow → Portfolio kernel</b> — facts shared, rules per study, one answer fans out to all. (Reuse Eva's <code>core.py</code> — it already does this.)</li>
+  <li><span class="build">BUILD</span> &nbsp;<b>Cross-study question picker</b> — ask the fact that decides the most still-viable studies next; stop when nothing can change the outcome.</li>
+  <li><span class="build">BUILD</span> &nbsp;<b>Verdict + routing</b> — rank survivors → qualified / reroute / didn't-qualify / waitlist.</li>
+  <li><span class="build">BUILD</span> &nbsp;<b>Scenario/intent handling</b> — not-interested (opt out) and patient-asks-a-question, beyond happy path.</li>
+  <li><span class="have">KEEP</span> &nbsp;<b>The LLM layer is unchanged</b> — greeting / phrase / interpret stay exactly as they are; they're just now driven by the portfolio kernel instead of the single-study flow.</li>
+</ul>
+
+<h2>Build order</h2>
+<div class="phases">
+  <div class="phase"><b>Add <code>fact</code> tags + StudyRegistry.</b> <span class="why">Make studies data-driven and linkable. Load WC45276 + a 2nd study.</span></div>
+  <div class="phase"><b>Portfolio kernel (fan-out).</b> <span class="why">One answer updates all candidate studies' status. Port from Eva's core.py.</span></div>
+  <div class="phase"><b>Cross-study question picker.</b> <span class="why">Ask shared/demographic facts once; study-specific only while that study is alive.</span></div>
+  <div class="phase"><b>Verdict + reroute message.</b> <span class="why">"You may qualify for X and Y" / never-lose waitlist.</span></div>
+  <div class="phase"><b>Scenario 2 + 3.</b> <span class="why">Didn't-qualify (fails all) and Not-interested (opt out) → funnel buckets.</span></div>
+  <div class="phase"><b>Patient-asks-a-question branch.</b> <span class="why">Answer from the right study's Knowledge Bank, then continue (closes the Albert "surgery question" gap).</span></div>
+</div>
+
+<h2>Open questions to settle</h2>
+<ul class="req">
+  <li>How is a patient's <b>candidate study list</b> decided — by indication/category, by the outreach campaign, or all active studies?</li>
+  <li>When two studies both survive, do we <b>book the highest-priority one</b> and offer the other, or ask the patient?</li>
+  <li>Do different studies' "same" question ever <b>differ in threshold</b> (e.g. BMI ≥27 vs ≥30)? → the <code>fact</code> is shared but each study keeps its own rule (already handled — rules are per-study).</li>
+  <li>Should reroute happen <b>live mid-chat</b> ("let's switch to the heart study") or only at the end as a summary?</li>
+</ul>
+
+<p class="foot">Plan · the kernel stays deterministic and auditable; the LLM only phrases + understands ·
+everything the engine decides is reviewable, and study question sets are human-approved before they gate patients.</p>
+
+</body></html>

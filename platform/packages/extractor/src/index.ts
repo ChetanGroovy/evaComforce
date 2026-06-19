@@ -1,6 +1,13 @@
 // @comforceeva/extractor — free-text answer extraction adapter
-// Rule-based and LLM (Anthropic Haiku) extractors.
-// Types are defined locally so this package compiles before @comforceeva/schema is built.
+// Rule-based and LLM extractors. LLM backend selection (mirrors the Python engine's local
+// behaviour): ANTHROPIC_API_KEY -> Anthropic Haiku SDK; else the local `claude` CLI
+// (Claude Code, NO api key); else the rule extractor. So with no keys it "just works" via the
+// developer's Claude Code login, identical to running locally.
+
+import { execFile, spawnSync } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const execFileAsync = promisify(execFile);
 
 // ---------------------------------------------------------------------------
 // Local type definitions (mirrors @comforceeva/schema ScreeningQuestion)
@@ -102,10 +109,14 @@ export function parseHeightInches(t: string | undefined | null): number | null {
 // Handles: "278 lbs", "126 kg", plain numbers.
 export function parseWeightLbs(t: string | undefined | null): number | null {
   if (!t) return null;
-  let m = t.match(/(\d+(?:\.\d+)?)\s*kg/i);
+  // explicit unit first
+  let m = t.match(/(\d+(?:\.\d+)?)\s*(?:lb|lbs|pound|pounds)/i);
+  if (m) return +m[1]!;
+  m = t.match(/(\d+(?:\.\d+)?)\s*(?:kg|kgs|kilo|kilogram|kilograms)/i);
   if (m) return (+m[1]!) * 2.20462;
-  m = t.match(/(\d+(?:\.\d+)?)/);
-  return m ? +m[1]! : null;
+  // no unit: take the LAST number (height usually comes first, e.g. "5 ft 6, 210")
+  const nums = t.match(/\d+(?:\.\d+)?/g);
+  return nums && nums.length > 0 ? +nums[nums.length - 1]! : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -330,13 +341,146 @@ async function llmExtract(
 }
 
 // ---------------------------------------------------------------------------
-// Factory
+// Claude Code (local `claude` CLI) extractor — NO api key needed.
+// Mirrors the Python ClaudeCodeClient: spawn `claude -p "<prompt>" --model haiku
+// --allowedTools none`, parse the JSON it prints. Falls back to rule on any error.
+// ---------------------------------------------------------------------------
+let _cliChecked = false;
+let _cliOk = false;
+
+export function claudeCliAvailable(): boolean {
+  if (_cliChecked) return _cliOk;
+  _cliChecked = true;
+  try {
+    const r = spawnSync('claude', ['--version'], { timeout: 10000, encoding: 'utf8' });
+    _cliOk = r.status === 0;
+  } catch {
+    _cliOk = false;
+  }
+  return _cliOk;
+}
+
+function firstJsonObject(s: string): string {
+  const m = s.match(/\{[\s\S]*\}/); // tolerate ```json fences / surrounding prose
+  return m ? m[0] : s;
+}
+
+async function claudeCodeExtract(
+  q: ScreeningQuestion,
+  replyText: string,
+  ctx: Record<string, unknown> = {}
+): Promise<ExtractorResult> {
+  // BMI must be computed deterministically from height+weight — the LLM can't do that.
+  if (q.answer_type === 'bmi') return ruleExtract(q, replyText, ctx);
+  try {
+    const model = process.env['CLAUDE_CODE_MODEL'] ?? 'haiku';
+    const choices = q.choices ? ` Choices: ${q.choices.join(', ')}.` : '';
+    const prompt =
+      `Interpret a patient's text reply to ONE clinical screening question.\n` +
+      `Question: "${q.sms_question}" (expected answer type: ${q.answer_type}).${choices}\n` +
+      `Patient reply: "${replyText}"\n\n` +
+      `Return ONLY a JSON object (no markdown, no prose) with keys: ` +
+      `"value" ("yes" or "no" for yes_no; the number for number; one of the choices for choice; ` +
+      `null if it cannot be determined), "confidence" (0 to 1), ` +
+      `"needs_clarification" (true if the reply is ambiguous or empty).`;
+
+    const { stdout } = await execFileAsync(
+      'claude',
+      ['-p', prompt, '--model', model, '--allowedTools', 'none'],
+      { timeout: 120000, maxBuffer: 1024 * 1024 }
+    );
+    const parsed = JSON.parse(firstJsonObject(String(stdout).trim())) as Record<string, unknown>;
+
+    let value = parsed['value'] ?? null;
+    if (q.answer_type === 'number' && value != null) value = Number(value);
+    if (q.answer_type === 'yes_no' && typeof value === 'string') value = value.trim().toLowerCase();
+
+    return {
+      value,
+      confidence: typeof parsed['confidence'] === 'number' ? parsed['confidence'] : 0.9,
+      needs_clarification:
+        typeof parsed['needs_clarification'] === 'boolean'
+          ? parsed['needs_clarification']
+          : value == null,
+    };
+  } catch {
+    return ruleExtract(q, replyText, ctx); // CLI missing / timeout / bad JSON → deterministic fallback
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Factory — `llm` auto-selects the backend exactly like the Python engine does
+// locally: api key > local Claude Code CLI > rule. `LLM_PROVIDER` can force one.
 // ---------------------------------------------------------------------------
 export function makeExtractor(kind: ExtractorKind = 'rule'): ExtractorFn {
-  if (kind === 'llm') {
-    return (q: ScreeningQuestion, replyText: string, ctx: Record<string, unknown> = {}) =>
-      llmExtract(q, replyText, ctx);
+  const rule: ExtractorFn = (q, t, ctx = {}) => ruleExtract(q, t, ctx);
+  if (kind === 'rule') return rule;
+
+  const provider = (process.env['LLM_PROVIDER'] ?? 'auto').toLowerCase();
+  if (provider === 'off' || provider === 'rule') return rule;
+
+  if (provider === 'anthropic' || (provider === 'auto' && process.env['ANTHROPIC_API_KEY'])) {
+    return (q, t, ctx = {}) => llmExtract(q, t, ctx); // their Haiku SDK path
   }
-  return (q: ScreeningQuestion, replyText: string, ctx: Record<string, unknown> = {}) =>
-    ruleExtract(q, replyText, ctx);
+  if ((provider === 'claude_code' || provider === 'auto') && claudeCliAvailable()) {
+    return (q, t, ctx = {}) => claudeCodeExtract(q, t, ctx); // local Claude Code, no key
+  }
+  return rule;
+}
+
+// ---------------------------------------------------------------------------
+// llmText — free-text generation (greeting, warm phrasing, KB answers). Same
+// backend selection as the extractor: Anthropic key > local Claude Code CLI > null.
+// Returns null when no LLM backend is available so callers fall back to static text.
+// ---------------------------------------------------------------------------
+export async function llmText(prompt: string): Promise<string | null> {
+  const provider = (process.env['LLM_PROVIDER'] ?? 'auto').toLowerCase();
+  if (provider === 'off' || provider === 'rule') return null;
+
+  if (provider === 'anthropic' || (provider === 'auto' && process.env['ANTHROPIC_API_KEY'])) {
+    try {
+      const { default: Anthropic } = (await import('@anthropic-ai/sdk')) as unknown as {
+        default: new (o: { apiKey: string }) => {
+          messages: {
+            create: (p: Record<string, unknown>) => Promise<{ content: Array<{ type: string; text?: string }> }>;
+          };
+        };
+      };
+      const client = new Anthropic({ apiKey: process.env['ANTHROPIC_API_KEY']! });
+      const msg = await client.messages.create({
+        model: 'claude-haiku-4-5',
+        max_tokens: 300,
+        messages: [{ role: 'user', content: prompt }],
+      });
+      const block = msg.content.find((b) => b.type === 'text');
+      const txt = block?.text?.trim();
+      if (txt) return txt;
+    } catch {
+      /* fall through to Claude Code / null */
+    }
+  }
+
+  if ((provider === 'claude_code' || provider === 'auto') && claudeCliAvailable()) {
+    try {
+      const model = process.env['CLAUDE_CODE_MODEL'] ?? 'haiku';
+      const { stdout } = await execFileAsync(
+        'claude',
+        ['-p', prompt, '--model', model, '--allowedTools', 'none'],
+        { timeout: 120000, maxBuffer: 1024 * 1024 }
+      );
+      return String(stdout).trim() || null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+/** Which backend `makeExtractor('llm')` would use right now (for logging/health). */
+export function llmBackend(): 'anthropic' | 'claude_code' | 'rule' {
+  const provider = (process.env['LLM_PROVIDER'] ?? 'auto').toLowerCase();
+  if (provider === 'off' || provider === 'rule') return 'rule';
+  if (provider === 'anthropic' || (provider === 'auto' && process.env['ANTHROPIC_API_KEY'])) return 'anthropic';
+  if ((provider === 'claude_code' || provider === 'auto') && claudeCliAvailable()) return 'claude_code';
+  return 'rule';
 }

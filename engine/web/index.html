@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comforce — Screening Console</title>
+<style>
+  :root{
+    --blue:#1a73e8; --msgr:#0084ff; --msgr-dark:#0073e0; --ink:#050505; --muted:#65676b;
+    --line:#dadde1; --bg:#f0f2f5; --recv:#e4e6eb;
+    --green-bg:#e6f4ea; --green:#1e7e34; --amber-bg:#fff3cd; --amber:#8a6100; --gray-bg:#eceff1; --gray:#5f6368;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+
+  .topbar{background:#fff;border-bottom:1px solid var(--line);padding:.75rem 1.2rem;
+    display:flex;align-items:center;gap:.55rem;position:sticky;top:0;z-index:5}
+  .logo{width:28px;height:28px;border-radius:8px;background:var(--msgr);color:#fff;display:flex;
+    align-items:center;justify-content:center;font-weight:700}
+  .topbar b{font-size:1.05rem}
+  .topbar span{color:var(--muted);font-size:.85rem;border-left:1px solid var(--line);padding-left:.6rem;margin-left:.2rem}
+
+  .app{max-width:1180px;margin:1.1rem auto;padding:0 1rem;display:flex;gap:1rem;align-items:stretch}
+  .chat-col{flex:7;min-width:0;display:flex}
+  .side-col{flex:3;min-width:250px;display:flex;flex-direction:column;gap:1rem}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.06);overflow:hidden}
+
+  /* chat pane */
+  .chat-card{flex:1;display:flex;flex-direction:column;height:82vh;min-height:560px}
+  .chat-head{padding:.7rem 1rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.5rem;background:#fff}
+  .chat-head .dot{width:9px;height:9px;border-radius:50%;background:#bcc0c4}
+  .chat-head .dot.live{background:#31a24c}
+  .chat-head b{font-size:.95rem} .chat-head small{color:var(--muted);margin-left:auto;font-size:.8rem}
+  .thread{flex:1;overflow-y:auto;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.35rem;background:#fff}
+  .empty{margin:auto;color:var(--muted);text-align:center;max-width:280px;font-size:.92rem}
+
+  .row{display:flex;align-items:flex-end;gap:.45rem;max-width:80%}
+  .row.me{align-self:flex-end;flex-direction:row-reverse}
+  .row.bot{align-self:flex-start}
+  .avatar{width:26px;height:26px;border-radius:50%;background:var(--msgr);color:#fff;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+  .msg{padding:.5rem .8rem;border-radius:18px;font-size:.95rem;white-space:pre-wrap;word-wrap:break-word;line-height:1.4}
+  .row.bot .msg{background:var(--recv);color:var(--ink);border-bottom-left-radius:5px}
+  .row.me .msg{background:var(--msgr);color:#fff;border-bottom-right-radius:5px}
+  .typing{padding:.65rem .8rem}
+  .typing i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#9aa0a6;margin:0 1.5px;animation:b 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s} .typing i:nth-child(3){animation-delay:.4s}
+  @keyframes b{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
+
+  .result{align-self:center;text-align:center;margin:.5rem 0;padding:.55rem .9rem;border-radius:20px;font-weight:600;font-size:.9rem;max-width:90%}
+  .result.qualified{background:var(--green-bg);color:var(--green)}
+  .result.dnq{background:var(--amber-bg);color:var(--amber)}
+  .result.neutral{background:var(--gray-bg);color:var(--gray)}
+
+  .composer{display:flex;gap:.5rem;padding:.65rem;border-top:1px solid var(--line);background:#fff}
+  .composer input{flex:1;font:inherit;padding:.55rem .9rem;border:1px solid var(--line);border-radius:20px;background:#f0f2f5}
+  .composer input:focus{outline:none;border-color:var(--msgr);background:#fff}
+  .iconbtn{border:none;background:var(--msgr);color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem}
+  .iconbtn:hover{background:var(--msgr-dark)} .iconbtn:disabled{background:#c3c7cd;cursor:default}
+
+  /* sidebar */
+  .side-title{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+    padding:.7rem 1rem;border-bottom:1px solid var(--line);background:#f7f8fa}
+  .side-body{padding:.9rem 1rem;display:flex;flex-direction:column;gap:.7rem}
+  .field{display:flex;flex-direction:column;gap:.28rem}
+  .field label{font-size:.74rem;color:var(--muted);font-weight:600}
+  select,.txt{font:inherit;padding:.5rem .6rem;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
+  select:focus,.txt:focus{outline:none;border-color:var(--msgr);box-shadow:0 0 0 3px rgba(0,132,255,.15)}
+  .btn{font:inherit;font-weight:600;background:var(--msgr);color:#fff;border:none;border-radius:8px;padding:.55rem 1rem;cursor:pointer}
+  .btn:hover{background:var(--msgr-dark)} .btn:disabled{background:#c3c7cd;cursor:default}
+
+  .study-name{font-size:1rem;font-weight:700;line-height:1.3;margin:0 0 .15rem}
+  .study-sub{font-size:.78rem;color:var(--muted);margin-bottom:.7rem}
+  .frow{display:grid;grid-template-columns:84px 1fr;gap:.4rem;padding:.32rem 0;border-bottom:1px dashed #ebedf0;font-size:.85rem}
+  .frow span{color:var(--muted)} .frow b{color:var(--ink);font-weight:600}
+  .summary{margin-top:.7rem;font-size:.85rem;color:#3a3b3c;line-height:1.5;background:#f7f8fa;border-radius:8px;padding:.6rem .7rem}
+  .badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.12rem .5rem;border-radius:999px;background:#e7f3ff;color:#1a73e8;text-transform:uppercase;letter-spacing:.03em}
+
+  @media(max-width:880px){.app{flex-direction:column}.chat-card{height:68vh}.side-col{min-width:0}}
+</style></head>
+<body>
+  <div class="topbar"><div class="logo">C</div><b>Comforce</b><span>Screening Console</span></div>
+
+  <div class="app">
+    <!-- LEFT 70% : chat -->
+    <div class="chat-col">
+      <div class="card chat-card">
+        <div class="chat-head"><span class="dot" id="statusdot"></span><b id="chatstudy">No study selected</b><small id="backend"></small></div>
+        <div class="thread" id="thread">
+          <div class="empty" id="empty">Pick a study on the right, enter a patient name, and press <b>Start</b>.</div>
+        </div>
+        <div class="composer">
+          <input type="text" id="msg" placeholder="Type a reply…" autocomplete="off" disabled>
+          <button class="iconbtn" id="send" disabled title="Send">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT 30% : controls + study details -->
+    <div class="side-col">
+      <div class="card">
+        <div class="side-title">New screening</div>
+        <div class="side-body">
+          <div class="field"><label for="study">Study</label><select id="study"><option>Loading…</option></select></div>
+          <div class="field"><label for="name">Patient name</label><input class="txt" type="text" id="name" placeholder="e.g. Judith" autocomplete="off"></div>
+          <button class="btn" id="start">Start screening</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="side-title">Study details</div>
+        <div class="side-body" id="studyinfo"><div class="study-sub">Select a study to see details.</div></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let sessionId=null, busy=false;
+
+async function loadStudies(){
+  const list = await (await fetch('/api/studies')).json();
+  const sel=$('study'); sel.innerHTML='';
+  if(!list.length){ sel.innerHTML='<option>No studies found</option>'; return; }
+  list.forEach(s=>{ const o=document.createElement('option'); o.value=s.id; o.textContent=s.name; sel.appendChild(o); });
+  loadMeta(sel.value);
+}
+
+async function loadMeta(id){
+  if(!id) return;
+  const d = await (await fetch('/api/study/'+encodeURIComponent(id))).json();
+  const m = d.meta||{};
+  const row=(l,v)=> v ? `<div class="frow"><span>${l}</span><b>${esc(v)}</b></div>` : '';
+  $('studyinfo').innerHTML =
+    `<div><h3 class="study-name">${esc(m.name||id)}</h3>
+       <div class="study-sub">${esc(m.internalNumber||'')} ${m.flowStatus?'· <span class="badge">'+esc(m.flowStatus)+'</span>':''}</div></div>`
+    + row('Sponsor', m.sponsor) + row('Indication', m.indication) + row('Drug', m.drug)
+    + row('PI', m.principalInvestigator) + row('Site', m.site) + row('Priority', m.priority)
+    + (d.summary ? `<div class="summary">${esc(d.summary)}</div>` : '');
+  $('chatstudy').textContent = m.name||id;
+}
+
+function rowEl(text,who){
+  const r=document.createElement('div'); r.className='row '+who;
+  if(who==='bot') r.innerHTML='<div class="avatar">C</div>';
+  const b=document.createElement('div'); b.className='msg'; b.textContent=text; r.appendChild(b);
+  $('thread').appendChild(r); $('thread').scrollTop=$('thread').scrollHeight; return r;
+}
+function typing(){ const r=document.createElement('div'); r.className='row bot'; r.id='typing';
+  r.innerHTML='<div class="avatar">C</div><div class="msg typing"><i></i><i></i><i></i></div>';
+  $('thread').appendChild(r); $('thread').scrollTop=$('thread').scrollHeight; }
+function untype(){ $('typing')?.remove(); }
+function result(o){
+  const map={qualified:['qualified','✓ Pre-qualified — looks like a match'],dnq:['dnq','Not a match for this study right now'],
+    closed_not_interested:['neutral','Patient opted out'],not_interested:['neutral','Patient opted out']};
+  const [c,t]=map[o]||['neutral',o||'Complete'];
+  const e=document.createElement('div'); e.className='result '+c; e.textContent=t; $('thread').appendChild(e);
+  $('thread').scrollTop=$('thread').scrollHeight;
+}
+function composer(on){ $('msg').disabled=!on; $('send').disabled=!on; if(on)$('msg').focus(); }
+
+async function start(){
+  const study=$('study').value, name=$('name').value.trim();
+  if(!study) return;
+  $('empty')?.remove(); $('thread').innerHTML=''; sessionId=null;
+  $('start').disabled=true; $('start').textContent='Starting…'; typing();
+  try{
+    const d=await (await fetch('/api/start',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({study_id:study,name:name||'there'})})).json();
+    untype(); sessionId=d.session_id; $('statusdot').classList.add('live');
+    rowEl(d.message,'bot'); composer(true);
+  }catch(e){ untype(); rowEl('Error starting: '+e,'bot'); }
+  $('start').disabled=false; $('start').textContent='Restart';
+}
+async function send(){
+  if(busy) return; const text=$('msg').value.trim(); if(!text||!sessionId) return;
+  rowEl(text,'me'); $('msg').value=''; busy=true; composer(false); typing();
+  try{
+    const d=await (await fetch('/api/reply',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({session_id:sessionId,message:text})})).json();
+    untype();
+    if(d.error){ rowEl('Error: '+d.error,'bot'); busy=false; return; }
+    rowEl(d.message,'bot');
+    if(d.done){ result(d.outcome); composer(false); $('statusdot').classList.remove('live'); }
+    else composer(true);
+  }catch(e){ untype(); rowEl('Error: '+e,'bot'); composer(true); }
+  busy=false;
+}
+
+$('study').onchange=e=>loadMeta(e.target.value);
+$('start').onclick=start;
+$('send').onclick=send;
+$('msg').addEventListener('keydown',e=>{ if(e.key==='Enter') send(); });
+$('name').addEventListener('keydown',e=>{ if(e.key==='Enter') start(); });
+loadStudies();
+</script>
+</body></html>

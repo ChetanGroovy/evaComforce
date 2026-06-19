@@ -1,0 +1,760 @@
+{
+  "AZD0780": {
+    "study_name": "D7960C00015 (AZD0780) — ASCVD / cardiovascular outcomes",
+    "results": [
+      {
+        "persona": "Ideal Qualifier",
+        "intent": "qualify",
+        "outcome": "qualified",
+        "dnq_reason": null,
+        "bmi": null,
+        "questions_answered": 9,
+        "transcript": [
+          [
+            "agent",
+            "Hi Maria! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "How old are you?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What sex were you assigned at birth?"
+          ],
+          [
+            "patient",
+            "Female"
+          ],
+          [
+            "agent",
+            "Has a doctor diagnosed you with heart or blood-vessel disease, like a heart attack, stroke, or artery surgery?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Are you currently taking a statin or cholesterol medicine like Lipitor, Crestor, or Zetia?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "In the past 3 years, have you had cancer? (Not counting minor skin cancers or cervical carcinoma-in-situ.)"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever had a major organ transplant like a heart, liver, lung, kidney, or bone marrow?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 5 years, have you had a problem with alcohol or drug abuse?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Are you currently pregnant or breastfeeding?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Great news, Maria! Based on your answers you may be a good fit. Someone from our team will reach out soon to set up a quick call. Thank you! 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: age",
+        "intent": "DNQ at q1_age",
+        "outcome": "dnq",
+        "dnq_reason": "How old are you?",
+        "bmi": null,
+        "questions_answered": 2,
+        "transcript": [
+          [
+            "agent",
+            "Hi David! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "How old are you?"
+          ],
+          [
+            "patient",
+            "16"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: on_lipid_lowering_therapy",
+        "intent": "DNQ at q3_statin",
+        "outcome": "dnq",
+        "dnq_reason": "Are you currently taking a statin or cholesterol medicine like Lipitor, Crestor, or Zetia?",
+        "bmi": null,
+        "questions_answered": 5,
+        "transcript": [
+          [
+            "agent",
+            "Hi Susan! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "How old are you?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What sex were you assigned at birth?"
+          ],
+          [
+            "patient",
+            "Female"
+          ],
+          [
+            "agent",
+            "Has a doctor diagnosed you with heart or blood-vessel disease, like a heart attack, stroke, or artery surgery?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Are you currently taking a statin or cholesterol medicine like Lipitor, Crestor, or Zetia?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: prior_organ_transplant",
+        "intent": "DNQ at q5_transplant",
+        "outcome": "dnq",
+        "dnq_reason": "Have you ever had a major organ transplant like a heart, liver, lung, kidney, or bone marrow?",
+        "bmi": null,
+        "questions_answered": 7,
+        "transcript": [
+          [
+            "agent",
+            "Hi Robert! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "How old are you?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What sex were you assigned at birth?"
+          ],
+          [
+            "patient",
+            "Female"
+          ],
+          [
+            "agent",
+            "Has a doctor diagnosed you with heart or blood-vessel disease, like a heart attack, stroke, or artery surgery?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Are you currently taking a statin or cholesterol medicine like Lipitor, Crestor, or Zetia?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "In the past 3 years, have you had cancer? (Not counting minor skin cancers or cervical carcinoma-in-situ.)"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever had a major organ transplant like a heart, liver, lung, kidney, or bone marrow?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: pregnancy_lactation_status",
+        "intent": "DNQ at q7_pregnancy",
+        "outcome": "dnq",
+        "dnq_reason": "Are you currently pregnant or breastfeeding?",
+        "bmi": null,
+        "questions_answered": 9,
+        "transcript": [
+          [
+            "agent",
+            "Hi Linda! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "How old are you?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What sex were you assigned at birth?"
+          ],
+          [
+            "patient",
+            "Female"
+          ],
+          [
+            "agent",
+            "Has a doctor diagnosed you with heart or blood-vessel disease, like a heart attack, stroke, or artery surgery?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Are you currently taking a statin or cholesterol medicine like Lipitor, Crestor, or Zetia?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "In the past 3 years, have you had cancer? (Not counting minor skin cancers or cervical carcinoma-in-situ.)"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever had a major organ transplant like a heart, liver, lung, kidney, or bone marrow?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 5 years, have you had a problem with alcohol or drug abuse?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Are you currently pregnant or breastfeeding?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      }
+    ]
+  },
+  "WC45276": {
+    "study_name": "WC45276 (CT-388-106) — Obesity / Type 2 Diabetes",
+    "results": [
+      {
+        "persona": "Ideal Qualifier",
+        "intent": "qualify",
+        "outcome": "qualified",
+        "dnq_reason": null,
+        "bmi": 29.9,
+        "questions_answered": 13,
+        "transcript": [
+          [
+            "agent",
+            "Hi Maria! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "What is your age?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What is your height?"
+          ],
+          [
+            "patient",
+            "5 ft 6"
+          ],
+          [
+            "agent",
+            "What is your current weight?"
+          ],
+          [
+            "patient",
+            "185 lbs"
+          ],
+          [
+            "agent",
+            "Have you been diagnosed with type 2 diabetes?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever tried to lose weight with diet or exercise but were not successful?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever been diagnosed with type 1 diabetes, a diabetic coma, or diabetic ketoacidosis?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 6 months, have you used a GLP-1 medication (such as Ozempic, Wegovy, Mounjaro, or Zepbound) or any other injectable medication for diabetes or weight loss?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever had an organ transplant, or are you waiting for one? (A cornea transplant is OK — answer no for that.)"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Do you or any close blood relative (parent, sibling, or child) have a history of medullary thyroid cancer or Multiple Endocrine Neoplasia type 2 (MEN2)?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you been diagnosed with severe heart failure (NYHA class IV)?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 3 months, have you had a heart attack, a stroke or mini-stroke (TIA), unstable angina, or been hospitalized for heart failure?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Great news, Maria! Based on your answers you may be a good fit. Someone from our team will reach out soon to set up a quick call. Thank you! 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: What is your age",
+        "intent": "DNQ at q1",
+        "outcome": "dnq",
+        "dnq_reason": "What is your age?",
+        "bmi": null,
+        "questions_answered": 2,
+        "transcript": [
+          [
+            "agent",
+            "Hi David! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "What is your age?"
+          ],
+          [
+            "patient",
+            "16"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: Have you ever tried to lose",
+        "intent": "DNQ at q5",
+        "outcome": "dnq",
+        "dnq_reason": "Have you ever tried to lose weight with diet or exercise but were not successful?",
+        "bmi": 29.9,
+        "questions_answered": 6,
+        "transcript": [
+          [
+            "agent",
+            "Hi Susan! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "What is your age?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What is your height?"
+          ],
+          [
+            "patient",
+            "5 ft 6"
+          ],
+          [
+            "agent",
+            "What is your current weight?"
+          ],
+          [
+            "patient",
+            "185 lbs"
+          ],
+          [
+            "agent",
+            "Have you been diagnosed with type 2 diabetes?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever tried to lose weight with diet or exercise but were not successful?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: Have you ever been told you",
+        "intent": "DNQ at q9",
+        "outcome": "dnq",
+        "dnq_reason": "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?",
+        "bmi": 29.9,
+        "questions_answered": 10,
+        "transcript": [
+          [
+            "agent",
+            "Hi Robert! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "What is your age?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What is your height?"
+          ],
+          [
+            "patient",
+            "5 ft 6"
+          ],
+          [
+            "agent",
+            "What is your current weight?"
+          ],
+          [
+            "patient",
+            "185 lbs"
+          ],
+          [
+            "agent",
+            "Have you been diagnosed with type 2 diabetes?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever tried to lose weight with diet or exercise but were not successful?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever been diagnosed with type 1 diabetes, a diabetic coma, or diabetic ketoacidosis?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 6 months, have you used a GLP-1 medication (such as Ozempic, Wegovy, Mounjaro, or Zepbound) or any other injectable medication for diabetes or weight loss?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever had an organ transplant, or are you waiting for one? (A cornea transplant is OK — answer no for that.)"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      },
+      {
+        "persona": "Fails: In the last 3 months have",
+        "intent": "DNQ at q12",
+        "outcome": "dnq",
+        "dnq_reason": "In the last 3 months, have you had a heart attack, a stroke or mini-stroke (TIA), unstable angina, or been hospitalized for heart failure?",
+        "bmi": 29.9,
+        "questions_answered": 13,
+        "transcript": [
+          [
+            "agent",
+            "Hi Linda! I'm reaching out from DM Clinical Houston about a paid research study. Would you like to see if you may qualify?"
+          ],
+          [
+            "patient",
+            "Yes, I'd like to check"
+          ],
+          [
+            "agent",
+            "What is your age?"
+          ],
+          [
+            "patient",
+            "23"
+          ],
+          [
+            "agent",
+            "What is your height?"
+          ],
+          [
+            "patient",
+            "5 ft 6"
+          ],
+          [
+            "agent",
+            "What is your current weight?"
+          ],
+          [
+            "patient",
+            "185 lbs"
+          ],
+          [
+            "agent",
+            "Have you been diagnosed with type 2 diabetes?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever tried to lose weight with diet or exercise but were not successful?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Have you ever been diagnosed with type 1 diabetes, a diabetic coma, or diabetic ketoacidosis?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 6 months, have you used a GLP-1 medication (such as Ozempic, Wegovy, Mounjaro, or Zepbound) or any other injectable medication for diabetes or weight loss?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever had an organ transplant, or are you waiting for one? (A cornea transplant is OK — answer no for that.)"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Do you or any close blood relative (parent, sibling, or child) have a history of medullary thyroid cancer or Multiple Endocrine Neoplasia type 2 (MEN2)?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "Have you been diagnosed with severe heart failure (NYHA class IV)?"
+          ],
+          [
+            "patient",
+            "no"
+          ],
+          [
+            "agent",
+            "In the last 3 months, have you had a heart attack, a stroke or mini-stroke (TIA), unstable angina, or been hospitalized for heart failure?"
+          ],
+          [
+            "patient",
+            "yes"
+          ],
+          [
+            "agent",
+            "Thank you for sharing that. Based on your answers this particular study isn't a match right now, but we'll keep you in mind for future studies you may fit. 💜"
+          ]
+        ]
+      }
+    ]
+  }
+}

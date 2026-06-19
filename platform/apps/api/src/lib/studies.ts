@@ -11,6 +11,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import {
   type Study,
@@ -20,13 +21,13 @@ import {
   parseAnswerTxt,
 } from './engine-shim.js';
 
-// Resolve STUDIES_DIR. Default is the prototype's studies/ directory.
-// File lives at apps/api/src/lib/studies.ts (or dist/lib/studies.js after build).
-// Going 5 levels up from lib/ → src/ → api/ → apps/ → platform/ → comforceEva/
-// then appending 'studies' gives the prototype's studies/ alongside the monorepo.
+// Resolve STUDIES_DIR. Default is the project's own studies/ folder (self-contained —
+// no env var needed, works like the local engine). Runtime file is
+// apps/api/dist/lib/studies.js → 5 levels up (lib→dist→api→apps→platform) lands in
+// evaComforce/, then /studies. fileURLToPath keeps this correct on Windows.
 const DEFAULT_STUDIES_DIR = path.resolve(
-  new URL('../../../../../', import.meta.url).pathname,
-  'studies'
+  path.dirname(fileURLToPath(import.meta.url)),
+  '../../../../../studies'
 );
 export function getStudiesDir(): string {
   return process.env['STUDIES_DIR'] ?? DEFAULT_STUDIES_DIR;
