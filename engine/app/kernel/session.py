@@ -12,6 +12,7 @@ class Session:
     bmi: float | None = None
     outcome: str | None = None            # "qualified" | "dnq" | "not_interested"
     dnq_reason: str | None = None
+    dnq_qid: str | None = None            # id of the question that triggered the DNQ (for the trace)
     retries: dict = field(default_factory=dict)   # question_id -> times we re-asked for clarity
     history: list = field(default_factory=list)   # [(role, message)]  role = "agent" | "patient"
 

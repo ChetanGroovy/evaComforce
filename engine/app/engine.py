@@ -79,7 +79,7 @@ class Engine:
 
         reason = self.flow.disqualifies(q, parsed.get("value"), s)
         if reason:
-            s.state, s.outcome, s.dnq_reason = "dnq", "dnq", reason
+            s.state, s.outcome, s.dnq_reason, s.dnq_qid = "dnq", "dnq", reason, q["id"]
             return self._say(s, "Thank you for sharing that. Based on your answers this particular "
                                 "study isn't a match right now, but we'll keep you in mind for "
                                 "future studies you may fit. 💜")

@@ -614,6 +614,10 @@ html {
   margin: 16px 0 8px;
   position: relative;
   overflow: hidden;
+  /* In the flex-column .chat-messages, overflow:hidden resets min-height:auto→0,
+     so a long conversation lets flexbox collapse this card and clip its content
+     (header/reason/trace). Pin shrink to 0 so the card always keeps its full height. */
+  flex-shrink: 0;
 }
 
 .verdict-card::before {

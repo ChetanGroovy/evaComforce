@@ -52,7 +52,7 @@ def _trace(eng: Engine, s) -> list[dict]:
     for i, q in enumerate(eng.flow.questions):
         if q["id"] in s.answers:
             rows.append({"rank": i + 1, "variable": q["id"], "answer": s.answers[q["id"]],
-                         "disqualified": s.dnq_reason == q["text"]})
+                         "disqualified": s.dnq_qid == q["id"]})
     return rows
 
 
