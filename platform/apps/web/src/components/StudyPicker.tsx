@@ -23,24 +23,26 @@ interface Props {
 function StatusBadge({ status }: { status?: string }) {
   if (!status) return null;
   const isDraft = status === 'draft';
+  const label = isDraft ? 'Draft · add questions' : 'Ready to prescreen';
   return (
     <span
       style={{
-        display: 'inline-block',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 5,
         fontSize: 'var(--fs-2xs)',
         fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: 0.4,
-        padding: '1px 6px',
-        borderRadius: 5,
-        marginLeft: 6,
-        verticalAlign: 'middle',
+        letterSpacing: 0.2,
+        padding: '2px 8px',
+        borderRadius: 4,
+        whiteSpace: 'nowrap',
         ...(isDraft
           ? { background: 'var(--badge-draft-bg)', color: 'var(--badge-draft-fg)', border: '1px solid var(--badge-draft-bd)' }
           : { background: 'var(--badge-ready-bg)', color: 'var(--badge-ready-fg)', border: '1px solid var(--badge-ready-bd)' }),
       }}
     >
-      {status}
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor', flexShrink: 0 }} />
+      {label}
     </span>
   );
 }
@@ -315,7 +317,6 @@ export function StudyPicker({
                 title={s.name}
               >
                 {s.name}
-                <StatusBadge status={s.status} />
               </div>
               <div
                 style={{
@@ -373,6 +374,7 @@ export function StudyPicker({
                 >
                   {s.questionCount ?? '?'} Qs
                 </span>
+                <StatusBadge status={s.status} />
               </div>
             </div>
           ))}
