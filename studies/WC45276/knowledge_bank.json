@@ -1,0 +1,46 @@
+{
+  "study_id": "WC45276",
+  "study_name": "WC45276 (CT-388-106) — Obesity / Type 2 Diabetes",
+  "sponsor": "F. Hoffmann-La Roche Ltd",
+  "investigational_drug": "GLP-1/GIP receptor agonist (CT-388), weekly injection",
+  "source_documents": [
+    "Protocol_-_WC45726_-_GLP-1GIP_receptor_agonist_(CT-388)_-_V1_-_IRB_Approved_15-JAN-2026",
+    "Main_ICF_-_WC45276_(CT-388-106)_IRB_Approved_30-JAN-2026"
+  ],
+  "generated_by": "Claude (one-time knowledge-bank generation from protocol + ICF)",
+  "review_status": "DRAFT — requires clinical coordinator review before use",
+  "purpose": "Free-text reference the chat/agent uses to ANSWER patient questions during screening (it does not gate eligibility).",
+
+  "knowledge_bank": {
+    "general_study_information": {
+      "text": "We're enrolling adults who have type 2 diabetes and are also living with overweight or obesity, for a clinical research study of an investigational once-weekly treatment. The study is aimed at people whose diabetes is not fully controlled by diet alone or by oral diabetes medications. Researchers want to see whether this treatment helps with weight loss, blood sugar control, and cardiovascular risk factors. Taking part is voluntary, and the study team will walk you through everything before you decide.",
+      "source": "Protocol §1 synopsis / indication; sponsor study summary"
+    },
+    "trial_design": {
+      "text": "The study runs about 79 weeks (roughly a year and a half), including a follow-up visit about 4 weeks after the final dose. The investigational drug is a once-weekly injection that you (or a trained helper) give yourself. All participants — not just some — also receive diet, physical-activity, and lifestyle counseling throughout the study. Your recruiter will walk you through the full visit schedule during screening.",
+      "source": "Protocol — schema / schedule of activities",
+      "verify": "Confirm the 79-week duration and follow-up window against the protocol schema before publishing."
+    },
+    "compensation_reimbursement": {
+      "text": "You may be compensated up to approximately $2,500 for fully taking part in the study. Reimbursement for travel, parking, and meals may also be available. Your recruiter will go over the exact compensation details during your phone screening.",
+      "source": "ICF (Main_ICF_WC45276) — compensation section",
+      "verify": "Confirm the dollar amount and what reimbursements are offered against the current IRB-approved ICF."
+    },
+    "blinding": {
+      "text": "",
+      "status": "No content provided yet — leave blank or have the coordinator add the blinding explanation (e.g. whether the study is double-blind / placebo-controlled and what that means for the participant).",
+      "source": "—"
+    },
+    "site_logistics": {
+      "text": "Site: DM Clinical Research — Houston Metro, 13406 Medical Complex Drive, Suite 150/180/190, Tomball, TX 77375. The site can be reached at (346) 550-9559. Recruiters confirm site logistics during the phone call.",
+      "source": "Study site record",
+      "note": "Site/contact details — confirm these are current before publishing."
+    }
+  },
+
+  "honesty_rules": [
+    "This bank is for ANSWERING patient questions, not for deciding eligibility — eligibility is driven only by the screening questions + criteria.",
+    "Any field marked 'verify' must be checked against the live protocol/ICF before the chat uses it — do not state compensation, duration, or design as fact until confirmed.",
+    "If a patient asks something not covered here, the agent should say it will have the study coordinator follow up rather than guess."
+  ]
+}

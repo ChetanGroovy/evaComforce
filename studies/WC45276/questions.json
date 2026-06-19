@@ -1,0 +1,278 @@
+{
+  "study_id": "WC45276",
+  "study_name": "WC45276 (CT-388-106) — Obesity / Type 2 Diabetes",
+  "sponsor": "F. Hoffmann-La Roche Ltd",
+  "investigational_drug": "GLP-1/GIP receptor agonist (CT-388), weekly injection",
+  "source_protocol": "Protocol_-_WC45726_-_GLP-1GIP_receptor_agonist_(CT-388)_-_V1_-_IRB_Approved_15-JAN-2026",
+  "generated_by": "Claude (one-time question-bank generation from extracted criteria)",
+  "review_status": "DRAFT — requires clinical coordinator review before use",
+  "_legend": {
+    "type": "number | height_weight | yes_no | choice",
+    "polarity": "requirement = study NEEDS this answer (a 'no' disqualifies);  exclusion = a 'yes' disqualifies",
+    "knockout_power": "high = defines who the study is for / hard safety gate;  medium / low = rarer",
+    "tier": "core = the standard pre-screen set;  optional = valid but lower-yield, platform can enable",
+    "disqualify_if": "the condition that should rule the patient OUT for THIS study",
+    "from_criteria": "the protocol criterion IDs this question came from (see criteria.json)",
+    "gender_filter": "if set, only ask this question to patients of that sex"
+  },  
+
+  "intro": {
+    "id": "q0",
+    "text": "We're enrolling for a paid weight-management and type 2 diabetes study. Would you like to answer a few quick questions to see if you may qualify?",
+    "type": "yes_no",
+    "scoring": "none (engagement gate, not eligibility)"
+  },
+
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What is your age?",
+      "type": "number",
+      "category": "demographics",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "requirement",
+      "disqualify_if": "age < 18",
+      "from_criteria": ["INC-2"],
+      "source_pages": [46]
+    },
+    {
+      "id": "q2",
+      "text": "What is your height?",
+      "type": "height_weight",
+      "category": "demographics",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "requirement",
+      "disqualify_if": "(used with weight to compute BMI — see derived.bmi)",
+      "from_criteria": ["INC-5"],
+      "source_pages": [46]
+    },
+    {
+      "id": "q3",
+      "text": "What is your current weight?",
+      "type": "height_weight",
+      "category": "demographics",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "requirement",
+      "disqualify_if": "(used with height to compute BMI — see derived.bmi)",
+      "from_criteria": ["INC-5"],
+      "source_pages": [46]
+    },
+    {
+      "id": "q4",
+      "text": "Have you been diagnosed with type 2 diabetes?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "requirement",
+      "disqualify_if": "answer == no",
+      "note": "The protocol also requires an HbA1c 6.5–10% lab value — confirmed at the clinic visit, not asked here.",
+      "from_criteria": ["INC-6"],
+      "source_pages": [46]
+    },
+    {
+      "id": "q5",
+      "text": "Have you ever tried to lose weight with diet or exercise but were not successful?",
+      "type": "yes_no",
+      "category": "lifestyle",
+      "tier": "core",
+      "knockout_power": "medium",
+      "polarity": "requirement",
+      "disqualify_if": "answer == no",
+      "from_criteria": ["INC-8"],
+      "source_pages": [46]
+    },
+    {
+      "id": "q6",
+      "text": "Have you ever been diagnosed with type 1 diabetes, a diabetic coma, or diabetic ketoacidosis?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-1"],
+      "source_pages": [46]
+    },
+    {
+      "id": "q7",
+      "text": "In the last 6 months, have you used a GLP-1 medication (such as Ozempic, Wegovy, Mounjaro, or Zepbound) or any other injectable medication for diabetes or weight loss?",
+      "type": "yes_no",
+      "category": "medications",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "allowed_exceptions": "Short-term insulin for under 14 days (e.g. surgery, hospitalization, acute illness) is allowed.",
+      "note": "Highly relevant for a GLP-1 trial and patients know their meds; covers the injectable-therapy and GLP-1 washout criteria.",
+      "from_criteria": ["EXC-48", "EXC-8"],
+      "source_pages": [47, 49]
+    },
+    {
+      "id": "q8",
+      "text": "Have you ever had an organ transplant, or are you waiting for one? (A cornea transplant is OK — answer no for that.)",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "allowed_exceptions": "Corneal transplants (keratoplasty) are allowed.",
+      "from_criteria": ["EXC-14"],
+      "source_pages": [47]
+    },
+    {
+      "id": "q9",
+      "text": "Have you ever been told you have severe stomach-emptying problems, like gastroparesis or a blocked stomach?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-23"],
+      "source_pages": [48]
+    },
+    {
+      "id": "q10",
+      "text": "Do you or any close blood relative (parent, sibling, or child) have a history of medullary thyroid cancer or Multiple Endocrine Neoplasia type 2 (MEN2)?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-28"],
+      "source_pages": [48]
+    },
+    {
+      "id": "q11",
+      "text": "Have you been diagnosed with severe heart failure (NYHA class IV)?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-46"],
+      "source_pages": [49]
+    },
+    {
+      "id": "q12",
+      "text": "In the last 3 months, have you had a heart attack, a stroke or mini-stroke (TIA), unstable angina, or been hospitalized for heart failure?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-41", "EXC-42", "EXC-43", "EXC-44", "EXC-45"],
+      "source_pages": [49]
+    },
+    {
+      "id": "q13",
+      "text": "Are you currently pregnant or breastfeeding, or planning to become pregnant during the study?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "core",
+      "knockout_power": "high",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "gender_filter": "female",
+      "from_criteria": ["EXC-58"],
+      "source_pages": [50]
+    },
+
+    {
+      "id": "q14",
+      "text": "Have you had, or are you planning to have, weight-loss (bariatric) surgery?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "optional",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "allowed_exceptions": "Liposuction or abdominoplasty more than 1 year ago is allowed.",
+      "from_criteria": ["EXC-11", "EXC-12"],
+      "source_pages": [47]
+    },
+    {
+      "id": "q15",
+      "text": "In the past 5 years, have you had cancer that was active or being treated? (Minor skin cancers and a few in-situ cancers don't count.)",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "optional",
+      "knockout_power": "medium",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "allowed_exceptions": "Basal/squamous cell skin cancer, in-situ cervical carcinoma, and in-situ prostate cancer are allowed.",
+      "from_criteria": ["EXC-24"],
+      "source_pages": [48]
+    },
+    {
+      "id": "q16",
+      "text": "Have you ever had pancreatitis (inflammation of the pancreas) or significant gallbladder disease?",
+      "type": "yes_no",
+      "category": "conditions",
+      "tier": "optional",
+      "knockout_power": "low",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "allowed_exceptions": "Gallstone pancreatitis/gallbladder disease is allowed if the gallbladder was removed at least 3 months ago.",
+      "from_criteria": ["EXC-26"],
+      "source_pages": [48]
+    },
+    {
+      "id": "q17",
+      "text": "Are you currently taking any medication, supplement, or product to help you lose or gain weight?",
+      "type": "yes_no",
+      "category": "medications",
+      "tier": "optional",
+      "knockout_power": "low",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-51", "EXC-52"],
+      "source_pages": [49, 50]
+    },
+    {
+      "id": "q18",
+      "text": "In the last 3 months, have you taken part in another clinical trial or taken an investigational/experimental drug?",
+      "type": "yes_no",
+      "category": "other",
+      "tier": "optional",
+      "knockout_power": "low",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "from_criteria": ["EXC-49", "EXC-57"],
+      "source_pages": [49, 50]
+    },
+    {
+      "id": "q19",
+      "text": "This study involves a weekly self-injection, finger-stick blood sugar checks, and visits over about 18 months. Are you willing and able to take part in all of that?",
+      "type": "yes_no",
+      "category": "consent",
+      "tier": "optional",
+      "knockout_power": "low",
+      "polarity": "requirement",
+      "disqualify_if": "answer == no",
+      "from_criteria": ["INC-3", "INC-4", "INC-7"],
+      "source_pages": [46]
+    }
+  ],
+
+  "derived": {
+    "bmi": {
+      "computed_from": ["q2", "q3"],
+      "formula": "weight_kg / (height_m ^ 2)",
+      "disqualify_if": "bmi < 27.0",
+      "knockout_power": "high",
+      "from_criteria": ["INC-5"],
+      "source_pages": [46]
+    }
+  },
+
+  "dropped_criteria_note": "All other criteria were intentionally NOT turned into questions because a patient cannot reliably self-report them — they are lab values (HbA1c, GFR, ALT/AST, calcitonin, triglycerides, fasting BG), administered scores (PHQ-9, C-SSRS), exam/imaging findings (retinopathy, dilated fundoscopy), a measured vital (blood pressure), or require investigator judgment. These are checked at the in-clinic screening visit, not in the pre-screen."
+}

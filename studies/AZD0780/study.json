@@ -1,0 +1,830 @@
+{
+  "source": "Protocol/ICF extraction (no live access)",
+  "capturedAt": "2026-06-18",
+  "study": {
+    "name": "D7960C00015 (AZD0780) — ASCVD / cardiovascular outcomes",
+    "internalNumber": "D7960C00015",
+    "sponsor": "AstraZeneca AB",
+    "principalInvestigator": "REQUIRED-FROM-SITE",
+    "site": "REQUIRED-FROM-SITE",
+    "priority": "REQUIRED-FROM-SITE",
+    "indication": "Established atherosclerotic cardiovascular disease (ASCVD), or high risk of a first ASCVD event — MACE prevention",
+    "drug": "AZD0780 — first-in-class ORAL PCSK9 inhibitor, 30 mg tablet once daily, on top of standard lipid-lowering therapy (vs matching placebo)",
+    "flowStatus": "active",
+    "flowVersion": 1,
+    "isPublished": false,
+    "flowUpdated": "2026-06-18",
+    "studyId": "",
+    "selectedProtocolDocumentId": ""
+  },
+  "documents": [
+    {
+      "name": "D7960C00015 Protocol v3.0 (13-MAR-2026, IRB approved 30-MAR-2026)",
+      "type": "Protocol",
+      "uploaded": "2026-06-18",
+      "documentId": "",
+      "extractionStatus": "complete"
+    },
+    {
+      "name": "D7960C00015 Main ICF (IRB approved 03-NOV-2025)",
+      "type": "ICF",
+      "uploaded": "2026-06-18",
+      "documentId": "",
+      "extractionStatus": "complete"
+    }
+  ],
+  "knowledgeBank": {
+    "General Study Information": "This is a Phase III study testing whether AZD0780 — an investigational first-in-class ORAL PCSK9 inhibitor taken as a 30 mg tablet once daily — lowers the risk of major heart problems (heart attack, stroke, and related events) in people who already have, or are at high risk for, hardening/blockage of the arteries (atherosclerotic cardiovascular disease). AZD0780 is taken on top of your usual cholesterol-lowering medicine (such as a statin); it is compared against a placebo (a tablet with no active drug). Neither you nor the study doctor will know which one you receive.",
+    "Trial Design": "Randomised, double-blind, placebo-controlled, parallel-group. Participants are randomly assigned to AZD0780 30 mg once daily or matching placebo, on top of standard-of-care lipid-lowering therapy. Screening is up to 3 weeks (may extend to 6 weeks if menopausal status must be confirmed). Visits occur at screening, randomisation, weeks 2/4/12/24/36/52, then about every 26 weeks. This is an event-driven study — it continues until enough cardiovascular events have occurred, with a median follow-up of at least ~3.1 years (study duration to primary analysis ~54 months).",
+    "Compensation / Reimbursement": "Reimbursement is per completed visit: $150 for Visit 1 (Screening) and $150 for Visit 2 (Randomisation); $100 for each subsequent visit (Week 2, Weeks 4 & 12, Weeks 24/36/52, every-26-week visits thereafter, study closure, and qualifying unscheduled visits). This works out to roughly $900 over the first year, then about $100 per visit (~$200/year) for the multi-year follow-up. You are reimbursed after each completed visit even if you do not finish the study.",
+    "Blinding": "Double-blind — both the participant and the study staff are blinded to whether the participant receives AZD0780 or placebo. AZD0780 and placebo are supplied as matching tablets."
+  },
+  "// classification": "verification_method ∈ {self_report,exam,lab,imaging,records,derived}; knockout_strength ∈ {hard,soft,none}; phone_screenable = self_report && hard. This is a cardiovascular outcomes trial — most INCLUSION criteria are lab/imaging (LDL-C, Lp(a), hs-CRP, CAC score, angiography, ABI, eGFR) and are confirmed at the screening VISIT, not on the phone. The phone pre-screen confirms patient-knowable qualifiers (age, prior heart attack/stroke/artery procedure, on a statin) and the clean self-reportable exclusions (cancer, transplant, substance abuse, pregnancy).",
+  "inclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        38,
+        39
+      ],
+      "criterion_text": "Age: participants with a history of an ASCVD event must be ≥18 years at ICF signing; participants at increased risk of a FIRST ASCVD event must be male ≥50 or female ≥55 years.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "Age is patient-known. Phone gate uses the absolute minimum (≥18); the sex-specific 50/55 threshold for the primary-prevention arm is confirmed at the visit alongside the arm determination."
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        38
+      ],
+      "criterion_text": "Qualifying ASCVD event/disease: history of MI or ischaemic stroke due to atherosclerosis ≥1 month prior to randomisation, or revascularisation for symptomatic lower-limb PAD; OR (primary-prevention arm) diagnostic evidence of significant atherosclerosis.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "A prior heart attack, stroke, or artery procedure is patient-known. Worded broadly on the phone to also capture primary-prevention patients with diagnosed artery disease; the precise arm + qualifying-event adjudication happens at the visit."
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        39,
+        40,
+        41
+      ],
+      "criterion_text": "Primary-prevention arm: diagnostic evidence of atherosclerosis — CAC score ≥300 (or ≥100 with risk factors), obstructive CAD on angiography, ABI ≤0.85/0.9, carotid IMT >1mm, or polyvascular disease.",
+      "verification_method": "imaging",
+      "knockout_strength": "hard",
+      "phone_screenable": false,
+      "rationale": "Imaging/angiography read — screening-visit data, not phone-answerable."
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        38,
+        39
+      ],
+      "criterion_text": "LDL-C threshold: ≥60 mg/dL (≥1.55 mmol/L) for the ASCVD-history arm; ≥100 mg/dL (≥2.6 mmol/L) for the primary-prevention arm.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false,
+      "rationale": "Central-lab LDL-C — confirmed at screening, not phone."
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "criterion_text": "Additional risk factors (combinations required): Lp(a) ≥50 nmol/L, hs-CRP ≥2.0 mg/L, eGFR <60/≤45, polyvascular disease, prior amputation, recurrent events, current tobacco use, age ≥65.",
+      "verification_method": "lab",
+      "knockout_strength": "soft",
+      "phone_screenable": false,
+      "rationale": "Lab/imaging combinations adjudicated at the visit; tobacco use is captured but is only one of several OR factors, not a standalone phone knockout."
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        39,
+        40
+      ],
+      "criterion_text": "T2DM requiring ongoing medical therapy (a qualifying risk factor / diabetes pathway in the primary-prevention arm with end-organ disease).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false,
+      "rationale": "Diabetes is patient-known, but here it is one of several OR qualifiers (not a standalone hard knockout) and the end-organ-disease detail is visit/records-confirmed. Captured at the visit."
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        41,
+        42
+      ],
+      "criterion_text": "Stable background lipid-lowering therapy >28 days before screening — high-intensity statin, or lower-intensity statin plus ezetimibe/bempedoic acid, or maximally tolerated regimen (documented statin intolerance permitted).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "Statins/ezetimibe are common, patient-known brand medicines. Being on a cholesterol-lowering regimen is required; phone-answerable. Documented-intolerance exceptions are resolved at the visit."
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        42
+      ],
+      "criterion_text": "Female participants of childbearing potential who are sexually active must use a highly effective contraception method plus a barrier method through the study.",
+      "verification_method": "self_report",
+      "knockout_strength": "none",
+      "phone_screenable": false,
+      "rationale": "Contraception-agreement criterion — knockout_strength none."
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        42
+      ],
+      "criterion_text": "Capable of giving signed informed consent and willing to comply with study procedures.",
+      "verification_method": "derived",
+      "knockout_strength": "none",
+      "phone_screenable": false,
+      "rationale": "Administrative/consent."
+    },
+    {
+      "criterion_number": 10,
+      "source_pages": [
+        42
+      ],
+      "criterion_text": "Provision of signed Optional Genomics Initiative consent (optional).",
+      "verification_method": "derived",
+      "knockout_strength": "none",
+      "phone_screenable": false,
+      "rationale": "Optional consent."
+    }
+  ],
+  "exclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Underlying disease/condition (incl. homozygous familial hypercholesterolaemia, or LDL/plasma apheresis within 12 months) that may interfere with interpretation, per investigator.",
+      "verification_method": "derived",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Any revascularisation procedure planned within the next 3 months.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false,
+      "rationale": "Patient may know of a planned procedure, but timing/eligibility impact is adjudicated at the visit; not a clean phone knockout."
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Imaging within last 3 years showing coronary calcium score of zero or CCTA with no atherosclerosis.",
+      "verification_method": "imaging",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Calculated eGFR <15 mL/min/1.73 m2 at screening.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Uncontrolled severe hypertension: SBP >160 or DBP >110 mmHg at randomisation despite therapy.",
+      "verification_method": "exam",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Severe concomitant non-CV disease with estimated life expectancy <2 years.",
+      "verification_method": "derived",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        43
+      ],
+      "criterion_text": "Malignancy (except non-melanoma skin cancer, cervical in-situ carcinoma) within the last 3 years.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "Recent cancer is patient-known and a clean exclusion knockout."
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        43,
+        44
+      ],
+      "criterion_text": "Lab deviations at screening: AST/ALT >3×ULN, TBL >2×ULN, fasting triglycerides ≥400 mg/dL, creatine kinase >5×ULN, urine albumin/creatinine ≥500 mg/g.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Currently pregnant (confirmed positive test) or breast-feeding.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "Patient-known; gated to female by routing; confirmed by test at the visit, so deferred if unasked on the phone."
+    },
+    {
+      "criterion_number": 10,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Known history of alcohol and/or drug abuse within the last 5 years.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "Patient-known, self-reportable exclusion knockout."
+    },
+    {
+      "criterion_number": 11,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Recipient of any major organ transplant (e.g., lung, liver, heart, bone marrow, renal).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true,
+      "rationale": "Patient-known, clean exclusion knockout."
+    },
+    {
+      "criterion_number": 18,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "History of hypersensitivity to drugs of similar chemical structure, or known prior intolerance to AZD0780.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false,
+      "rationale": "Patient cannot self-report intolerance to the investigational study drug they have never taken (self-knowledge limit)."
+    },
+    {
+      "criterion_number": 19,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Uncontrolled/serious disease incl. known major active infection (e.g., hepatitis B/C) or major organ-system dysfunction, per investigator.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 20,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Uncontrolled T2DM defined as HbA1c ≥9.5% at screening.",
+      "verification_method": "lab",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 21,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Inadequately treated hypothyroidism (TSH >1.5×ULN at screening) or thyroid replacement initiated/modified within last 3 months.",
+      "verification_method": "lab",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 23,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Use of mipomersen or lomitapide within 12 months of screening or planned use.",
+      "verification_method": "records",
+      "knockout_strength": "hard",
+      "phone_screenable": false,
+      "rationale": "Specific advanced lipid-drug recall — confirmed from records at screening, not a reliable phone knockout."
+    },
+    {
+      "criterion_number": 24,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Use of gemfibrozil within one week prior to screening or planned use.",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 25,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Use of PCSK9 inhibitors (evolocumab/alirocumab within 12 weeks, inclisiran within 18 months) or other PCSK9 inhibitor within 5 half-lives, or planned use.",
+      "verification_method": "records",
+      "knockout_strength": "hard",
+      "phone_screenable": false,
+      "rationale": "Specific advanced biologic recall — confirmed from records at screening, not a phone knockout."
+    },
+    {
+      "criterion_number": 26,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Participation in AZD0780 studies D7960C00012/00013, or another IMP within 30 days or 5 half-lives of screening.",
+      "verification_method": "records",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 27,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Planned use of other investigational products/devices during the study.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 28,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Any condition that could interfere with study conduct, incl. inability to communicate/comply, per investigator.",
+      "verification_method": "derived",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 30,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Previous randomisation into the present study.",
+      "verification_method": "records",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 32,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Acute ischaemic ASCVD event within 7 days prior to randomisation.",
+      "verification_method": "derived",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 33,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "QTcF >500 msec at randomisation (absent conduction delay/BBB/pacing).",
+      "verification_method": "exam",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 34,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Sustained spontaneous ventricular arrhythmia requiring treatment within 30 days without ICD in place.",
+      "verification_method": "exam",
+      "knockout_strength": "hard",
+      "phone_screenable": false
+    }
+  ],
+  "screeningQuestions": [
+    {
+      "rank": 1,
+      "variable_name": "q1_age",
+      "sms_question": "How old are you?",
+      "answer_type": "number",
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "age < 18",
+      "criteria_ids": [
+        "INC-1"
+      ]
+    },
+    {
+      "rank": 2,
+      "variable_name": "sex_at_birth",
+      "sms_question": "What is your sex assigned at birth?",
+      "answer_type": "choice",
+      "choices": [
+        "Female",
+        "Male"
+      ],
+      "routing": true,
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "none",
+      "included_in_flow": true,
+      "criteria_ids": []
+    },
+    {
+      "rank": 3,
+      "variable_name": "q2_cvd",
+      "sms_question": "Has a doctor told you that you have heart or blood-vessel disease — for example a past heart attack or stroke, blocked or narrowed arteries, or a procedure such as a stent, bypass, or surgery on the arteries of your heart, neck, or legs?",
+      "answer_type": "yes_no",
+      "category": "cardiovascular_history",
+      "is_qualifying_question": true,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-2"
+      ]
+    },
+    {
+      "rank": 4,
+      "variable_name": "q3_statin",
+      "sms_question": "Are you currently taking a cholesterol-lowering medicine, such as a statin (for example Lipitor, Crestor, Zocor, atorvastatin, rosuvastatin) or ezetimibe (Zetia)?",
+      "answer_type": "yes_no",
+      "category": "medication",
+      "is_qualifying_question": true,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-7"
+      ]
+    },
+    {
+      "rank": 5,
+      "variable_name": "q4_cancer",
+      "sms_question": "In the past 3 years, have you been diagnosed with or treated for cancer? (Minor skin cancers and cervical carcinoma-in-situ don't count — please answer no for those.)",
+      "answer_type": "yes_no",
+      "category": "medical_history",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-7"
+      ]
+    },
+    {
+      "rank": 6,
+      "variable_name": "q5_transplant",
+      "sms_question": "Have you ever received a major organ transplant, such as a heart, liver, lung, kidney, or bone-marrow transplant?",
+      "answer_type": "yes_no",
+      "category": "medical_history",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-11"
+      ]
+    },
+    {
+      "rank": 7,
+      "variable_name": "q6_substance",
+      "sms_question": "In the last 5 years, have you had a problem with alcohol or drug abuse?",
+      "answer_type": "yes_no",
+      "category": "medical_history",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-10"
+      ]
+    },
+    {
+      "rank": 8,
+      "variable_name": "q7_pregnancy",
+      "sms_question": "Are you currently pregnant or breastfeeding?",
+      "answer_type": "yes_no",
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-9"
+      ],
+      "depends_on": [
+        "sex_at_birth"
+      ],
+      "show_if": "sex_at_birth == \"Female\"",
+      "defer_if_unanswered": true,
+      "defer_note": "Pregnancy is confirmed by test at the screening visit; if unasked on the phone it does not block pre-qualification. A disclosed 'yes' still disqualifies."
+    }
+  ],
+  "flow": {
+    "nodes": [
+      {
+        "id": "root",
+        "type": "root",
+        "label": "Are you interested in this study?"
+      },
+      {
+        "id": "q1_age",
+        "type": "question",
+        "label": "How old are you?"
+      },
+      {
+        "id": "q_sex",
+        "type": "question",
+        "label": "Sex assigned at birth?"
+      },
+      {
+        "id": "q2_cvd",
+        "type": "question",
+        "label": "Diagnosed heart/blood-vessel disease or prior event/procedure?"
+      },
+      {
+        "id": "q3_statin",
+        "type": "question",
+        "label": "Currently on a statin / cholesterol-lowering medicine?"
+      },
+      {
+        "id": "q4_cancer",
+        "type": "question",
+        "label": "Cancer diagnosis/treatment in past 3 years?"
+      },
+      {
+        "id": "q5_transplant",
+        "type": "question",
+        "label": "Major organ transplant?"
+      },
+      {
+        "id": "q6_substance",
+        "type": "question",
+        "label": "Alcohol/drug abuse in last 5 years?"
+      },
+      {
+        "id": "q7_pregnancy",
+        "type": "question",
+        "label": "Pregnant or breastfeeding?"
+      },
+      {
+        "id": "qualified",
+        "type": "qualified",
+        "label": "Pre-qualified (confirm labs/imaging at visit)"
+      },
+      {
+        "id": "dnq_age",
+        "type": "dnq",
+        "label": "DNQ - Under 18"
+      },
+      {
+        "id": "dnq_no_cvd",
+        "type": "dnq",
+        "label": "DNQ - No diagnosed cardiovascular disease/event"
+      },
+      {
+        "id": "dnq_no_statin",
+        "type": "dnq",
+        "label": "DNQ - Not on lipid-lowering therapy"
+      },
+      {
+        "id": "dnq_cancer",
+        "type": "dnq",
+        "label": "DNQ - Cancer within 3 years"
+      },
+      {
+        "id": "dnq_transplant",
+        "type": "dnq",
+        "label": "DNQ - Major organ transplant"
+      },
+      {
+        "id": "dnq_substance",
+        "type": "dnq",
+        "label": "DNQ - Alcohol/drug abuse within 5 years"
+      },
+      {
+        "id": "dnq_pregnancy",
+        "type": "dnq",
+        "label": "DNQ - Pregnant/breastfeeding"
+      }
+    ],
+    "edges": [
+      {
+        "source": "root",
+        "target": "q1_age",
+        "label": "Interested"
+      },
+      {
+        "source": "q1_age",
+        "target": "dnq_age",
+        "label": "Under 18"
+      },
+      {
+        "source": "q1_age",
+        "target": "q_sex",
+        "label": "18 or older"
+      },
+      {
+        "source": "q_sex",
+        "target": "q2_cvd",
+        "label": "Recorded"
+      },
+      {
+        "source": "q2_cvd",
+        "target": "dnq_no_cvd",
+        "label": "No CVD/event"
+      },
+      {
+        "source": "q2_cvd",
+        "target": "q3_statin",
+        "label": "Has CVD/event"
+      },
+      {
+        "source": "q3_statin",
+        "target": "dnq_no_statin",
+        "label": "Not on statin"
+      },
+      {
+        "source": "q3_statin",
+        "target": "q4_cancer",
+        "label": "On statin"
+      },
+      {
+        "source": "q4_cancer",
+        "target": "dnq_cancer",
+        "label": "Cancer <3y"
+      },
+      {
+        "source": "q4_cancer",
+        "target": "q5_transplant",
+        "label": "No recent cancer"
+      },
+      {
+        "source": "q5_transplant",
+        "target": "dnq_transplant",
+        "label": "Transplant"
+      },
+      {
+        "source": "q5_transplant",
+        "target": "q6_substance",
+        "label": "None"
+      },
+      {
+        "source": "q6_substance",
+        "target": "dnq_substance",
+        "label": "Abuse <5y"
+      },
+      {
+        "source": "q6_substance",
+        "target": "q7_pregnancy",
+        "label": "None (Female)"
+      },
+      {
+        "source": "q6_substance",
+        "target": "qualified",
+        "label": "None (Male — skip pregnancy)"
+      },
+      {
+        "source": "q7_pregnancy",
+        "target": "dnq_pregnancy",
+        "label": "Pregnant/breastfeeding"
+      },
+      {
+        "source": "q7_pregnancy",
+        "target": "qualified",
+        "label": "Not pregnant"
+      }
+    ]
+  },
+  "funnel": [],
+  "patients": [],
+  "recruiters": [],
+  "refinedQuestions": [
+    {
+      "id": "q1_age",
+      "fact": "age",
+      "text": "How old are you?",
+      "type": "number",
+      "polarity": "requirement",
+      "disqualify_if": "age < 18",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "INC-1"
+      ],
+      "allowed_exceptions": "Eligibility by arm: ASCVD history ≥18; primary prevention male ≥50, female ≥55"
+    },
+    {
+      "id": "sex_at_birth",
+      "fact": "sex_at_birth",
+      "text": "What sex were you assigned at birth?",
+      "type": "choice",
+      "polarity": "neutral",
+      "disqualify_if": null,
+      "knockout_power": "low",
+      "criteria_ids": [],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q2_cvd",
+      "fact": "prior_cardiovascular_event",
+      "text": "Has a doctor diagnosed you with heart or blood-vessel disease, like a heart attack, stroke, or artery surgery?",
+      "type": "yes_no",
+      "polarity": "requirement",
+      "disqualify_if": "answer == no",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "INC-2"
+      ],
+      "allowed_exceptions": "Primary-prevention arm qualifies with diagnostic atherosclerosis instead of ASCVD history"
+    },
+    {
+      "id": "q3_statin",
+      "fact": "on_lipid_lowering_therapy",
+      "text": "Are you currently taking a statin or cholesterol medicine like Lipitor, Crestor, or Zetia?",
+      "type": "yes_no",
+      "polarity": "requirement",
+      "disqualify_if": "answer == no",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "INC-7"
+      ],
+      "allowed_exceptions": "Must have been on stable therapy ≥28 days before screening"
+    },
+    {
+      "id": "q4_cancer",
+      "fact": "recent_malignancy",
+      "text": "In the past 3 years, have you had cancer? (Not counting minor skin cancers or cervical carcinoma-in-situ.)",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-7"
+      ],
+      "allowed_exceptions": "Minor skin cancers and cervical carcinoma-in-situ do not count as disqualifying"
+    },
+    {
+      "id": "q5_transplant",
+      "fact": "prior_organ_transplant",
+      "text": "Have you ever had a major organ transplant like a heart, liver, lung, kidney, or bone marrow?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-11"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q6_substance",
+      "fact": "recent_substance_abuse",
+      "text": "In the last 5 years, have you had a problem with alcohol or drug abuse?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-10"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q7_pregnancy",
+      "fact": "pregnancy_lactation_status",
+      "text": "Are you currently pregnant or breastfeeding?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-9"
+      ],
+      "allowed_exceptions": ""
+    }
+  ]
+}

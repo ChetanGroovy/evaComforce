@@ -186,6 +186,41 @@ def answer_kb(message: str, kb_sections: dict) -> str:
     return "Good question — our study coordinator can go over those details on a quick call."
 
 
+# ───────────────────────── 4c. HUMANIZE a generated question (study-build time) ─────────────────────────
+
+def humanize_question(text: str, answer_type: str = "yes_no",
+                      choices: list | None = None, criterion_text: str | None = None) -> str:
+    """Rewrite ONE generated screening question into plain, patient-friendly wording.
+
+    Used by the study-creation pipeline (POST /humanize), NOT at chat time. It only
+    rewrites the QUESTION TEXT — the caller keeps every machine field (variable_name,
+    answer_type, disqualify_condition, criteria_ids, show_if…) so eligibility is unchanged.
+    Offline (no LLM): returns the text untouched.
+    """
+    c = get_client()
+    if not c or not text:
+        return text
+    ch = f"\n- Answer choices to offer: {choices}" if choices else ""
+    extra = (f"\n- For accuracy only (do NOT quote it), the clinical criterion this checks: "
+             f"\"{criterion_text}\"") if criterion_text else ""
+    prompt = (
+        "Rewrite this clinical-trial phone-screening QUESTION so an ordinary patient instantly "
+        "understands it. It must stay a single, clear, standalone question.\n"
+        "Rules:\n"
+        "- Keep the EXACT medical meaning and what it checks — do not make it stricter or looser.\n"
+        "- Plain layperson English: expand jargon and add common brand examples in parentheses "
+        "(e.g. 'anti-inflammatory pain meds (ibuprofen, Aleve, Celebrex)').\n"
+        f"- Must stay answerable by the SAME answer type: {answer_type} "
+        "(yes_no → a yes/no question; number → ask for a number; choice → offer the choices).\n"
+        "- ONE sentence. No greeting, no 'thanks', no emojis — just the question itself."
+        f"{ch}{extra}\n\n"
+        f"Original question: \"{text}\"\n\n"
+        "Rewritten patient-friendly question:"
+    )
+    out = (c.text(prompt, temperature=0.4) or "").strip().strip('"').strip()
+    return out or text
+
+
 # ───────────────────────── 5. QUALIFIED (closing message) ─────────────────────────
 
 def phrase_qualified(patient: dict, study_name: str) -> str:

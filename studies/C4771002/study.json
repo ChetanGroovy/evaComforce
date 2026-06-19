@@ -1,0 +1,648 @@
+{
+  "source": "Extracted by Claude from Protocol Amendment 1 (C4771002, 03-SEP-2025, IRB-approved 13-OCT-2025) + Main ICF (IRB-approved 20-JAN-2026)",
+  "capturedAt": "2026-06-18",
+  "status": "ready",
+  "study": {
+    "name": "C4771002 (PF-07831694)_Clostridioides difficile Vaccine",
+    "internalNumber": "C4771002",
+    "sponsor": "Pfizer Inc.",
+    "principalInvestigator": "",
+    "site": "",
+    "priority": "",
+    "indication": "Prevention of Clostridioides difficile infection (CDI) in adults ≥65 at increased risk",
+    "drug": "PF-07831694, Clostridioides difficile adjuvanted vaccine, intramuscular injection (2 vaccinations) vs placebo",
+    "flowStatus": "draft (generated from protocol)",
+    "flowVersion": 1,
+    "isPublished": false,
+    "flowUpdated": "2026-06-18",
+    "studyId": "",
+    "selectedProtocolDocumentId": "",
+    "_REQUIRED_FROM_SITE": "principalInvestigator, site (address+phone), priority — not in documents; supply from site/CRM"
+  },
+  "documents": [
+    {
+      "name": "C4771002 Protocol Amendment 1 (03-SEP-2025, IRB approved 13-OCT-2025)",
+      "type": "Protocol",
+      "uploaded": "2025-10-13",
+      "documentId": "",
+      "extractionStatus": "complete (by Claude)"
+    },
+    {
+      "name": "Main ICF U2.0 — C4771002 (IRB approved 20-JAN-2026, received 23-JAN-2026)",
+      "type": "ICF",
+      "uploaded": "2026-01-23",
+      "documentId": "",
+      "extractionStatus": "complete (by Claude)"
+    }
+  ],
+  "knowledgeBank": {
+    "General Study Information": "We are enrolling adults 65 and older who are at higher risk of getting a Clostridioides difficile (C. diff) infection — a serious gut infection that causes severe diarrhea. The study tests an investigational C. diff vaccine, given as an injection into the muscle, compared with placebo, to see how well it works and how safe it is. The study is sponsored by Pfizer. [Specific site location and phone are not in the documents — supply from the site.]",
+    "Trial Design": "Randomized, double-blind, placebo-controlled vaccine study in adults ≥65 at increased risk of C. diff infection. Participants receive the study vaccine or placebo by intramuscular injection (a 2-vaccination schedule), with on-site visits, telephone visits, and an eDiary to track symptoms and any loose stools. Eligibility includes a recent history that raises CDI risk (such as a hospital stay, multiple ER or outpatient visits, recent antibiotics, or a planned hospital stay/surgery).",
+    "Compensation / Reimbursement": "Participants are paid $150 for each completed on-site study visit and $50 for each completed telephone visit (loose-stool-sample visits are paid at the same rates; an onsite/telephone visit with ≥3 loose stools in 24 hours is $150). You also receive $75 for completing the post-vaccination eDiary over a 7-day period. The site will confirm exact amounts.",
+    "Blinding": "Double-blind — the participant, the investigator, and the Sponsor are blinded to whether the participant receives the vaccine or placebo."
+  },
+  "inclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Participants who are 65 years of age or older at Visit 1.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Increased risk of future CDI by virtue of ≥1 of: at least 1 inpatient hospitalization ≥2 nights in the previous 12 months; ≥2 ER visits in the previous 12 months; ≥10 outpatient visits in the previous 12 months; systemic antibiotics for ≥48 hours within the previous 12 weeks; or a planned inpatient hospitalization ≥2 nights or elective surgery scheduled ≥14 days after Vaccination 2.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Willing and able to comply with all scheduled visits, the investigational plan, laboratory tests, lifestyle considerations, and other study procedures.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        44
+      ],
+      "criterion_text": "Capable of giving signed informed consent, including compliance with the requirements and restrictions in the ICD and protocol.",
+      "verification_method": "records",
+      "knockout_strength": "none",
+      "phone_screenable": false
+    }
+  ],
+  "exclusionCriteria": [
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Prior episode of CDI, confirmed by laboratory test or diagnosis of pseudomembranous colitis at colonoscopy, surgery, or histopathology.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Prior small- or large-bowel resection (does not include appendectomy).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Any condition or treatment resulting in frequent diarrhea (≥3 loose stools per day more than once per month), as reported by the participant.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Immunocompromised individuals with known or suspected immunodeficiency (history and/or prior labs); specific rules for stable HIV/HCV/HBV apply.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Metastatic malignancy, end-stage renal disease (GFR 15 mL/min/1.73m² or on dialysis), or any serious medical disorder likely to be fatal within the next 12 months (investigator opinion).",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Bleeding diathesis or condition associated with prolonged bleeding that would contraindicate intramuscular injection.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Any contraindication to vaccination or vaccine components, including previous anaphylactic reaction to any vaccine or vaccine-related component.",
+      "verification_method": "self_report",
+      "knockout_strength": "hard",
+      "phone_screenable": true
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Any medical or psychiatric condition (including active suicidal ideation in the past year or suicidal behavior in the past 5 years) or lab abnormality that may increase risk or make the participant inappropriate, per investigator.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Participants who are of childbearing potential.",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 10,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Prior receipt of an investigational C. difficile vaccine or C. difficile monoclonal antibody therapy.",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 11,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Treatment with systemic immunosuppressant medications (including cytotoxic agents) or radiotherapy within 60 days before enrollment or planned through study conclusion (topical local immunosuppressants for skin permitted).",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 12,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Systemic corticosteroids ≥20 mg/day prednisone-equivalent for ≥14 days within 28 days before enrollment or planned through study (inhaled/epidural/intra-articular/topical permitted).",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 13,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Receipt of immunosuppressive blood/plasma products, immunoglobulin, or monoclonal antibodies from 60 days before study intervention or planned during the study (targeted mAbs for chronic illness permitted).",
+      "verification_method": "records",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 14,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Participation in other interventional clinical studies within 28 days prior through 1 month after the last vaccination (purely observational studies acceptable).",
+      "verification_method": "self_report",
+      "knockout_strength": "soft",
+      "phone_screenable": false
+    },
+    {
+      "criterion_number": 15,
+      "source_pages": [
+        45
+      ],
+      "criterion_text": "Investigator/site/sponsor staff directly involved in the study, and their family members.",
+      "verification_method": "self_report",
+      "knockout_strength": "none",
+      "phone_screenable": false
+    }
+  ],
+  "screeningQuestions": [
+    {
+      "rank": 1,
+      "variable_name": "q1_age",
+      "sms_question": "How old are you?",
+      "answer_type": "number",
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "age < 65",
+      "criteria_ids": [
+        "INC-1"
+      ]
+    },
+    {
+      "rank": 2,
+      "variable_name": "q2_cdi_risk",
+      "sms_question": "In the past 12 months, have you had any of these: a hospital stay of 2 or more nights, 2 or more ER visits, 10 or more doctor-office visits, or antibiotics for 2 or more days — or do you have a hospital stay or surgery planned soon?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == no",
+      "criteria_ids": [
+        "INC-2"
+      ]
+    },
+    {
+      "rank": 3,
+      "variable_name": "q3_prior_cdi",
+      "sms_question": "Have you ever had a C. difficile (C. diff) infection?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-1"
+      ]
+    },
+    {
+      "rank": 4,
+      "variable_name": "q4_bowel_surgery",
+      "sms_question": "Have you ever had part of your small or large intestine surgically removed? (An appendix removal does not count — say no for that.)",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-2"
+      ]
+    },
+    {
+      "rank": 5,
+      "variable_name": "q5_diarrhea",
+      "sms_question": "Do you regularly have frequent diarrhea — 3 or more loose stools in a day, more than once a month?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-3"
+      ]
+    },
+    {
+      "rank": 6,
+      "variable_name": "q6_immune",
+      "sms_question": "Do you have a weakened immune system or an immune deficiency condition?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-4"
+      ]
+    },
+    {
+      "rank": 7,
+      "variable_name": "q7_serious_illness",
+      "sms_question": "Do you have cancer that has spread (metastatic), kidney failure needing dialysis, or another serious illness your doctor is treating?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-5"
+      ]
+    },
+    {
+      "rank": 8,
+      "variable_name": "q8_vaccine_allergy",
+      "sms_question": "Have you ever had a severe allergic reaction (anaphylaxis) to a vaccine?",
+      "answer_type": "yes_no",
+      "category": "conditions",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "answer == yes",
+      "criteria_ids": [
+        "EXC-7"
+      ]
+    }
+  ],
+  "flow": {
+    "nodes": [
+      {
+        "id": "root",
+        "type": "root",
+        "label": "Are you interested in this study?"
+      },
+      {
+        "id": "q1_age",
+        "type": "question",
+        "label": "How old are you?"
+      },
+      {
+        "id": "q2_risk",
+        "type": "question",
+        "label": "Recent hospital/ER/antibiotics/planned surgery (CDI risk)?"
+      },
+      {
+        "id": "q3_cdi",
+        "type": "question",
+        "label": "Ever had a C. diff infection?"
+      },
+      {
+        "id": "q4_bowel",
+        "type": "question",
+        "label": "Bowel resection (not appendix)?"
+      },
+      {
+        "id": "q5_diarrhea",
+        "type": "question",
+        "label": "Frequent diarrhea (3+/day, >1×/month)?"
+      },
+      {
+        "id": "q6_immune",
+        "type": "question",
+        "label": "Weakened immune system?"
+      },
+      {
+        "id": "q7_serious",
+        "type": "question",
+        "label": "Metastatic cancer / dialysis / serious illness?"
+      },
+      {
+        "id": "q8_allergy",
+        "type": "question",
+        "label": "Severe allergic reaction to a vaccine?"
+      },
+      {
+        "id": "qualified",
+        "type": "qualified",
+        "label": "Qualified"
+      },
+      {
+        "id": "dnq_age",
+        "type": "dnq",
+        "label": "DNQ - Under 65"
+      },
+      {
+        "id": "dnq_norisk",
+        "type": "dnq",
+        "label": "DNQ - Does not meet CDI-risk criteria"
+      },
+      {
+        "id": "dnq_cdi",
+        "type": "dnq",
+        "label": "DNQ - Prior C. diff infection"
+      },
+      {
+        "id": "dnq_bowel",
+        "type": "dnq",
+        "label": "DNQ - Prior bowel resection"
+      },
+      {
+        "id": "dnq_diarrhea",
+        "type": "dnq",
+        "label": "DNQ - Chronic frequent diarrhea"
+      },
+      {
+        "id": "dnq_immune",
+        "type": "dnq",
+        "label": "DNQ - Immunocompromised"
+      },
+      {
+        "id": "dnq_serious",
+        "type": "dnq",
+        "label": "DNQ - Serious illness (metastatic cancer / ESRD)"
+      },
+      {
+        "id": "dnq_allergy",
+        "type": "dnq",
+        "label": "DNQ - Vaccine anaphylaxis history"
+      }
+    ],
+    "edges": [
+      {
+        "source": "root",
+        "target": "q1_age",
+        "label": "Interested"
+      },
+      {
+        "source": "q1_age",
+        "target": "q2_risk",
+        "label": "65 or older"
+      },
+      {
+        "source": "q1_age",
+        "target": "dnq_age",
+        "label": "Under 65"
+      },
+      {
+        "source": "q2_risk",
+        "target": "q3_cdi",
+        "label": "Meets a risk factor"
+      },
+      {
+        "source": "q2_risk",
+        "target": "dnq_norisk",
+        "label": "No risk factor"
+      },
+      {
+        "source": "q3_cdi",
+        "target": "dnq_cdi",
+        "label": "Prior C. diff"
+      },
+      {
+        "source": "q3_cdi",
+        "target": "q4_bowel",
+        "label": "None"
+      },
+      {
+        "source": "q4_bowel",
+        "target": "dnq_bowel",
+        "label": "Bowel resection"
+      },
+      {
+        "source": "q4_bowel",
+        "target": "q5_diarrhea",
+        "label": "None"
+      },
+      {
+        "source": "q5_diarrhea",
+        "target": "dnq_diarrhea",
+        "label": "Frequent diarrhea"
+      },
+      {
+        "source": "q5_diarrhea",
+        "target": "q6_immune",
+        "label": "None"
+      },
+      {
+        "source": "q6_immune",
+        "target": "dnq_immune",
+        "label": "Immunocompromised"
+      },
+      {
+        "source": "q6_immune",
+        "target": "q7_serious",
+        "label": "None"
+      },
+      {
+        "source": "q7_serious",
+        "target": "dnq_serious",
+        "label": "Serious illness"
+      },
+      {
+        "source": "q7_serious",
+        "target": "q8_allergy",
+        "label": "None"
+      },
+      {
+        "source": "q8_allergy",
+        "target": "dnq_allergy",
+        "label": "Vaccine anaphylaxis"
+      },
+      {
+        "source": "q8_allergy",
+        "target": "qualified",
+        "label": "None"
+      }
+    ]
+  },
+  "funnel": [],
+  "patients": [],
+  "recruiters": [],
+  "conversation": {
+    "greeting": "Hi{name}! I'm reaching out from the research team. We're enrolling adults 65 and older in a paid study of an investigational vaccine to help prevent C. difficile (C. diff) infection. Would you like to see if you may qualify?",
+    "closingQualified": "Great news — you pre-qualify! Let's set up a quick call with our study coordinator to confirm a few details and schedule your first visit. What time works best for you?",
+    "closingDnq": "I'm sorry, but it looks like this study isn't a match for you right now. We'll keep your information on file and reach out if a future study seems like a good fit.",
+    "closingIncomplete": "Thanks for your time. A study coordinator will follow up to finish a few remaining questions."
+  },
+  "refinedQuestions": [
+    {
+      "id": "q1_age",
+      "fact": "age",
+      "text": "How old are you?",
+      "type": "number",
+      "polarity": "requirement",
+      "disqualify_if": "age < 65",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "INC-1"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q2_cdi_risk",
+      "fact": "increased_cdi_risk",
+      "text": "In past 12 months: hospitalized 2+ nights, 2+ ER visits, 10+ doctor visits, antibiotics 2+ days, or surgery planned?",
+      "type": "yes_no",
+      "polarity": "requirement",
+      "disqualify_if": "answer == no",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "INC-2"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q3_prior_cdi",
+      "fact": "prior_cdi",
+      "text": "Have you ever had a C. difficile infection (C. diff)?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-1"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q4_bowel_surgery",
+      "fact": "bowel_resection",
+      "text": "Have you had bowel surgery to remove part of your intestines? (Appendix removal doesn't count.)",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-2"
+      ],
+      "allowed_exceptions": "Appendix removal does not count"
+    },
+    {
+      "id": "q5_diarrhea",
+      "fact": "chronic_diarrhea",
+      "text": "Do you regularly have 3+ loose stools in one day, more than once a month?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-3"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q6_immune",
+      "fact": "immunocompromised",
+      "text": "Do you have a weakened immune system or immune deficiency?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-4"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q7_serious_illness",
+      "fact": "terminal_medical_condition",
+      "text": "Do you have metastatic cancer, kidney failure on dialysis, or serious untreated illness?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-5"
+      ],
+      "allowed_exceptions": ""
+    },
+    {
+      "id": "q8_vaccine_allergy",
+      "fact": "vaccine_anaphylaxis",
+      "text": "Have you had a severe allergic reaction to any vaccine?",
+      "type": "yes_no",
+      "polarity": "exclusion",
+      "disqualify_if": "answer == yes",
+      "knockout_power": "high",
+      "criteria_ids": [
+        "EXC-7"
+      ],
+      "allowed_exceptions": ""
+    }
+  ]
+}
