@@ -19,8 +19,20 @@
     "_REQUIRED_FROM_SITE": "principalInvestigator, site (address+phone), priority — not in documents; supply from site/CRM"
   },
   "documents": [
-    {"name": "Protocol Amendment 4 — 77242113PSA3002 (30-MAR-2026, IRB approved 23-APR-2026)", "type": "Protocol", "uploaded": "2026-04-27", "documentId": "", "extractionStatus": "complete (by Claude)"},
-    {"name": "Main ICF — 77242113PSA3002 (IRB approved 23-APR-2026, received 27-APR-2026)", "type": "ICF", "uploaded": "2026-04-27", "documentId": "", "extractionStatus": "complete (by Claude)"}
+    {
+      "name": "Protocol Amendment 4 — 77242113PSA3002 (30-MAR-2026, IRB approved 23-APR-2026)",
+      "type": "Protocol",
+      "uploaded": "2026-04-27",
+      "documentId": "",
+      "extractionStatus": "complete (by Claude)"
+    },
+    {
+      "name": "Main ICF — 77242113PSA3002 (IRB approved 23-APR-2026, received 27-APR-2026)",
+      "type": "ICF",
+      "uploaded": "2026-04-27",
+      "documentId": "",
+      "extractionStatus": "complete (by Claude)"
+    }
   ],
   "knowledgeBank": {
     "General Study Information": "We are enrolling in a Phase 3 clinical research study for adults (18 and older) with active psoriatic arthritis (PsA) who also have plaque psoriasis (or psoriatic nail changes), and whose PsA is not fully controlled by their current treatment. The study tests an investigational medicine, icotrokinra (JNJ-77242113), taken as an oral tablet once a day, compared with placebo. Both people who have and have not previously used a biologic for PsA or psoriasis may take part. The study is sponsored by Janssen. NOTE: the study drug is an ORAL TABLET taken once daily upon waking on an empty stomach — not an injection. [Specific site location and phone are not in the documents — supply from the site.]",
@@ -29,120 +41,513 @@
     "Blinding": "Double-blind — participant, investigator, and sponsor are blinded. Icotrokinra and placebo tablets are identical in labeling and appearance to maintain the blind. An Independent Data Monitoring Committee oversees safety; selected sponsor staff are unblinded at the Week-24 and Week-52 data cuts for analysis."
   },
   "inclusionCriteria": [
-    {"criterion_number": 1, "source_pages": [54], "criterion_text": "At least 18 years of age (or the legal age of consent in the jurisdiction)."},
-    {"criterion_number": 2, "source_pages": [54], "criterion_text": "Diagnosis of PsA for at least 3 months before first study intervention, meeting CASPAR classification criteria at screening."},
-    {"criterion_number": 3, "source_pages": [54], "criterion_text": "Active PsA defined as ≥3 swollen joints AND ≥3 tender joints at screening and baseline, AND CRP ≥0.1 mg/dL at screening (central lab; one repeat allowed)."},
-    {"criterion_number": 4, "source_pages": [54], "criterion_text": "Has at least 1 PsA subset: distal interphalangeal joint involvement, polyarticular arthritis without rheumatoid nodules, arthritis mutilans, asymmetric peripheral arthritis, or spondylitis with peripheral arthritis."},
-    {"criterion_number": 5, "source_pages": [54], "criterion_text": "Has active plaque psoriasis with at least one psoriatic plaque ≥2 cm diameter, or nail changes consistent with psoriasis."},
-    {"criterion_number": 6, "source_pages": [54, 55], "criterion_text": "Active PsA despite current or previous use of ≥1 of: a non-biologic DMARD (MTX, SSZ, HCQ, or LEF for ≥12 weeks or intolerance); apremilast (≥12 weeks or intolerance); or exactly 1 biologic agent for PsA/psoriasis that was discontinued for any documented reason."},
-    {"criterion_number": 7, "source_pages": [55, 56], "criterion_text": "If currently on non-biologic DMARDs (MTX ≤25 mg/wk, SSZ ≤3 g/day, HCQ ≤400 mg/day, LEF ≤20 mg/day), started ≥12 weeks prior and stable ≥4 weeks (MTX+LEF combo not allowed); with stated washout rules for apremilast, NSAIDs, and oral corticosteroids (≤10 mg prednisone/day, stable ≥2 weeks)."},
-    {"criterion_number": 8, "source_pages": [56], "criterion_text": "Female of childbearing potential must have a negative serum pregnancy test at screening and negative urine test at Week 0 before dosing."},
-    {"criterion_number": 9, "source_pages": [56], "criterion_text": "Female must not be pregnant, breastfeeding, or planning pregnancy during the study or within 4 weeks after the last dose."},
-    {"criterion_number": 10, "source_pages": [56], "criterion_text": "Female must agree not to donate or freeze eggs for assisted reproduction during the study and for ≥4 weeks after the last dose."},
-    {"criterion_number": 11, "source_pages": [56, 57], "criterion_text": "Female must be not of childbearing potential, or use a highly effective contraception method (<1%/yr failure) during treatment and for 4 weeks after last dose (6 months if on MTX; 2 years if on LEF unless elimination completed)."},
-    {"criterion_number": 12, "source_pages": [57], "criterion_text": "Male must agree not to plan to father a child during the study or within 90 days after the last dose (3 months if on MTX)."},
-    {"criterion_number": 13, "source_pages": [57], "criterion_text": "Male without vasectomy must agree to use a barrier method (condom with spermicide where available) during the study and for 90 days after the last dose."},
-    {"criterion_number": 14, "source_pages": [57], "criterion_text": "Male must agree not to donate or freeze sperm for reproduction during the study and for ≥90 days after the last dose."},
-    {"criterion_number": 15, "source_pages": [57], "criterion_text": "Must sign an ICF indicating understanding of the study purpose and procedures and willingness to participate."},
-    {"criterion_number": 16, "source_pages": [57], "criterion_text": "Must sign a separate ICF if agreeing to the optional DNA research sample (refusal does not exclude participation)."},
-    {"criterion_number": 17, "source_pages": [57], "criterion_text": "Willing and able to follow lifestyle restrictions, including avoiding prolonged sun exposure and tanning booths/UV sources (for participants with skin lesions)."},
-    {"criterion_number": 18, "source_pages": [57], "criterion_text": "Agrees not to receive a live virus or live bacterial vaccine (including BCG) during the study or within 4 weeks after the last dose."}
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        54
+      ],
+      "criterion_text": "At least 18 years of age (or the legal age of consent in the jurisdiction)."
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        54
+      ],
+      "criterion_text": "Diagnosis of PsA for at least 3 months before first study intervention, meeting CASPAR classification criteria at screening."
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        54
+      ],
+      "criterion_text": "Active PsA defined as ≥3 swollen joints AND ≥3 tender joints at screening and baseline, AND CRP ≥0.1 mg/dL at screening (central lab; one repeat allowed)."
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        54
+      ],
+      "criterion_text": "Has at least 1 PsA subset: distal interphalangeal joint involvement, polyarticular arthritis without rheumatoid nodules, arthritis mutilans, asymmetric peripheral arthritis, or spondylitis with peripheral arthritis."
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        54
+      ],
+      "criterion_text": "Has active plaque psoriasis with at least one psoriatic plaque ≥2 cm diameter, or nail changes consistent with psoriasis."
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        54,
+        55
+      ],
+      "criterion_text": "Active PsA despite current or previous use of ≥1 of: a non-biologic DMARD (MTX, SSZ, HCQ, or LEF for ≥12 weeks or intolerance); apremilast (≥12 weeks or intolerance); or exactly 1 biologic agent for PsA/psoriasis that was discontinued for any documented reason."
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        55,
+        56
+      ],
+      "criterion_text": "If currently on non-biologic DMARDs (MTX ≤25 mg/wk, SSZ ≤3 g/day, HCQ ≤400 mg/day, LEF ≤20 mg/day), started ≥12 weeks prior and stable ≥4 weeks (MTX+LEF combo not allowed); with stated washout rules for apremilast, NSAIDs, and oral corticosteroids (≤10 mg prednisone/day, stable ≥2 weeks)."
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        56
+      ],
+      "criterion_text": "Female of childbearing potential must have a negative serum pregnancy test at screening and negative urine test at Week 0 before dosing."
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        56
+      ],
+      "criterion_text": "Female must not be pregnant, breastfeeding, or planning pregnancy during the study or within 4 weeks after the last dose."
+    },
+    {
+      "criterion_number": 10,
+      "source_pages": [
+        56
+      ],
+      "criterion_text": "Female must agree not to donate or freeze eggs for assisted reproduction during the study and for ≥4 weeks after the last dose."
+    },
+    {
+      "criterion_number": 11,
+      "source_pages": [
+        56,
+        57
+      ],
+      "criterion_text": "Female must be not of childbearing potential, or use a highly effective contraception method (<1%/yr failure) during treatment and for 4 weeks after last dose (6 months if on MTX; 2 years if on LEF unless elimination completed)."
+    },
+    {
+      "criterion_number": 12,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Male must agree not to plan to father a child during the study or within 90 days after the last dose (3 months if on MTX)."
+    },
+    {
+      "criterion_number": 13,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Male without vasectomy must agree to use a barrier method (condom with spermicide where available) during the study and for 90 days after the last dose."
+    },
+    {
+      "criterion_number": 14,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Male must agree not to donate or freeze sperm for reproduction during the study and for ≥90 days after the last dose."
+    },
+    {
+      "criterion_number": 15,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Must sign an ICF indicating understanding of the study purpose and procedures and willingness to participate."
+    },
+    {
+      "criterion_number": 16,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Must sign a separate ICF if agreeing to the optional DNA research sample (refusal does not exclude participation)."
+    },
+    {
+      "criterion_number": 17,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Willing and able to follow lifestyle restrictions, including avoiding prolonged sun exposure and tanning booths/UV sources (for participants with skin lesions)."
+    },
+    {
+      "criterion_number": 18,
+      "source_pages": [
+        57
+      ],
+      "criterion_text": "Agrees not to receive a live virus or live bacterial vaccine (including BCG) during the study or within 4 weeks after the last dose."
+    }
   ],
   "exclusionCriteria": [
-    {"criterion_number": 1, "source_pages": [58], "criterion_text": "History or current signs of severe, progressive, or uncontrolled renal, hepatic, cardiac, vascular, pulmonary, GI, endocrine, neurologic, hematologic, rheumatologic (other than PsA), psychiatric, genitourinary, or metabolic disturbances."},
-    {"criterion_number": 2, "source_pages": [58], "criterion_text": "Current malignancy or history of malignancy within 5 years before screening (except adequately treated non-melanoma skin cancer or cervical carcinoma in situ with no recurrence ≥12 weeks before first dose)."},
-    {"criterion_number": 3, "source_pages": [58], "criterion_text": "Known allergy, hypersensitivity, or intolerance to icotrokinra or its excipients."},
-    {"criterion_number": 4, "source_pages": [58], "criterion_text": "Unstable cardiovascular disease (e.g., unstable angina, rapid atrial fibrillation, TIA) or cardiac hospitalization within the last 12 weeks before screening."},
-    {"criterion_number": 5, "source_pages": [58], "criterion_text": "Other inflammatory diseases that might confound efficacy evaluation, including but not limited to rheumatoid arthritis, systemic lupus erythematosus, or Lyme disease."},
-    {"criterion_number": 6, "source_pages": [58], "criterion_text": "Fibromyalgia or osteoarthritis symptoms that, per investigator, could interfere with efficacy assessments."},
-    {"criterion_number": 7, "source_pages": [58], "criterion_text": "History of lymphoproliferative disease (including lymphoma), monoclonal gammopathy of undetermined significance, or signs suggestive of lymphoproliferative disease (e.g., lymphadenopathy, splenomegaly)."},
-    {"criterion_number": 8, "source_pages": [59], "criterion_text": "History of chronic or recurrent infectious disease (e.g., chronic renal/chest infection, recurrent UTI, severe fungal infection, or open/draining/infected skin wounds or ulcers)."},
-    {"criterion_number": 9, "source_pages": [59], "criterion_text": "Has a transplanted organ (except a corneal transplant >12 weeks before first dose)."},
-    {"criterion_number": 10, "source_pages": [59], "criterion_text": "History of an infected joint prosthesis, or ever received antibiotics for a suspected joint-prosthesis infection, if that prosthesis has not been removed/replaced."},
-    {"criterion_number": 11, "source_pages": [59], "criterion_text": "Herpes zoster infection within 8 weeks before screening."},
-    {"criterion_number": 12, "source_pages": [59], "criterion_text": "Has a nonplaque form of psoriasis (e.g., erythrodermic, guttate, or pustular)."},
-    {"criterion_number": 13, "source_pages": [59], "criterion_text": "Current drug-induced psoriasis (e.g., new onset or exacerbation from beta blockers, calcium channel blockers, or lithium)."},
-    {"criterion_number": 14, "source_pages": [59], "criterion_text": "Known or suspected immunodeficiency, including history of invasive opportunistic infections (e.g., active TB, nontuberculous mycobacteria, histoplasmosis, listeriosis, coccidioidomycosis, pneumocystosis, aspergillosis, HIV) or recurrent/prolonged infections suggesting immune compromise."},
-    {"criterion_number": 15, "source_pages": [59], "criterion_text": "Known active TB; IGRA TB test performed at screening (QuantiFERON or T-SPOT). History of active TB excludes; positive/indeterminate may participate after workup rules out active TB (latent TB managed per local guidelines)."},
-    {"criterion_number": 16, "source_pages": [59], "criterion_text": "Major surgery (e.g., requiring general anesthesia and hospitalization) within 8 weeks before screening, not fully recovered, or planned during the study (local-anesthesia procedures allowed)."},
-    {"criterion_number": 17, "source_pages": [60], "criterion_text": "Screening labs outside parameters: hemoglobin <8.5 g/dL; WBC <3.5×10³/µL; neutrophils <1.5×10³/µL; platelets <100×10³/µL; eGFR <60 mL/min/1.73m²; AST or ALT >1.5×ULN (no rescreen for AST/ALT)."},
-    {"criterion_number": 18, "source_pages": [60], "criterion_text": "Positive rheumatoid factor OR anti-CCP antibodies at screening (central lab)."},
-    {"criterion_number": 19, "source_pages": [60], "criterion_text": "Previously received icotrokinra."},
-    {"criterion_number": 20, "source_pages": [60], "criterion_text": "Used topical medications/treatments that could affect psoriasis evaluations (e.g., topical/intralesional corticosteroids, calcipotriene, vitamin D derivatives, tapinarof, roflumilast, retinoids, tacrolimus) within 2 weeks before first dose (low-potency topical steroids on face/groin allowed)."},
-    {"criterion_number": 21, "source_pages": [60], "criterion_text": "Received systemic immunosuppressants other than MTX (e.g., azathioprine, cyclosporine, 6-thioguanine, mercaptopurine, mycophenolate mofetil, hydroxyurea, tacrolimus) within 4 weeks before first dose."},
-    {"criterion_number": 22, "source_pages": [61], "criterion_text": "Received cytotoxic agents (e.g., chlorambucil, cyclophosphamide, nitrogen mustard, other alkylating agents) within 12 weeks before first dose."},
-    {"criterion_number": 23, "source_pages": [61], "criterion_text": "Received non-biologic DMARDs other than MTX, SSZ, HCQ, LEF (e.g., chloroquine, gold, penicillamine) within 4 weeks before first dose."},
-    {"criterion_number": 24, "source_pages": [61], "criterion_text": "Received phototherapy or systemic treatments that could affect psoriasis evaluations (e.g., retinoids, psoralens, fumaric acid derivatives; except MTX, SSZ, LEF, HCQ, apremilast) within 4 weeks before first dose."},
-    {"criterion_number": 25, "source_pages": [61], "criterion_text": "Received epidural, intra-articular, IM, or IV corticosteroids (including ACTH) for PsA within 4 weeks before first dose."},
-    {"criterion_number": 26, "source_pages": [61], "criterion_text": "Received oral corticosteroids for a non-PsO/PsA indication within 4 weeks before first dose."},
-    {"criterion_number": 27, "source_pages": [61], "criterion_text": "Ever previously received JAK inhibitors or TYK2 inhibitors (e.g., deucravacitinib) for PsA or psoriasis (any prior use is exclusionary)."},
-    {"criterion_number": 28, "source_pages": [61], "criterion_text": "Ever previously received anti-IL-23 or anti-IL-12/23 biologics (or biosimilars) for PsA or psoriasis (any prior use is exclusionary)."},
-    {"criterion_number": 29, "source_pages": [61], "criterion_text": "Received anti-TNFα or anti-IL-17 agents (or biosimilars), or abatacept (or biosimilar), for PsA/psoriasis within 30 days or 5 half-lives (whichever is longer) before first dose."},
-    {"criterion_number": 30, "source_pages": [62], "criterion_text": "Received B-cell-depleting agents (e.g., rituximab) for a non-PsO/PsA indication within 26 weeks before first dose."},
-    {"criterion_number": 31, "source_pages": [62], "criterion_text": "Received any other non-PsO/PsA biologic therapy (e.g., natalizumab, belimumab, visilizumab) within 12 weeks or 5 half-lives (whichever is longer) before first dose."},
-    {"criterion_number": 32, "source_pages": [62], "criterion_text": "Received, or expected to receive, any live virus or bacterial vaccination within 4 weeks before first dose."},
-    {"criterion_number": 33, "source_pages": [62], "criterion_text": "Received, or expected to receive, BCG vaccination within 12 months before first dose."},
-    {"criterion_number": 34, "source_pages": [62], "criterion_text": "Received an investigational intervention or used an invasive investigational device within 90 days or 5 half-lives (whichever is longer) before the planned first dose."},
-    {"criterion_number": 35, "source_pages": [62, 63], "criterion_text": "Suicidal ideation/behavior within 26 weeks before screening (per C-SSRS) considered at risk by the investigator/mental-health evaluation."},
-    {"criterion_number": 36, "source_pages": [63], "criterion_text": "Tested positive for or exposed to COVID-19 within 4 weeks before first dose (exceptions for resolved/negative-tested cases)."},
-    {"criterion_number": 37, "source_pages": [63], "criterion_text": "Positive for hepatitis B; or seropositive for hepatitis C antibodies (unless defined cured/negative-RNA criteria met); or HIV positive."},
-    {"criterion_number": 38, "source_pages": [63], "criterion_text": "Chest radiograph or CT within 12 weeks before first dose showing evidence of ongoing infection or malignancy."},
-    {"criterion_number": 39, "source_pages": [63], "criterion_text": "Is an employee of the investigator or study site with direct study involvement, or a family member of such employees/the investigator."},
-    {"criterion_number": 40, "source_pages": [63], "criterion_text": "Unable or unwilling to undergo multiple venipunctures due to poor tolerability or lack of easy vein access."},
-    {"criterion_number": 41, "source_pages": [63], "criterion_text": "Lives in an institution under court/authority order, or is considered vulnerable (e.g., unable to consent, deprived of liberty)."},
-    {"criterion_number": 42, "source_pages": [63], "criterion_text": "Is an employee of the sponsor."},
-    {"criterion_number": 43, "source_pages": [63], "criterion_text": "Has any condition for which, per investigator, participation would not be in the participant's best interest or could confound assessments."},
-    {"criterion_number": 44, "source_pages": [63], "criterion_text": "History of drug or alcohol abuse per DSM-5 within 1 year before screening (marijuana use not exclusionary unless deemed abuse by the investigator)."}
+    {
+      "criterion_number": 1,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "History or current signs of severe, progressive, or uncontrolled renal, hepatic, cardiac, vascular, pulmonary, GI, endocrine, neurologic, hematologic, rheumatologic (other than PsA), psychiatric, genitourinary, or metabolic disturbances."
+    },
+    {
+      "criterion_number": 2,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "Current malignancy or history of malignancy within 5 years before screening (except adequately treated non-melanoma skin cancer or cervical carcinoma in situ with no recurrence ≥12 weeks before first dose)."
+    },
+    {
+      "criterion_number": 3,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "Known allergy, hypersensitivity, or intolerance to icotrokinra or its excipients."
+    },
+    {
+      "criterion_number": 4,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "Unstable cardiovascular disease (e.g., unstable angina, rapid atrial fibrillation, TIA) or cardiac hospitalization within the last 12 weeks before screening."
+    },
+    {
+      "criterion_number": 5,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "Other inflammatory diseases that might confound efficacy evaluation, including but not limited to rheumatoid arthritis, systemic lupus erythematosus, or Lyme disease."
+    },
+    {
+      "criterion_number": 6,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "Fibromyalgia or osteoarthritis symptoms that, per investigator, could interfere with efficacy assessments."
+    },
+    {
+      "criterion_number": 7,
+      "source_pages": [
+        58
+      ],
+      "criterion_text": "History of lymphoproliferative disease (including lymphoma), monoclonal gammopathy of undetermined significance, or signs suggestive of lymphoproliferative disease (e.g., lymphadenopathy, splenomegaly)."
+    },
+    {
+      "criterion_number": 8,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "History of chronic or recurrent infectious disease (e.g., chronic renal/chest infection, recurrent UTI, severe fungal infection, or open/draining/infected skin wounds or ulcers)."
+    },
+    {
+      "criterion_number": 9,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Has a transplanted organ (except a corneal transplant >12 weeks before first dose)."
+    },
+    {
+      "criterion_number": 10,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "History of an infected joint prosthesis, or ever received antibiotics for a suspected joint-prosthesis infection, if that prosthesis has not been removed/replaced."
+    },
+    {
+      "criterion_number": 11,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Herpes zoster infection within 8 weeks before screening."
+    },
+    {
+      "criterion_number": 12,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Has a nonplaque form of psoriasis (e.g., erythrodermic, guttate, or pustular)."
+    },
+    {
+      "criterion_number": 13,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Current drug-induced psoriasis (e.g., new onset or exacerbation from beta blockers, calcium channel blockers, or lithium)."
+    },
+    {
+      "criterion_number": 14,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Known or suspected immunodeficiency, including history of invasive opportunistic infections (e.g., active TB, nontuberculous mycobacteria, histoplasmosis, listeriosis, coccidioidomycosis, pneumocystosis, aspergillosis, HIV) or recurrent/prolonged infections suggesting immune compromise."
+    },
+    {
+      "criterion_number": 15,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Known active TB; IGRA TB test performed at screening (QuantiFERON or T-SPOT). History of active TB excludes; positive/indeterminate may participate after workup rules out active TB (latent TB managed per local guidelines)."
+    },
+    {
+      "criterion_number": 16,
+      "source_pages": [
+        59
+      ],
+      "criterion_text": "Major surgery (e.g., requiring general anesthesia and hospitalization) within 8 weeks before screening, not fully recovered, or planned during the study (local-anesthesia procedures allowed)."
+    },
+    {
+      "criterion_number": 17,
+      "source_pages": [
+        60
+      ],
+      "criterion_text": "Screening labs outside parameters: hemoglobin <8.5 g/dL; WBC <3.5×10³/µL; neutrophils <1.5×10³/µL; platelets <100×10³/µL; eGFR <60 mL/min/1.73m²; AST or ALT >1.5×ULN (no rescreen for AST/ALT)."
+    },
+    {
+      "criterion_number": 18,
+      "source_pages": [
+        60
+      ],
+      "criterion_text": "Positive rheumatoid factor OR anti-CCP antibodies at screening (central lab)."
+    },
+    {
+      "criterion_number": 19,
+      "source_pages": [
+        60
+      ],
+      "criterion_text": "Previously received icotrokinra."
+    },
+    {
+      "criterion_number": 20,
+      "source_pages": [
+        60
+      ],
+      "criterion_text": "Used topical medications/treatments that could affect psoriasis evaluations (e.g., topical/intralesional corticosteroids, calcipotriene, vitamin D derivatives, tapinarof, roflumilast, retinoids, tacrolimus) within 2 weeks before first dose (low-potency topical steroids on face/groin allowed)."
+    },
+    {
+      "criterion_number": 21,
+      "source_pages": [
+        60
+      ],
+      "criterion_text": "Received systemic immunosuppressants other than MTX (e.g., azathioprine, cyclosporine, 6-thioguanine, mercaptopurine, mycophenolate mofetil, hydroxyurea, tacrolimus) within 4 weeks before first dose."
+    },
+    {
+      "criterion_number": 22,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Received cytotoxic agents (e.g., chlorambucil, cyclophosphamide, nitrogen mustard, other alkylating agents) within 12 weeks before first dose."
+    },
+    {
+      "criterion_number": 23,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Received non-biologic DMARDs other than MTX, SSZ, HCQ, LEF (e.g., chloroquine, gold, penicillamine) within 4 weeks before first dose."
+    },
+    {
+      "criterion_number": 24,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Received phototherapy or systemic treatments that could affect psoriasis evaluations (e.g., retinoids, psoralens, fumaric acid derivatives; except MTX, SSZ, LEF, HCQ, apremilast) within 4 weeks before first dose."
+    },
+    {
+      "criterion_number": 25,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Received epidural, intra-articular, IM, or IV corticosteroids (including ACTH) for PsA within 4 weeks before first dose."
+    },
+    {
+      "criterion_number": 26,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Received oral corticosteroids for a non-PsO/PsA indication within 4 weeks before first dose."
+    },
+    {
+      "criterion_number": 27,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Ever previously received JAK inhibitors or TYK2 inhibitors (e.g., deucravacitinib) for PsA or psoriasis (any prior use is exclusionary)."
+    },
+    {
+      "criterion_number": 28,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Ever previously received anti-IL-23 or anti-IL-12/23 biologics (or biosimilars) for PsA or psoriasis (any prior use is exclusionary)."
+    },
+    {
+      "criterion_number": 29,
+      "source_pages": [
+        61
+      ],
+      "criterion_text": "Received anti-TNFα or anti-IL-17 agents (or biosimilars), or abatacept (or biosimilar), for PsA/psoriasis within 30 days or 5 half-lives (whichever is longer) before first dose."
+    },
+    {
+      "criterion_number": 30,
+      "source_pages": [
+        62
+      ],
+      "criterion_text": "Received B-cell-depleting agents (e.g., rituximab) for a non-PsO/PsA indication within 26 weeks before first dose."
+    },
+    {
+      "criterion_number": 31,
+      "source_pages": [
+        62
+      ],
+      "criterion_text": "Received any other non-PsO/PsA biologic therapy (e.g., natalizumab, belimumab, visilizumab) within 12 weeks or 5 half-lives (whichever is longer) before first dose."
+    },
+    {
+      "criterion_number": 32,
+      "source_pages": [
+        62
+      ],
+      "criterion_text": "Received, or expected to receive, any live virus or bacterial vaccination within 4 weeks before first dose."
+    },
+    {
+      "criterion_number": 33,
+      "source_pages": [
+        62
+      ],
+      "criterion_text": "Received, or expected to receive, BCG vaccination within 12 months before first dose."
+    },
+    {
+      "criterion_number": 34,
+      "source_pages": [
+        62
+      ],
+      "criterion_text": "Received an investigational intervention or used an invasive investigational device within 90 days or 5 half-lives (whichever is longer) before the planned first dose."
+    },
+    {
+      "criterion_number": 35,
+      "source_pages": [
+        62,
+        63
+      ],
+      "criterion_text": "Suicidal ideation/behavior within 26 weeks before screening (per C-SSRS) considered at risk by the investigator/mental-health evaluation."
+    },
+    {
+      "criterion_number": 36,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Tested positive for or exposed to COVID-19 within 4 weeks before first dose (exceptions for resolved/negative-tested cases)."
+    },
+    {
+      "criterion_number": 37,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Positive for hepatitis B; or seropositive for hepatitis C antibodies (unless defined cured/negative-RNA criteria met); or HIV positive."
+    },
+    {
+      "criterion_number": 38,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Chest radiograph or CT within 12 weeks before first dose showing evidence of ongoing infection or malignancy."
+    },
+    {
+      "criterion_number": 39,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Is an employee of the investigator or study site with direct study involvement, or a family member of such employees/the investigator."
+    },
+    {
+      "criterion_number": 40,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Unable or unwilling to undergo multiple venipunctures due to poor tolerability or lack of easy vein access."
+    },
+    {
+      "criterion_number": 41,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Lives in an institution under court/authority order, or is considered vulnerable (e.g., unable to consent, deprived of liberty)."
+    },
+    {
+      "criterion_number": 42,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Is an employee of the sponsor."
+    },
+    {
+      "criterion_number": 43,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "Has any condition for which, per investigator, participation would not be in the participant's best interest or could confound assessments."
+    },
+    {
+      "criterion_number": 44,
+      "source_pages": [
+        63
+      ],
+      "criterion_text": "History of drug or alcohol abuse per DSM-5 within 1 year before screening (marijuana use not exclusionary unless deemed abuse by the investigator)."
+    }
   ],
   "screeningQuestions": [
-    {"rank": 1, "variable_name": "q1_age", "sms_question": "How old are you?", "answer_type": "number", "category": "demographics", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "age < 18", "criteria_ids": ["INC-1"]},
-    {"rank": 2, "variable_name": "q2_pregnancy", "sms_question": "If you are female (as assigned at birth), are you currently pregnant, breastfeeding, or planning to become pregnant? If you are not female, say no.", "answer_type": "yes_no", "category": "demographics", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "answer == yes", "criteria_ids": ["INC-9"]},
-    {"rank": 3, "variable_name": "q3_psa_dx", "sms_question": "Have you been diagnosed with psoriatic arthritis (PsA) by a doctor at least 3 months ago?", "answer_type": "yes_no", "category": "conditions", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "answer == no", "criteria_ids": ["INC-2"]},
-    {"rank": 4, "variable_name": "q4_psoriasis", "sms_question": "Do you also have psoriasis on your skin (raised, scaly patches) or psoriasis-related nail changes?", "answer_type": "yes_no", "category": "conditions", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "answer == no", "criteria_ids": ["INC-5"]},
-    {"rank": 5, "variable_name": "q5_treatment_history", "sms_question": "Have you tried a medication for your psoriatic arthritis — such as methotrexate, sulfasalazine, leflunomide, Otezla (apremilast), or a biologic — that didn't control it well enough or that you couldn't tolerate?", "answer_type": "yes_no", "category": "treatment_history", "is_qualifying_question": false, "knockout_power": "medium", "included_in_flow": true, "disqualify_condition": "answer == no", "criteria_ids": ["INC-6"]},
-    {"rank": 6, "variable_name": "q6_other_inflammatory", "sms_question": "Have you been diagnosed with another inflammatory or autoimmune condition such as rheumatoid arthritis, lupus, or Lyme disease?", "answer_type": "yes_no", "category": "conditions", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "answer == yes", "criteria_ids": ["EXC-5"]},
-    {"rank": 7, "variable_name": "q7_cancer", "sms_question": "Have you had cancer in the past 5 years (other than a fully treated skin cancer or cervical cancer in situ)?", "answer_type": "yes_no", "category": "conditions", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "answer == yes", "criteria_ids": ["EXC-2"]},
-    {"rank": 8, "variable_name": "q8_transplant", "sms_question": "Have you had an organ transplant (other than a corneal/eye transplant)?", "answer_type": "yes_no", "category": "conditions", "is_qualifying_question": false, "knockout_power": "high", "included_in_flow": true, "disqualify_condition": "answer == yes", "criteria_ids": ["EXC-9"]}
+    {
+      "rank": 1,
+      "variable_name": "q1_age",
+      "sms_question": "How old are you?",
+      "answer_type": "number",
+      "category": "demographics",
+      "is_qualifying_question": false,
+      "knockout_power": "high",
+      "included_in_flow": true,
+      "disqualify_condition": "age < 18",
+      "criteria_ids": [
+        "INC-1"
+      ],
+      "choices": null
+    }
   ],
   "flow": {
     "nodes": [
-      {"id": "root", "type": "root", "label": "Are you interested in this study?"},
-      {"id": "q1_age", "type": "question", "label": "How old are you?"},
-      {"id": "q2_preg", "type": "question", "label": "Pregnant/breastfeeding/planning pregnancy? (female at birth)"},
-      {"id": "q3_psa", "type": "question", "label": "Diagnosed with PsA ≥3 months ago?"},
-      {"id": "q4_pso", "type": "question", "label": "Also have plaque psoriasis or psoriatic nail changes?"},
-      {"id": "q5_tx", "type": "question", "label": "Tried a PsA medication that didn't work / intolerant?"},
-      {"id": "q6_other", "type": "question", "label": "Other inflammatory/autoimmune dx (RA, lupus, Lyme)?"},
-      {"id": "q7_cancer", "type": "question", "label": "Cancer in past 5 years (except treated skin/cervical)?"},
-      {"id": "q8_transplant", "type": "question", "label": "Organ transplant (except corneal)?"},
-      {"id": "qualified", "type": "qualified", "label": "Qualified"},
-      {"id": "dnq_age", "type": "dnq", "label": "DNQ - Age under 18"},
-      {"id": "dnq_pregnancy", "type": "dnq", "label": "DNQ - Pregnant, breastfeeding, or planning pregnancy"},
-      {"id": "dnq_no_psa", "type": "dnq", "label": "DNQ - No psoriatic arthritis diagnosis"},
-      {"id": "dnq_no_pso", "type": "dnq", "label": "DNQ - No plaque psoriasis / nail changes"},
-      {"id": "dnq_no_tx", "type": "dnq", "label": "DNQ - No prior PsA treatment inadequate response/intolerance"},
-      {"id": "dnq_other", "type": "dnq", "label": "DNQ - Confounding inflammatory/autoimmune condition"},
-      {"id": "dnq_cancer", "type": "dnq", "label": "DNQ - Malignancy within 5 years"},
-      {"id": "dnq_transplant", "type": "dnq", "label": "DNQ - Transplanted organ"}
+      {
+        "id": "q1_age",
+        "type": "question",
+        "label": "How old are you?"
+      },
+      {
+        "id": "root",
+        "type": "root",
+        "label": "Are you interested in 77242113PSA3002 (Icotrokinra)_Psoriatic Arthritis (ICONIC-PsA 2)?"
+      },
+      {
+        "id": "dnq_q1_age",
+        "type": "dnq",
+        "label": "DNQ - Age under 18"
+      },
+      {
+        "id": "dnq_q5_treatment_history",
+        "type": "dnq",
+        "label": "DNQ - treatment_history"
+      },
+      {
+        "id": "qualified",
+        "type": "qualified",
+        "label": "Qualified"
+      }
     ],
     "edges": [
-      {"source": "root", "target": "q1_age", "label": "Interested"},
-      {"source": "q1_age", "target": "q2_preg", "label": "18 or older"},
-      {"source": "q1_age", "target": "dnq_age", "label": "Under 18"},
-      {"source": "q2_preg", "target": "dnq_pregnancy", "label": "Pregnant/planning"},
-      {"source": "q2_preg", "target": "q3_psa", "label": "Not pregnant/planning"},
-      {"source": "q3_psa", "target": "q4_pso", "label": "Has PsA diagnosis"},
-      {"source": "q3_psa", "target": "dnq_no_psa", "label": "No PsA diagnosis"},
-      {"source": "q4_pso", "target": "q5_tx", "label": "Has psoriasis/nail changes"},
-      {"source": "q4_pso", "target": "dnq_no_pso", "label": "No psoriasis"},
-      {"source": "q5_tx", "target": "q6_other", "label": "Inadequate response/intolerance"},
-      {"source": "q5_tx", "target": "dnq_no_tx", "label": "No prior inadequate response"},
-      {"source": "q6_other", "target": "dnq_other", "label": "Has confounding condition"},
-      {"source": "q6_other", "target": "q7_cancer", "label": "None"},
-      {"source": "q7_cancer", "target": "dnq_cancer", "label": "Cancer in 5 years"},
-      {"source": "q7_cancer", "target": "q8_transplant", "label": "No recent cancer"},
-      {"source": "q8_transplant", "target": "dnq_transplant", "label": "Has transplant"},
-      {"source": "q8_transplant", "target": "qualified", "label": "No transplant"}
+      {
+        "source": "root",
+        "target": "q1_age",
+        "label": "Interested"
+      },
+      {
+        "source": "q1_age",
+        "target": "dnq_q1_age",
+        "label": "Under 18"
+      },
+      {
+        "source": "q1_age",
+        "target": "qualified",
+        "label": "18 or older"
+      },
+      {
+        "source": "q1_age",
+        "target": "dnq_q5_treatment_history",
+        "label": "equal 18"
+      }
     ]
   },
   "funnel": [],

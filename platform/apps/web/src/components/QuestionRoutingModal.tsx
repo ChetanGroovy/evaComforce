@@ -325,7 +325,35 @@ export function QuestionRoutingModal({
   }
 
   function deleteRow(rowId: string) {
-    setRows((prev) => prev.filter((r) => r.id !== rowId));
+    setRows((prev) => {
+      const idx = prev.findIndex((r) => r.id === rowId);
+      const victim = prev[idx];
+      const remaining = prev.filter((r) => r.id !== rowId);
+      if (!victim) return remaining;
+
+      // Re-stitch the chain: any other row whose path pointed at the deleted
+      // question is repointed to the victim's own "forward" (continue)
+      // destination — the first path that leads to a surviving question or to
+      // 'qualified' (not a DNQ terminal). Without this, the question the victim
+      // fed into becomes an orphan and the graph spine breaks.
+      const survivingVars = new Set(remaining.map((r) => r.variable_name));
+      const isForward = (dest: string) =>
+        survivingVars.has(dest) || dest === 'qualified';
+      const nextRow = prev.slice(idx + 1).find((r) => survivingVars.has(r.variable_name));
+      const forward =
+        victim.paths.find((p) => isForward(p.destination))?.destination ??
+        nextRow?.variable_name ??
+        'qualified';
+
+      return remaining.map((r) => ({
+        ...r,
+        paths: r.paths.map((p) =>
+          p.destination === victim.variable_name
+            ? { ...p, destination: forward }
+            : p,
+        ),
+      }));
+    });
     setExpandedChoices((prev) => {
       const next = { ...prev };
       delete next[rowId];
@@ -501,10 +529,12 @@ export function QuestionRoutingModal({
       }
       flowEdges.push(...rootEdges);
 
-      // Rebuild question edges from path rows
+      // Rebuild question edges from path rows. Drop any edge whose target node
+      // no longer exists (a destination left dangling after a question was
+      // deleted) — a dangling edge would unreachable-orphan the spine.
       rows.forEach((r) => {
         r.paths.forEach((p) => {
-          if (p.destination) {
+          if (p.destination && validNodeIds.has(p.destination)) {
             flowEdges.push({
               source: r.variable_name,
               target: p.destination,
