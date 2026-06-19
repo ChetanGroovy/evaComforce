@@ -1,7 +1,12 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
 /* ── Themes ──────────────────────────────────────────── */
-export type Theme = 'dark' | 'light' | 'slate' | 'contrast' | 'solarized';
+export type Theme =
+  | 'dark'
+  | 'light'
+  | 'professional-medical'
+  | 'modern-healthcare'
+  | 'patient-friendly';
 
 export interface ThemeMeta {
   id: Theme;
@@ -13,10 +18,10 @@ export interface ThemeMeta {
 
 export const THEMES: ThemeMeta[] = [
   { id: 'dark', label: 'Midnight', swatch: ['#0e1219', '#5b8ef0'], group: 'dark' },
-  { id: 'slate', label: 'Slate', swatch: ['#1b2129', '#6ea8c8'], group: 'dark' },
-  { id: 'contrast', label: 'High Contrast', swatch: ['#000000', '#ffd02e'], group: 'dark' },
   { id: 'light', label: 'Daylight', swatch: ['#ffffff', '#3f73d6'], group: 'light' },
-  { id: 'solarized', label: 'Solarized', swatch: ['#fdf6e3', '#268bd2'], group: 'light' },
+  { id: 'professional-medical', label: 'Professional Medical', swatch: ['#ffffff', '#0F4C81'], group: 'light' },
+  { id: 'modern-healthcare', label: 'Modern Healthcare', swatch: ['#F8FAFC', '#2563EB'], group: 'light' },
+  { id: 'patient-friendly', label: 'Patient Friendly', swatch: ['#F1FBF9', '#0d9488'], group: 'light' },
 ];
 
 const THEME_IDS = THEMES.map((t) => t.id);
